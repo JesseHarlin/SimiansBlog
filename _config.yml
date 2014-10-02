@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-email:
+title: Simians Blog
+subtitle: The personal blog of Jesse Harlin
+description: This si a place where I post my ideas abotu development, experiments and project progress
+author: Jesse Harlin    
+email: harlinjesse@gmail.com
 language:
 
 # URL
