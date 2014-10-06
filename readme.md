@@ -2,4 +2,6 @@
 
 Where I will keep my future blog.
 
-TODO: migrate old posts.
+TODO: 
+migrate old posts
+Update Theme
