@@ -15,15 +15,15 @@
     "hexo-generator-tag": "0.x.x",
     "hexo-pagination": "0.x.x",
     "hexo-renderer-ejs": "*",
-    "hexo-renderer-markdownjs": "0..x.x",
+    "hexo-renderer-markdownjs": "0.x.x",
     "hexo-renderer-marked": "*",
     "hexo-renderer-stylus": "*",
-    "hexo-server": "0..x.x",
+    "hexo-server": "0.x.x",
     "hexo-tag-googlemaps": "*",
-    "hexo-util": "0..x.x"
+    "hexo-util": "0.x.x"
   },
   "hexo": {
-    "version": "3.x.x"
+    "version": "3.0.0"
   },
   "devDependencies": {
     "hexo-broken-link-checker": "1.x.x",
