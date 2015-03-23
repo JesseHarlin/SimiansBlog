@@ -1,6 +1,6 @@
 title: "Orchard and Livewriter"
 date: 2012-2-1 8:30:00
-tags:
+tags: Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing
 ---
 
 I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWriter, rather than the HTML editor on the remote blog. For one, you can work offline, which might be handy now and then if you’re in a situation where you don’t have a decent internet connection. A second advantage is the fact that you can keep a local backup of all your posts. I don’t recommend this being your only backup, of course- but hey a little replication doesn’t hurt. Of course my favorite reason is to make use of the superior editor and plugins. Really, the editor is nice. It feels like Word with spell check and such, but you can also go into the source view and make sure everything is clean. It doesn’t inject a bunch of junk into your markup either.
