@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Simian&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.
+First we do the node dance. Install Gulp!
+1npm install -g gulp
+And then:
+1npm install --save-dev gulp
+Now">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Simian's Blog">
+<meta property="og:url" content="http://yoursite.com/2015/03/23/flirting_with_gulp_part_2/index.html">
+<meta property="og:site_name" content="Simian's Blog">
+<meta property="og:description" content="You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.
+First we do the node dance. Install Gulp!
+1npm install -g gulp
+And then:
+1npm install --save-dev gulp
+Now">
+<meta property="og:image" content="/images/gulp/grunt-stylus-speed.png">
+<meta property="og:image" content="/images/gulp/gulp-stylus.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Simian's Blog">
+<meta name="twitter:description" content="You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.
+First we do the node dance. Install Gulp!
+1npm install -g gulp
+And then:
+1npm install --save-dev gulp
+Now">
+  
+    <link rel="alternative" href="/atom.xml" title="Simian&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Simian&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Code, Music, Interactive Media, Community</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-flirting_with_gulp_part_2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/23/flirting_with_gulp_part_2/" class="article-date">
+  <time datetime="2015-03-23T09:03:23.000Z" itemprop="datePublished">2015-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.</p>
+<p>First we do the node dance. Install Gulp!</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp</span><br></pre></td></tr></table></figure>
+<p>And then:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
+<p>Now I add a gulpfile.js to my project, and </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br></pre></td></tr></table></figure>
+<p>so far, so simple.</p>
+<p>now I actually need STUFF. Gulp plugins. Thankfully here is many. I just follwoed the same procedure for each</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-changed</span><br><span class="line">npm install --save-dev gulp-concat</span><br><span class="line">npm install --save-dev gulp-copy</span><br><span class="line">npm install --save-dev gulp-stylus</span><br><span class="line">npm install --save-dev gulp-clean</span><br><span class="line">npm install --save-dev gulp-htmlmin</span><br><span class="line">npm install --save-dev gulp-cssmin</span><br><span class="line">npm install --save-dev gulp-uglify</span><br></pre></td></tr></table></figure>
+<p>If you used it in Grunt, most likely it is also in gulp. Notice I didnt add watch? That’s already included in gulp. Awesome!</p>
+<p>Now one little thing you can do is explicitly include each plugin. That is well and good. Actually, if you start breaking your files up for organizational reasons (protip: we will) that’s the way to go. If you have a shorter gulpfile.js, or just want to include everythign easily, heres a little trick</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev matchdep</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function loadModule(module) &#123;</span><br><span class="line">    global[module.replace(/^gulp-/, '')] = require(module);</span><br><span class="line">&#125;</span><br><span class="line">require('matchdep')</span><br><span class="line">    .filterDev('gulp-*')</span><br><span class="line">    .forEach(loadModule);</span><br><span class="line">```    </span><br><span class="line">    </span><br><span class="line">Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!</span><br><span class="line"></span><br><span class="line">Again, this is more practical, if you're going to stick to one file. </span><br><span class="line"></span><br><span class="line">Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets. </span><br><span class="line"></span><br><span class="line">In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;</span><br><span class="line"></span><br><span class="line">Its someting like this:</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">options.themeList = function themeList(themes) &#123;</span><br><span class="line">            var obj = &#123;&#125;;</span><br><span class="line">            for (var i = 0, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">                var root = 'src/public/styles/themes/' + themes[i];</span><br><span class="line">                obj[root + '/theme.css'] = root + '/theme.styl';</span><br><span class="line">            &#125;</span><br><span class="line">            return obj;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>and somewhere I have a list of themes corresponding to folders, in my case I have 9 total. Lets pretend these are also attached to my session grunt options object. Basically:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">options.themes = [</span><br><span class="line">        <span class="string">'ThemeOne'</span>,</span><br><span class="line">        <span class="string">'ThemeTwo'</span>,</span><br><span class="line">        <span class="string">'ThemeThree'</span>,</span><br><span class="line">        <span class="string">'ThemeFour'</span>,</span><br><span class="line">        <span class="string">'ThemeFive'</span>,</span><br><span class="line">        <span class="string">'ThemeSix'</span>,</span><br><span class="line">        <span class="string">'ThemeSeven'</span>,</span><br><span class="line">        <span class="string">'ThemeEight'</span>,</span><br><span class="line">        <span class="string">'ThemeNine'</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<p>And then, this is used in the stylus plugin for Grunt, in the Gruntfile.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">stylus: &#123;</span><br><span class="line">         themes: &#123;</span><br><span class="line">             options: &#123;use: [<span class="built_in">require</span>(<span class="string">'nib'</span>)]&#125; <span class="comment">//some stylus options</span></span><br><span class="line">             files: options.themeList (options.themes)</span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<p>There are probably simpler, and more elegant ways to do this. Actually, in my actual code there are some minor varitions from this, taht are related to implementation, but this should get the point across, easily. Grunt’s initConfig Method is a big, honkin pile of JSON. Actually, in practice mine had gotton so large that I was looking at strategies to organize it when I stumbled upon Gulp.</p>
+<p>I wrote a similar setup in Gulp. I was able to encapsulate the method much more nicely, because Gulp is code-first! Its something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'stylus:themes'</span>, <span class="function"><span class="keyword">function</span> <span class="title">stylusThemes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> themes = options.themes;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">makeThemes</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> theme = themes[i],</span><br><span class="line">                themeFolder = <span class="string">'src/public/styles/themes/'</span> + theme,</span><br><span class="line">                stylusConfig = &#123;</span><br><span class="line">                    use: [<span class="string">'nib'</span>]</span><br><span class="line">                &#125;;</span><br><span class="line"> </span><br><span class="line">            gulp</span><br><span class="line">                .src(themeFolder + <span class="string">'/theme.styl'</span>)</span><br><span class="line">                .pipe(stylus(stylusConfig))</span><br><span class="line">                .pipe(gulp.dest(themeFolder));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    makeThemes(themes); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>As a side note, I can’t help but reflect upon some of the same organizational issues I encountered whilst working in say, Ext.js. There you have another, really big, configur-ish way to implement a module pattern. Its nice, but when you need to go outside the box, it can be challenging at a glance to figure out where stuff should live. I think theres a very reasonably attraction to tools like node and browserfy, and other very code-first approaches to code organization. I mentioned this in the last post, but in C# land, using more convention over configuration has proven time and time again to be a better way of doing things. I pity the dev using XML instead of FLuent nHibernate to configure nHibernate. It really is much better.</p>
+<p>So, there you have it. a Very very slightly not run-of-the mill task cross written on both platforms. To my eyes, the Gulp version is way more maintainable in the long run. However, the story doesn’t end there. I ran the two side by side, just out of curiosity, to see which one is faster. Now, recall, these are pretty big tasks here. These aren’t fired at request time from a client, but are preprocessed to make static resources. The only thing that truly benefits is like a file watch while working in the .stylus files. But, omigosh Gulp is faster.</p>
+<p>Here is the Grunt task ( I am using time-grunt to measure the speed):</p>
+<img src="/images/gulp/grunt-stylus-speed.png">
+<p>Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css </p>
+<p>Now, here is the same thing in Gulp.</p>
+<img src="/images/gulp/gulp-stylus.png">
+<p>I had to run it twice to be sure. Did it actually make the files? I looked. Yes, they’re there. That’s literally over 1000 times faster. 1064.891 times faster, to be more accurate.</p>
+<p>Wow. I expect huge gains during tasks that run under file watch during development.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/23/flirting_with_gulp_part_2/" data-id="ci7lomd68000bwc4a5z5w36gy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/01/18/ThunderPlains_Video/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Thunder Plains 2014 Videos</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conemu-Console-Tools/">Conemu, Console, Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp-Task-Runners-Javascript/">Gulp, Task Runners, Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Animation-After-Effects-Scripting/" style="font-size: 10px;">Animation, After Effects, Scripting</a><a href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/" style="font-size: 20px;">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><a href="/tags/Conemu-Console-Tools/" style="font-size: 10px;">Conemu, Console, Tools</a><a href="/tags/Gulp-Task-Runners-Javascript/" style="font-size: 10px;">Gulp, Task Runners, Javascript</a><a href="/tags/Javascript-jQuery/" style="font-size: 10px;">Javascript, jQuery</a><a href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/" style="font-size: 10px;">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><a href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/" style="font-size: 10px;">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><a href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/" style="font-size: 20px;">Orchard CMS, Orchard CMS Tutorial</a><a href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/" style="font-size: 10px;">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/03/23/flirting_with_gulp_part_2/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/18/ThunderPlains_Video/">Thunder Plains 2014 Videos</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/16/Angular_and_React_Talk/">Talk: Angular with React.js</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/07/you_need_a_better_console/">Using Windows: You Need A Better Console</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/06/flirting_with_gulp_part_1/">Flirting with Gulp: Part 1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Jesse Harlin<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
