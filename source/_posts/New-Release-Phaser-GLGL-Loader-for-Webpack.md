@@ -97,6 +97,10 @@ You could cut all that code out into a simple require statement! That is what th
 
 ## The Solution
 
+```sh
+npm install --save-dev phaser-glsl-loader
+```
+
 First, you need to add the loader to your list of loaders, most likely in your `webpack.config.js` file.
 
 Something like this:
@@ -122,6 +126,7 @@ module.exports = {
 };
 ```
 Then you'll be able to reference external files, instead of basically including a large array of strings!
+
 
 
 
