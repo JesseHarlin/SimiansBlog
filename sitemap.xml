@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/</loc>
+    <lastmod>2015-03-31T04:15:14.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/03/30/Lets-make-a-basic-slush-generator/</loc>
+    <lastmod>2015-03-31T04:10:33.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/music/index.html</loc>
+    <lastmod>2015-03-29T04:56:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/speaking/index.html</loc>
+    <lastmod>2015-03-29T04:55:12.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/03/27/refacotring-into-functional-patterns/</loc>
+    <lastmod>2015-03-28T03:01:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about-me/index.html</loc>
+    <lastmod>2015-03-27T02:58:59.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/</loc>
     <lastmod>2015-03-23T09:42:35.000Z</lastmod>
   </url>

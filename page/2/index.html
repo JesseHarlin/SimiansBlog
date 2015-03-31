@@ -65,6 +65,144 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-i_made_an_intro_for_okcjs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/04/i_made_an_intro_for_okcjs/" class="article-date">
+  <time datetime="2013-03-04T17:30:00.000Z" itemprop="datePublished">2013-03-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/04/i_made_an_intro_for_okcjs/">I Made an Intro for my Usergroup: The Legend of OKC.js</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Recently, I decided to make a short video intro to put in front of the videos we record at my usergroup. I composed the music myself and did all the animation and compositing.</p>
+<div class="video-container"><iframe src="//www.youtube.com/embed/1_1cSOctjg4" frameborder="0" allowfullscreen></iframe></div>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/" data-id="ci7wslceg000lxw4a7lktfuqi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-loop_an_animation_in_aftereffects" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/03/03/loop_an_animation_in_aftereffects/" class="article-date">
+  <time datetime="2013-03-03T15:00:00.000Z" itemprop="datePublished">2013-03-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/03/03/loop_an_animation_in_aftereffects/">How to Loop an Animation in After Effects</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
+<p>Its really simple to do, and all you have to do is write one line of script.</p>
+<p>Here is an example of how to do it. I have a clip I’m working here, where I’m trying to simulate an old school NES password prompt.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae1.png">
+<p>See that Gold  Square up there? I need that to blink, repeatedly- like a cursor. Then, I need to move that around and a typing animation plays, and this leads the text as it comes in. The effect is as if a person is quickly entering a password. Its really kickass. Lets make the cursor.</p>
+<p>I go into Photoshop, make a rectangle, add bevel and emboss  as a layer effect and voila: a cursor.</p>
+<p>Cursor<br><img src="/images/loop_an_animation_in_aftereffects/ae2.png"></p>
+<p>There is is. Bask in its majesty! A Cursor. Whooo!</p>
+<p>Now, I take the cursor and add it to my After Effect’s project resources.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae3.png">
+<p>Wonderful. So far, so easy. Now I want it to flash. I make a new composition, and simply adjust the opacity, to make it fade out.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae4.png">
+<p>This composition is small – only 5 frames. this thing is going to flash quickly, like a password cursor prompt does. So, lets make it flash in my composition. This is a simple 3 step process.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae5.png">
+<p>Step one: Enable Time Remapping. After you drag your composition onto the track canvas, just right click and go to the time submenu and click it. It will be checked now, and then you’re ready for part two.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae6.png">
+<p>You select that Fancy new Time Remap row that just popped up under your composition, and Add Expression. Its under the Animation submenu. A new track will appear under the Time Remap, and you can click in the row, and type whatever you need to. You’re ready for step three: the script.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae7.png">
+<p>On the row, type this : loop_out(“cycle”, 0). Now the 5-frame loop I made will repeat over and over.  The cursor is blinking! I can now apply any normal compositing techniques from here.</p>
+<p>This technique is insanely useful, I use it all the time. A flickering flame, a flashing led, a walking sprite… It can all be done with this easy trick.</p>
+<img src="/images/loop_an_animation_in_aftereffects/password.gif">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/" data-id="ci7wslcef000ixw4am1ka0sbw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-OKCjs_making_of_an_html5_game" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/02/18/OKCjs_making_of_an_html5_game/" class="article-date">
+  <time datetime="2013-02-18T18:00:00.000Z" itemprop="datePublished">2013-02-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/02/18/OKCjs_making_of_an_html5_game/">Okc.js : The Making of an Html5 Game</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Tomorrow, my usergroup is going to have a talk I’m absolutely certain will be incredibly awesome. The guys at Goldfire Studios, James Simpson and Luke Simpkins,  are going to be running the show and talking about their recent creation “Casino RPG”.  It was featured recently on a kickstarter, that, along with many others,  my wife and I contributed to.</p>
+<img src="/images/the_making_of_an_html5_game/2013-february-casinorpg_thumb.jpg">
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2013/02/18/OKCjs_making_of_an_html5_game/" data-id="ci7wslcer000yxw4ap5rybg9x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-constructing_your_own_drumkit_in_battery" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2012/10/01/constructing_your_own_drumkit_in_battery/" class="article-date">
@@ -134,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/" data-id="ci7llyqut0000aw4a3z4ddw87" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/" data-id="ci7wslcel000sxw4ax55qcst9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a></li></ul>
@@ -185,7 +323,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/" data-id="ci7llri1200009o4agoxbxzb7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/" data-id="ci7wslced000fxw4ajm683j3i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a></li></ul>
@@ -242,7 +380,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/" data-id="ci7lomd660008wc4a4sb2wnnj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/" data-id="ci7wslcea000bxw4a3tu0ag4h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a></li></ul>
@@ -296,7 +434,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/" data-id="ci7lljfsv0002w84aiop23t87" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/" data-id="ci7wslcep000vxw4a45ebwsmh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a></li></ul>
@@ -323,7 +461,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conemu-Console-Tools/">Conemu, Console, Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp-Task-Runners-Javascript/">Gulp, Task Runners, Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conemu-Console-Tools/">Conemu, Console, Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp-Task-Runners-Javascript/">Gulp, Task Runners, Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-development/">game development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/generator/">generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phaser/">phaser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scaffolding/">scaffolding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slush/">slush</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -332,7 +470,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Animation-After-Effects-Scripting/" style="font-size: 10px;">Animation, After Effects, Scripting</a><a href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/" style="font-size: 20px;">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><a href="/tags/Conemu-Console-Tools/" style="font-size: 10px;">Conemu, Console, Tools</a><a href="/tags/Gulp-Task-Runners-Javascript/" style="font-size: 10px;">Gulp, Task Runners, Javascript</a><a href="/tags/Javascript-jQuery/" style="font-size: 10px;">Javascript, jQuery</a><a href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/" style="font-size: 10px;">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><a href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/" style="font-size: 10px;">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><a href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/" style="font-size: 20px;">Orchard CMS, Orchard CMS Tutorial</a><a href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/" style="font-size: 10px;">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a>
+      <a href="/tags/Animation-After-Effects-Scripting/" style="font-size: 10px;">Animation, After Effects, Scripting</a><a href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/" style="font-size: 20px;">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><a href="/tags/Conemu-Console-Tools/" style="font-size: 10px;">Conemu, Console, Tools</a><a href="/tags/Gulp-Task-Runners-Javascript/" style="font-size: 10px;">Gulp, Task Runners, Javascript</a><a href="/tags/Javascript-jQuery/" style="font-size: 10px;">Javascript, jQuery</a><a href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/" style="font-size: 10px;">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><a href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/" style="font-size: 10px;">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><a href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/" style="font-size: 20px;">Orchard CMS, Orchard CMS Tutorial</a><a href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/" style="font-size: 10px;">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><a href="/tags/game-development/" style="font-size: 10px;">game development</a><a href="/tags/generator/" style="font-size: 10px;">generator</a><a href="/tags/gulp/" style="font-size: 10px;">gulp</a><a href="/tags/javascript/" style="font-size: 20px;">javascript</a><a href="/tags/node/" style="font-size: 10px;">node</a><a href="/tags/phaser/" style="font-size: 10px;">phaser</a><a href="/tags/scaffolding/" style="font-size: 10px;">scaffolding</a><a href="/tags/slush/" style="font-size: 10px;">slush</a><a href="/tags/webpack/" style="font-size: 10px;">webpack</a>
     </div>
   </div>
 
@@ -341,7 +479,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -353,23 +491,23 @@
       <ul>
         
           <li>
+            <a href="/2015/03/30/Lets-make-a-basic-slush-generator/">Lets Make a Basic Slush Generator</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/">New Release: Phaser GLGL Loader for Webpack</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/27/refacotring-into-functional-patterns/">refacotring-into-functional-patterns</a>
+          </li>
+        
+          <li>
             <a href="/2015/03/23/flirting_with_gulp_part_2/">(no title)</a>
           </li>
         
           <li>
             <a href="/2015/01/18/ThunderPlains_Video/">Thunder Plains 2014 Videos</a>
-          </li>
-        
-          <li>
-            <a href="/2014/12/16/Angular_and_React_Talk/">Talk: Angular with React.js</a>
-          </li>
-        
-          <li>
-            <a href="/2014/03/07/you_need_a_better_console/">Using Windows: You Need A Better Console</a>
-          </li>
-        
-          <li>
-            <a href="/2014/03/06/flirting_with_gulp_part_1/">Flirting with Gulp: Part 1</a>
           </li>
         
       </ul>

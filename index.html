@@ -65,6 +65,136 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Lets-make-a-basic-slush-generator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/30/Lets-make-a-basic-slush-generator/" class="article-date">
+  <time datetime="2015-03-31T04:09:52.000Z" itemprop="datePublished">2015-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/30/Lets-make-a-basic-slush-generator/">Lets Make a Basic Slush Generator</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/30/Lets-make-a-basic-slush-generator/" data-id="ci7wslcew001cxw4avq2gut58" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/generator/">generator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gulp/">gulp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scaffolding/">scaffolding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slush/">slush</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-New-Release-Phaser-GLGL-Loader-for-Webpack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/" class="article-date">
+  <time datetime="2015-03-29T04:11:53.000Z" itemprop="datePublished">2015-03-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/">New Release: Phaser GLGL Loader for Webpack</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itself. What also sucks is including code for a totally differnt language as a list of strings in your codebase. Whenever you come across this sort of thing, its usually best to try and store the “nonindigenous code” somewhere sles, like a seperate file. This is especially true if you find it can be templated.</p>
+<p>THis is exactly the problem I encountered in Phaser.js, so I made a quick solution.</p>
+<h2 id="Phaser_GLSL_Loader">Phaser GLSL Loader</h2><p><a href="https://travis-ci.org/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img src="https://travis-ci.org/the-simian/phaser-glsl-loader.svg" alt="Build Status"></a></p>
+<p><a href="https://coveralls.io/r/the-simian/phaser-glsl-loader?branch=master" target="_blank" rel="external"><img src="https://coveralls.io/repos/the-simian/phaser-glsl-loader/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<p><a href="https://codeclimate.com/github/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img src="https://codeclimate.com/github/the-simian/phaser-glsl-loader/badges/gpa.svg" alt="Code Climate"></a></p>
+<p><a href="https://david-dm.org/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img src="https://david-dm.org/the-simian/phaser-glsl-loader.svg" alt="David-Dm"></a></p>
+<p>This is a simple GLSL loader that is meant to work with Phaser and Webpack.</p>
+<h2 id="The_Problem:">The Problem:</h2><p>Lets say you’re working in phaser, and you see a really cool looking fragment shader you want to use.</p>
+<p><img src="http://i.imgur.com/1xys0Iy.png" alt="Some cool shader"></p>
+<p>So you go to the phaser examples, and they show you to integrate your code just like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> game = <span class="keyword">new</span> Phaser.Game(<span class="number">800</span>, <span class="number">600</span>, Phaser.AUTO, <span class="string">'phaser-example'</span>, &#123; create: create, update: update &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> filter;</span><br><span class="line"><span class="keyword">var</span> sprite;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  From http://glslsandbox.com/e#20450.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fragmentSrc = [</span><br><span class="line">        <span class="string">"precision mediump float;"</span>,</span><br><span class="line">        <span class="string">"uniform vec2      resolution;"</span>,</span><br><span class="line">        <span class="string">"uniform float     time;"</span>,</span><br><span class="line"></span><br><span class="line">        <span class="string">"float size = 0.002;"</span>,</span><br><span class="line"></span><br><span class="line">        <span class="string">"void main( void ) &#123;"</span>,</span><br><span class="line">            <span class="string">"vec2 view = ( gl_FragCoord.xy - resolution / 2.0 ) / ( resolution.y / 2.0);"</span>,</span><br><span class="line">            <span class="string">"float time = time + length(view)*8.;"</span>,</span><br><span class="line">            <span class="string">"vec4 color = vec4(0);"</span>,</span><br><span class="line">            <span class="string">"vec2 center = vec2(0);"</span>,</span><br><span class="line">            <span class="string">"float rotationVelocity = 2.0;"</span>,</span><br><span class="line">            <span class="string">"for( int j = 0; j &lt; 20; j++ ) &#123;"</span>,</span><br><span class="line">                <span class="string">"for( int i = 0; i &lt; 20; i++ ) &#123;"</span>,</span><br><span class="line">                    <span class="string">"float amplitude = ( cos( time / 10.0 ) + sin(  time /5.0 ) ) / 2.0;"</span>,</span><br><span class="line">                    <span class="string">"float angle =   sin( float(j) * time) * rotationVelocity + 2.0 * 3.14 * float(i) / 20.0;"</span>,</span><br><span class="line">                    <span class="string">"center.x = cos( 7.0 * float(j) / 20.0 * 2.0 * 3.14 ) + sin( time / 4.0);"</span>,</span><br><span class="line">                    <span class="string">"center.y = sin( 3.0 * float(j) / 20.0 * 2.0 *  3.14 )+ cos( time / 8.0);"</span>,</span><br><span class="line">                    <span class="string">"vec2 light = center + amplitude * vec2( cos( angle ), sin( angle ));"</span>,</span><br><span class="line">                    <span class="string">"//size = sin( time ) * 0.005;"</span>,</span><br><span class="line">                    <span class="string">"float l = size / length( view - light );"</span>,</span><br><span class="line">                    <span class="string">"vec4 c = vec4( l / 20.0, l, l, 1.0 ) / 5.0;"</span>,</span><br><span class="line">                    <span class="string">"color += c;"</span>,</span><br><span class="line">                <span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"gl_FragColor = color;"</span>,</span><br><span class="line">        <span class="string">"&#125;"</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    filter = <span class="keyword">new</span> Phaser.Filter(game, <span class="literal">null</span>, fragmentSrc);</span><br><span class="line">    filter.setResolution(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line"></span><br><span class="line">    sprite = game.add.sprite();</span><br><span class="line">    sprite.width = <span class="number">800</span>;</span><br><span class="line">    sprite.height = <span class="number">600</span>;</span><br><span class="line"></span><br><span class="line">    sprite.filters = [ filter ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    filter.update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Man, what mess! Wouldnt it be awesome if you could just put the shader into a seperate file and load it that way?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragmentSrc = <span class="built_in">require</span>(<span class="string">'../shaders/cubething.frag'</span>),</span><br></pre></td></tr></table></figure>
+<p>You could cut all that code out into a simple require statement! That is what this loader is for.</p>
+<h2 id="The_Solution">The Solution</h2><p>First, you need to add the loader to your list of loaders, most likely in your <code>webpack.config.js</code> file.</p>
+<p>Something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> glFragmentLoader = <span class="built_in">require</span>(<span class="string">'phaser-glsl-loader'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.frag$/i</span>,</span><br><span class="line">        loader: <span class="string">'gl-fragment-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolveLoader: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'gl-fragment-loader'</span>: glFragmentLoader,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Then you’ll be able to reference external files, instead of basically including a large array of strings!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/" data-id="ci7wslces0011xw4av0mirv55" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game-development/">game development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phaser/">phaser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-refacotring-into-functional-patterns" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/27/refacotring-into-functional-patterns/" class="article-date">
+  <time datetime="2015-03-28T03:01:54.000Z" itemprop="datePublished">2015-03-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/27/refacotring-into-functional-patterns/">refacotring-into-functional-patterns</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/03/27/refacotring-into-functional-patterns/" data-id="ci7wslcec000exw4a8b109yan" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-flirting_with_gulp_part_2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/03/23/flirting_with_gulp_part_2/" class="article-date">
@@ -111,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/23/flirting_with_gulp_part_2/" data-id="ci7lomd68000bwc4a5z5w36gy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/23/flirting_with_gulp_part_2/" data-id="ci7wslcei000oxw4a5bh6eqog" class="article-share-link">Share</a>
       
       
     </footer>
@@ -148,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/01/18/ThunderPlains_Video/" data-id="ci7lljfst0001w84a6yla89d4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/01/18/ThunderPlains_Video/" data-id="ci7wslceo000uxw4atn6uu437" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,7 +318,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/12/16/Angular_and_React_Talk/" data-id="ci7lljfsf0000w84abuyv2h67" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/12/16/Angular_and_React_Talk/" data-id="ci7wslcez001mxw4apcw8n56h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/03/07/you_need_a_better_console/" data-id="ci7ln83ux00009c4acp61kh1m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/03/07/you_need_a_better_console/" data-id="ci7wslce30003xw4axak1cah0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Conemu-Console-Tools/">Conemu, Console, Tools</a></li></ul>
@@ -291,10 +421,68 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/03/06/flirting_with_gulp_part_1/" data-id="ci7lomd5g0000wc4a7rxv0ns0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/03/06/flirting_with_gulp_part_1/" data-id="ci7wslcej000pxw4atiyvxqjn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Gulp-Task-Runners-Javascript/">Gulp, Task Runners, Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-using_orchard_cms_2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/04/05/using_orchard_cms_2/" class="article-date">
+  <time datetime="2013-04-05T06:00:00.000Z" itemprop="datePublished">2013-04-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2013/04/05/using_orchard_cms_2/">Orchard CMS: Getting Setup, Part 2, Source Setup and Workflow</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. First of all, there’s not layer of abstraction for you. Starting from the build is great, but there’s a lot of advantages to being able to start form the source, and build it yourself. This gets you in the game. Sometimes , for example there is an older version of a module in the gallery, and you want the latest one, which is available on the modules site. Maybe the way to make a module work, is just a simple fix, and would be easy if you could see the source. In fact, on the subject of modules, the source has many “must have” modules already included in the source drop, such as Tag Cloud, Lucene, Search and others. The built version you can download has been slimmed down for size. This isn’t an issue for use, since we will build ourselves. Since theres a lot already included, this helps you configure very quickly. Maybe you want to make your own module. Seriously, working from the source is the way to go. Plus, most importantly, its much more comfortable to work in Visual Studio. You know your personal arsenal of plugins is working fine, when everything builds and runs, and when you can run all your tests.</p>
+<p>There’s a number of ways to acquire the source. If you go to the Orchard project site, they are going to basically walk you through setting up Mercurial, and pulling the source down that way. You don’t necessarily have to do this. Clearly, I recommend using some manner of source control- and if you want to hang with the Orchard team you need to use Hg. That’s well and fine but I’m really into Github, so that’s what I use. If this is what you want to do, just go download the source from codeplex and then start your own repo. From here on out, this will be the main tool that powers all your orchard sites. When you build you can just include and exclude from this. If a site gets messed up, you can make a quick build and override the files. This source won’t overwrite your Media and Site folders; in fact- I put those folders in my .gitignore file. Whatever works for you in terms of deployment and source control is what you should do.</p>
+<p>I will add that I keep my personal clone of the orchard source on my local dev machine. Orchard is actually pretty big – well the source is. I suppose that’s a side effect of having so many projects and so much modularity.</p>
+<p>Go ahead and explore the Source drop. It should look like the image below (more or less) There’s some things to note here.</p>
+<img src="/images/orchard/orchard7.png">
+<p>First off there’s a ton of .hg files like hg tags and so on. This is all just stuff Mercurial uses. (Hg is the periodic table abbreviation for Mercury – get it? har har.) Neat.</p>
+<p>There is a lib folder. A bunch of third party libraries live there. Orchard uses them. What libraries? Autofac, Clay, Castle Windsor, Nuget, Lucene, Log4Net, jQuery, nHibernate and stuff like that. Basically a ton of flippin’ awesome open source tools you should probably learn about anyways.  Honestly seeing this lib folder was a huge step in helping me decide to adopt Orchard as a core tool in my toolbelt. The Orchard team- they have taste!</p>
+<p>Then, of course there are a few .cmd files. These are scripts we utilize to build. Can you guess what the file ClickToBuild does? You probably guessed correctly. It takes this Orchard source, and generates a built project we can use to deploy. It also runs your tests for you. I should mention that you can <em>technically</em> put the source on your server, and it will work. Its also a massive waste of disk space. Don’t do it.</p>
+<p>Then finally there is the orchard src itself. Take a good look at how this entire source is laid out. This is par for the course how a good project should be laid out. The source has its own folder, and the parent folder has a lot of ‘meta’ stuff related to the source.</p>
+<p>Now look in the source itself, and then open Orchard.Web.</p>
+<img src="/images/orchard/orchard8.png">
+<p>Look familiar? it’s the same folder structure we saw from the Webmatrix project we got from the Web Platform installer. I’m pointing this out, because this is basically going to be the part that gets deployed, after the build, with some exception. I’ll explain Look in the Modules in this directory.</p>
+<img src="/images/orchard/orchard9.png">
+<p>Each one of these modules is an entirely separate self contained project. Each has its own code, dependencies, models, controllers – everything. During the build, each module’s dependencies are reduced down, otherwise the final build would be really really big.</p>
+<p>Now for the fun part, go back to the src folder and find the .sln file. That’s what Visual Studio Uses. First, hit the collapse all button. You’ll thank me later. Orchard is made up of a ton of smaller projects, one for each of those modules we saw, and of course the core and orchard.web itself. check out the solution explorer.</p>
+<img src="/images/orchard/orchard10.png">
+<p>There’s only a few projects in the root. the most important ones are Core and Web. Remember when we explored Orchard.Web earlier in the actual windows File explorer? Modules was inside of Orchard.Web. Here it appears outside, and at the top. That is, in fact the exact same folder. Now if you open in VS2010, it becomes more obvious. The folder looks like its opacity has been lowered, as if it’s a ghost folder. Nonetheless, that’s just an alias to the folder in Orchard.Web. Its listed atop for convenience, I assume.  Same case for Specs,Tests, Themes and Tools. Themes, for example is like Modules. The folder actually resides in the startup project, Orchard.Web.</p>
+<p>I’m just pointing this out, because at first it confused me. Then I realized how handy that actually was.</p>
+<p>So to rehash, these folders are all really located elsewhere:</p>
+<p>Modules – Actually is located in Orchard.Web and is literally every extra module you’ve downloaded or added to Orchard, as well as the ones that were already there. This thing is big.<br>Specs + Tests  - These are for unit testing, integrations tests and that sort of thing..<br>Themes – All you themes go here. This is the last stop for overriding the appearance of Orchard. The folder really lives in Orchard.Web<br>Tools – This has testing helpers, and the orchard command line. More on this later.<br>I think more project exploration is in order, and also covering the sparkle magic that is the orchard command line environment. But that is for another day!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_2/" data-id="ci7wslce70006xw4a8i7k77nr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a></li></ul>
 
     </footer>
   </div>
@@ -355,206 +543,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_1/" data-id="ci7lomd650006wc4aauwm7ah2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_1/" data-id="ci7wslce90009xw4a6p1fmbk3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-using_orchard_cms_2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/04/05/using_orchard_cms_2/" class="article-date">
-  <time datetime="2013-04-05T06:00:00.000Z" itemprop="datePublished">2013-04-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/04/05/using_orchard_cms_2/">Orchard CMS: Getting Setup, Part 2, Source Setup and Workflow</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. First of all, there’s not layer of abstraction for you. Starting from the build is great, but there’s a lot of advantages to being able to start form the source, and build it yourself. This gets you in the game. Sometimes , for example there is an older version of a module in the gallery, and you want the latest one, which is available on the modules site. Maybe the way to make a module work, is just a simple fix, and would be easy if you could see the source. In fact, on the subject of modules, the source has many “must have” modules already included in the source drop, such as Tag Cloud, Lucene, Search and others. The built version you can download has been slimmed down for size. This isn’t an issue for use, since we will build ourselves. Since theres a lot already included, this helps you configure very quickly. Maybe you want to make your own module. Seriously, working from the source is the way to go. Plus, most importantly, its much more comfortable to work in Visual Studio. You know your personal arsenal of plugins is working fine, when everything builds and runs, and when you can run all your tests.</p>
-<p>There’s a number of ways to acquire the source. If you go to the Orchard project site, they are going to basically walk you through setting up Mercurial, and pulling the source down that way. You don’t necessarily have to do this. Clearly, I recommend using some manner of source control- and if you want to hang with the Orchard team you need to use Hg. That’s well and fine but I’m really into Github, so that’s what I use. If this is what you want to do, just go download the source from codeplex and then start your own repo. From here on out, this will be the main tool that powers all your orchard sites. When you build you can just include and exclude from this. If a site gets messed up, you can make a quick build and override the files. This source won’t overwrite your Media and Site folders; in fact- I put those folders in my .gitignore file. Whatever works for you in terms of deployment and source control is what you should do.</p>
-<p>I will add that I keep my personal clone of the orchard source on my local dev machine. Orchard is actually pretty big – well the source is. I suppose that’s a side effect of having so many projects and so much modularity.</p>
-<p>Go ahead and explore the Source drop. It should look like the image below (more or less) There’s some things to note here.</p>
-<img src="/images/orchard/orchard7.png">
-<p>First off there’s a ton of .hg files like hg tags and so on. This is all just stuff Mercurial uses. (Hg is the periodic table abbreviation for Mercury – get it? har har.) Neat.</p>
-<p>There is a lib folder. A bunch of third party libraries live there. Orchard uses them. What libraries? Autofac, Clay, Castle Windsor, Nuget, Lucene, Log4Net, jQuery, nHibernate and stuff like that. Basically a ton of flippin’ awesome open source tools you should probably learn about anyways.  Honestly seeing this lib folder was a huge step in helping me decide to adopt Orchard as a core tool in my toolbelt. The Orchard team- they have taste!</p>
-<p>Then, of course there are a few .cmd files. These are scripts we utilize to build. Can you guess what the file ClickToBuild does? You probably guessed correctly. It takes this Orchard source, and generates a built project we can use to deploy. It also runs your tests for you. I should mention that you can <em>technically</em> put the source on your server, and it will work. Its also a massive waste of disk space. Don’t do it.</p>
-<p>Then finally there is the orchard src itself. Take a good look at how this entire source is laid out. This is par for the course how a good project should be laid out. The source has its own folder, and the parent folder has a lot of ‘meta’ stuff related to the source.</p>
-<p>Now look in the source itself, and then open Orchard.Web.</p>
-<img src="/images/orchard/orchard8.png">
-<p>Look familiar? it’s the same folder structure we saw from the Webmatrix project we got from the Web Platform installer. I’m pointing this out, because this is basically going to be the part that gets deployed, after the build, with some exception. I’ll explain Look in the Modules in this directory.</p>
-<img src="/images/orchard/orchard9.png">
-<p>Each one of these modules is an entirely separate self contained project. Each has its own code, dependencies, models, controllers – everything. During the build, each module’s dependencies are reduced down, otherwise the final build would be really really big.</p>
-<p>Now for the fun part, go back to the src folder and find the .sln file. That’s what Visual Studio Uses. First, hit the collapse all button. You’ll thank me later. Orchard is made up of a ton of smaller projects, one for each of those modules we saw, and of course the core and orchard.web itself. check out the solution explorer.</p>
-<img src="/images/orchard/orchard10.png">
-<p>There’s only a few projects in the root. the most important ones are Core and Web. Remember when we explored Orchard.Web earlier in the actual windows File explorer? Modules was inside of Orchard.Web. Here it appears outside, and at the top. That is, in fact the exact same folder. Now if you open in VS2010, it becomes more obvious. The folder looks like its opacity has been lowered, as if it’s a ghost folder. Nonetheless, that’s just an alias to the folder in Orchard.Web. Its listed atop for convenience, I assume.  Same case for Specs,Tests, Themes and Tools. Themes, for example is like Modules. The folder actually resides in the startup project, Orchard.Web.</p>
-<p>I’m just pointing this out, because at first it confused me. Then I realized how handy that actually was.</p>
-<p>So to rehash, these folders are all really located elsewhere:</p>
-<p>Modules – Actually is located in Orchard.Web and is literally every extra module you’ve downloaded or added to Orchard, as well as the ones that were already there. This thing is big.<br>Specs + Tests  - These are for unit testing, integrations tests and that sort of thing..<br>Themes – All you themes go here. This is the last stop for overriding the appearance of Orchard. The folder really lives in Orchard.Web<br>Tools – This has testing helpers, and the orchard command line. More on this later.<br>I think more project exploration is in order, and also covering the sparkle magic that is the orchard command line environment. But that is for another day!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_2/" data-id="ci7lomd620003wc4aeal9qnsr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-i_made_an_intro_for_okcjs" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/03/04/i_made_an_intro_for_okcjs/" class="article-date">
-  <time datetime="2013-03-04T17:30:00.000Z" itemprop="datePublished">2013-03-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/03/04/i_made_an_intro_for_okcjs/">I Made an Intro for my Usergroup: The Legend of OKC.js</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Recently, I decided to make a short video intro to put in front of the videos we record at my usergroup. I composed the music myself and did all the animation and compositing.</p>
-<div class="video-container"><iframe src="//www.youtube.com/embed/1_1cSOctjg4" frameborder="0" allowfullscreen></iframe></div>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/" data-id="ci7lmknds0000ks4abdzlj819" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-loop_an_animation_in_aftereffects" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/03/03/loop_an_animation_in_aftereffects/" class="article-date">
-  <time datetime="2013-03-03T15:00:00.000Z" itemprop="datePublished">2013-03-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/03/03/loop_an_animation_in_aftereffects/">How to Loop an Animation in After Effects</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
-<p>Its really simple to do, and all you have to do is write one line of script.</p>
-<p>Here is an example of how to do it. I have a clip I’m working here, where I’m trying to simulate an old school NES password prompt.</p>
-<img src="/images/loop_an_animation_in_aftereffects/ae1.png">
-<p>See that Gold  Square up there? I need that to blink, repeatedly- like a cursor. Then, I need to move that around and a typing animation plays, and this leads the text as it comes in. The effect is as if a person is quickly entering a password. Its really kickass. Lets make the cursor.</p>
-<p>I go into Photoshop, make a rectangle, add bevel and emboss  as a layer effect and voila: a cursor.</p>
-<p>Cursor<br><img src="/images/loop_an_animation_in_aftereffects/ae2.png"></p>
-<p>There is is. Bask in its majesty! A Cursor. Whooo!</p>
-<p>Now, I take the cursor and add it to my After Effect’s project resources.</p>
-<img src="/images/loop_an_animation_in_aftereffects/ae3.png">
-<p>Wonderful. So far, so easy. Now I want it to flash. I make a new composition, and simply adjust the opacity, to make it fade out.</p>
-<img src="/images/loop_an_animation_in_aftereffects/ae4.png">
-<p>This composition is small – only 5 frames. this thing is going to flash quickly, like a password cursor prompt does. So, lets make it flash in my composition. This is a simple 3 step process.</p>
-<img src="/images/loop_an_animation_in_aftereffects/ae5.png">
-<p>Step one: Enable Time Remapping. After you drag your composition onto the track canvas, just right click and go to the time submenu and click it. It will be checked now, and then you’re ready for part two.</p>
-<img src="/images/loop_an_animation_in_aftereffects/ae6.png">
-<p>You select that Fancy new Time Remap row that just popped up under your composition, and Add Expression. Its under the Animation submenu. A new track will appear under the Time Remap, and you can click in the row, and type whatever you need to. You’re ready for step three: the script.</p>
-<img src="/images/loop_an_animation_in_aftereffects/ae7.png">
-<p>On the row, type this : loop_out(“cycle”, 0). Now the 5-frame loop I made will repeat over and over.  The cursor is blinking! I can now apply any normal compositing techniques from here.</p>
-<p>This technique is insanely useful, I use it all the time. A flickering flame, a flashing led, a walking sprite… It can all be done with this easy trick.</p>
-<img src="/images/loop_an_animation_in_aftereffects/password.gif">
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/" data-id="ci7lmkne70001ks4a6xf8gs6a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-OKCjs_making_of_an_html5_game" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2013/02/18/OKCjs_making_of_an_html5_game/" class="article-date">
-  <time datetime="2013-02-18T18:00:00.000Z" itemprop="datePublished">2013-02-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2013/02/18/OKCjs_making_of_an_html5_game/">Okc.js : The Making of an Html5 Game</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Tomorrow, my usergroup is going to have a talk I’m absolutely certain will be incredibly awesome. The guys at Goldfire Studios, James Simpson and Luke Simpkins,  are going to be running the show and talking about their recent creation “Casino RPG”.  It was featured recently on a kickstarter, that, along with many others,  my wife and I contributed to.</p>
-<img src="/images/the_making_of_an_html5_game/2013-february-casinorpg_thumb.jpg">
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/02/18/OKCjs_making_of_an_html5_game/" data-id="ci7lljfsz0005w84autt96ip0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a></li></ul>
 
     </footer>
   </div>
@@ -578,7 +570,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conemu-Console-Tools/">Conemu, Console, Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp-Task-Runners-Javascript/">Gulp, Task Runners, Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Conemu-Console-Tools/">Conemu, Console, Tools</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp-Task-Runners-Javascript/">Gulp, Task Runners, Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game-development/">game development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/generator/">generator</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gulp/">gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/javascript/">javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/phaser/">phaser</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/scaffolding/">scaffolding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/slush/">slush</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/">webpack</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -587,7 +579,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Animation-After-Effects-Scripting/" style="font-size: 10px;">Animation, After Effects, Scripting</a><a href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/" style="font-size: 20px;">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><a href="/tags/Conemu-Console-Tools/" style="font-size: 10px;">Conemu, Console, Tools</a><a href="/tags/Gulp-Task-Runners-Javascript/" style="font-size: 10px;">Gulp, Task Runners, Javascript</a><a href="/tags/Javascript-jQuery/" style="font-size: 10px;">Javascript, jQuery</a><a href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/" style="font-size: 10px;">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><a href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/" style="font-size: 10px;">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><a href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/" style="font-size: 20px;">Orchard CMS, Orchard CMS Tutorial</a><a href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/" style="font-size: 10px;">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a>
+      <a href="/tags/Animation-After-Effects-Scripting/" style="font-size: 10px;">Animation, After Effects, Scripting</a><a href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/" style="font-size: 20px;">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a><a href="/tags/Conemu-Console-Tools/" style="font-size: 10px;">Conemu, Console, Tools</a><a href="/tags/Gulp-Task-Runners-Javascript/" style="font-size: 10px;">Gulp, Task Runners, Javascript</a><a href="/tags/Javascript-jQuery/" style="font-size: 10px;">Javascript, jQuery</a><a href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/" style="font-size: 10px;">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a><a href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/" style="font-size: 10px;">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a><a href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/" style="font-size: 20px;">Orchard CMS, Orchard CMS Tutorial</a><a href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/" style="font-size: 10px;">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a><a href="/tags/game-development/" style="font-size: 10px;">game development</a><a href="/tags/generator/" style="font-size: 10px;">generator</a><a href="/tags/gulp/" style="font-size: 10px;">gulp</a><a href="/tags/javascript/" style="font-size: 20px;">javascript</a><a href="/tags/node/" style="font-size: 10px;">node</a><a href="/tags/phaser/" style="font-size: 10px;">phaser</a><a href="/tags/scaffolding/" style="font-size: 10px;">scaffolding</a><a href="/tags/slush/" style="font-size: 10px;">slush</a><a href="/tags/webpack/" style="font-size: 10px;">webpack</a>
     </div>
   </div>
 
@@ -596,7 +588,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -608,23 +600,23 @@
       <ul>
         
           <li>
+            <a href="/2015/03/30/Lets-make-a-basic-slush-generator/">Lets Make a Basic Slush Generator</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/">New Release: Phaser GLGL Loader for Webpack</a>
+          </li>
+        
+          <li>
+            <a href="/2015/03/27/refacotring-into-functional-patterns/">refacotring-into-functional-patterns</a>
+          </li>
+        
+          <li>
             <a href="/2015/03/23/flirting_with_gulp_part_2/">(no title)</a>
           </li>
         
           <li>
             <a href="/2015/01/18/ThunderPlains_Video/">Thunder Plains 2014 Videos</a>
-          </li>
-        
-          <li>
-            <a href="/2014/12/16/Angular_and_React_Talk/">Talk: Angular with React.js</a>
-          </li>
-        
-          <li>
-            <a href="/2014/03/07/you_need_a_better_console/">Using Windows: You Need A Better Console</a>
-          </li>
-        
-          <li>
-            <a href="/2014/03/06/flirting_with_gulp_part_1/">Flirting with Gulp: Part 1</a>
           </li>
         
       </ul>

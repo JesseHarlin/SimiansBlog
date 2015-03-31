@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Code, Music, Interactive Media, Community]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-03-23T09:09:49.000Z</updated>
+  <updated>2015-03-31T04:10:33.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,83 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Lets Make a Basic Slush Generator]]></title>
+    <link href="http://yoursite.com/2015/03/30/Lets-make-a-basic-slush-generator/"/>
+    <id>http://yoursite.com/2015/03/30/Lets-make-a-basic-slush-generator/</id>
+    <published>2015-03-31T04:09:52.000Z</published>
+    <updated>2015-03-31T04:10:33.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="generator" scheme="http://yoursite.com/tags/generator/"/>
+    
+      <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+      <category term="scaffolding" scheme="http://yoursite.com/tags/scaffolding/"/>
+    
+      <category term="slush" scheme="http://yoursite.com/tags/slush/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[New Release: Phaser GLGL Loader for Webpack]]></title>
+    <link href="http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/"/>
+    <id>http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/</id>
+    <published>2015-03-29T04:11:53.000Z</published>
+    <updated>2015-03-31T04:15:14.000Z</updated>
+    <content type="html"><![CDATA[<p>You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itself. What also sucks is including code for a totally differnt language as a list of strings in your codebase. Whenever you come across this sort of thing, its usually best to try and store the “nonindigenous code” somewhere sles, like a seperate file. This is especially true if you find it can be templated.</p>
+<p>THis is exactly the problem I encountered in Phaser.js, so I made a quick solution.</p>
+<h2 id="Phaser_GLSL_Loader">Phaser GLSL Loader</h2><p><a href="https://travis-ci.org/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img src="https://travis-ci.org/the-simian/phaser-glsl-loader.svg" alt="Build Status"></a></p>
+<p><a href="https://coveralls.io/r/the-simian/phaser-glsl-loader?branch=master" target="_blank" rel="external"><img src="https://coveralls.io/repos/the-simian/phaser-glsl-loader/badge.svg?branch=master" alt="Coverage Status"></a></p>
+<p><a href="https://codeclimate.com/github/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img src="https://codeclimate.com/github/the-simian/phaser-glsl-loader/badges/gpa.svg" alt="Code Climate"></a></p>
+<p><a href="https://david-dm.org/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img src="https://david-dm.org/the-simian/phaser-glsl-loader.svg" alt="David-Dm"></a></p>
+<p>This is a simple GLSL loader that is meant to work with Phaser and Webpack.</p>
+<h2 id="The_Problem:">The Problem:</h2><p>Lets say you’re working in phaser, and you see a really cool looking fragment shader you want to use.</p>
+<p><img src="http://i.imgur.com/1xys0Iy.png" alt="Some cool shader"></p>
+<p>So you go to the phaser examples, and they show you to integrate your code just like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> game = <span class="keyword">new</span> Phaser.Game(<span class="number">800</span>, <span class="number">600</span>, Phaser.AUTO, <span class="string">'phaser-example'</span>, &#123; create: create, update: update &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> filter;</span><br><span class="line"><span class="keyword">var</span> sprite;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  From http://glslsandbox.com/e#20450.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fragmentSrc = [</span><br><span class="line">        <span class="string">"precision mediump float;"</span>,</span><br><span class="line">        <span class="string">"uniform vec2      resolution;"</span>,</span><br><span class="line">        <span class="string">"uniform float     time;"</span>,</span><br><span class="line"></span><br><span class="line">        <span class="string">"float size = 0.002;"</span>,</span><br><span class="line"></span><br><span class="line">        <span class="string">"void main( void ) &#123;"</span>,</span><br><span class="line">            <span class="string">"vec2 view = ( gl_FragCoord.xy - resolution / 2.0 ) / ( resolution.y / 2.0);"</span>,</span><br><span class="line">            <span class="string">"float time = time + length(view)*8.;"</span>,</span><br><span class="line">            <span class="string">"vec4 color = vec4(0);"</span>,</span><br><span class="line">            <span class="string">"vec2 center = vec2(0);"</span>,</span><br><span class="line">            <span class="string">"float rotationVelocity = 2.0;"</span>,</span><br><span class="line">            <span class="string">"for( int j = 0; j &lt; 20; j++ ) &#123;"</span>,</span><br><span class="line">                <span class="string">"for( int i = 0; i &lt; 20; i++ ) &#123;"</span>,</span><br><span class="line">                    <span class="string">"float amplitude = ( cos( time / 10.0 ) + sin(  time /5.0 ) ) / 2.0;"</span>,</span><br><span class="line">                    <span class="string">"float angle =   sin( float(j) * time) * rotationVelocity + 2.0 * 3.14 * float(i) / 20.0;"</span>,</span><br><span class="line">                    <span class="string">"center.x = cos( 7.0 * float(j) / 20.0 * 2.0 * 3.14 ) + sin( time / 4.0);"</span>,</span><br><span class="line">                    <span class="string">"center.y = sin( 3.0 * float(j) / 20.0 * 2.0 *  3.14 )+ cos( time / 8.0);"</span>,</span><br><span class="line">                    <span class="string">"vec2 light = center + amplitude * vec2( cos( angle ), sin( angle ));"</span>,</span><br><span class="line">                    <span class="string">"//size = sin( time ) * 0.005;"</span>,</span><br><span class="line">                    <span class="string">"float l = size / length( view - light );"</span>,</span><br><span class="line">                    <span class="string">"vec4 c = vec4( l / 20.0, l, l, 1.0 ) / 5.0;"</span>,</span><br><span class="line">                    <span class="string">"color += c;"</span>,</span><br><span class="line">                <span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"gl_FragColor = color;"</span>,</span><br><span class="line">        <span class="string">"&#125;"</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    filter = <span class="keyword">new</span> Phaser.Filter(game, <span class="literal">null</span>, fragmentSrc);</span><br><span class="line">    filter.setResolution(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line"></span><br><span class="line">    sprite = game.add.sprite();</span><br><span class="line">    sprite.width = <span class="number">800</span>;</span><br><span class="line">    sprite.height = <span class="number">600</span>;</span><br><span class="line"></span><br><span class="line">    sprite.filters = [ filter ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    filter.update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Man, what mess! Wouldnt it be awesome if you could just put the shader into a seperate file and load it that way?</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragmentSrc = <span class="built_in">require</span>(<span class="string">'../shaders/cubething.frag'</span>),</span><br></pre></td></tr></table></figure>
+<p>You could cut all that code out into a simple require statement! That is what this loader is for.</p>
+<h2 id="The_Solution">The Solution</h2><p>First, you need to add the loader to your list of loaders, most likely in your <code>webpack.config.js</code> file.</p>
+<p>Something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> glFragmentLoader = <span class="built_in">require</span>(<span class="string">'phaser-glsl-loader'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.frag$/i</span>,</span><br><span class="line">        loader: <span class="string">'gl-fragment-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolveLoader: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'gl-fragment-loader'</span>: glFragmentLoader,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Then you’ll be able to reference external files, instead of basically including a large array of strings!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itself. What also sucks is including code for a totally diffe]]>
+    </summary>
+    
+      <category term="game development" scheme="http://yoursite.com/tags/game-development/"/>
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+      <category term="node" scheme="http://yoursite.com/tags/node/"/>
+    
+      <category term="phaser" scheme="http://yoursite.com/tags/phaser/"/>
+    
+      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[refacotring-into-functional-patterns]]></title>
+    <link href="http://yoursite.com/2015/03/27/refacotring-into-functional-patterns/"/>
+    <id>http://yoursite.com/2015/03/27/refacotring-into-functional-patterns/</id>
+    <published>2015-03-28T03:01:54.000Z</published>
+    <updated>2015-03-28T03:01:54.000Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    
+    </summary>
+    
+  </entry>
   
   <entry>
     <title></title>
@@ -150,6 +227,41 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Orchard CMS: Getting Setup, Part 2, Source Setup and Workflow]]></title>
+    <link href="http://yoursite.com/2013/04/05/using_orchard_cms_2/"/>
+    <id>http://yoursite.com/2013/04/05/using_orchard_cms_2/</id>
+    <published>2013-04-05T06:00:00.000Z</published>
+    <updated>2015-03-23T09:27:24.000Z</updated>
+    <content type="html"><![CDATA[<p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. First of all, there’s not layer of abstraction for you. Starting from the build is great, but there’s a lot of advantages to being able to start form the source, and build it yourself. This gets you in the game. Sometimes , for example there is an older version of a module in the gallery, and you want the latest one, which is available on the modules site. Maybe the way to make a module work, is just a simple fix, and would be easy if you could see the source. In fact, on the subject of modules, the source has many “must have” modules already included in the source drop, such as Tag Cloud, Lucene, Search and others. The built version you can download has been slimmed down for size. This isn’t an issue for use, since we will build ourselves. Since theres a lot already included, this helps you configure very quickly. Maybe you want to make your own module. Seriously, working from the source is the way to go. Plus, most importantly, its much more comfortable to work in Visual Studio. You know your personal arsenal of plugins is working fine, when everything builds and runs, and when you can run all your tests.</p>
+<p>There’s a number of ways to acquire the source. If you go to the Orchard project site, they are going to basically walk you through setting up Mercurial, and pulling the source down that way. You don’t necessarily have to do this. Clearly, I recommend using some manner of source control- and if you want to hang with the Orchard team you need to use Hg. That’s well and fine but I’m really into Github, so that’s what I use. If this is what you want to do, just go download the source from codeplex and then start your own repo. From here on out, this will be the main tool that powers all your orchard sites. When you build you can just include and exclude from this. If a site gets messed up, you can make a quick build and override the files. This source won’t overwrite your Media and Site folders; in fact- I put those folders in my .gitignore file. Whatever works for you in terms of deployment and source control is what you should do.</p>
+<p>I will add that I keep my personal clone of the orchard source on my local dev machine. Orchard is actually pretty big – well the source is. I suppose that’s a side effect of having so many projects and so much modularity.</p>
+<p>Go ahead and explore the Source drop. It should look like the image below (more or less) There’s some things to note here.</p>
+<img src="/images/orchard/orchard7.png">
+<p>First off there’s a ton of .hg files like hg tags and so on. This is all just stuff Mercurial uses. (Hg is the periodic table abbreviation for Mercury – get it? har har.) Neat.</p>
+<p>There is a lib folder. A bunch of third party libraries live there. Orchard uses them. What libraries? Autofac, Clay, Castle Windsor, Nuget, Lucene, Log4Net, jQuery, nHibernate and stuff like that. Basically a ton of flippin’ awesome open source tools you should probably learn about anyways.  Honestly seeing this lib folder was a huge step in helping me decide to adopt Orchard as a core tool in my toolbelt. The Orchard team- they have taste!</p>
+<p>Then, of course there are a few .cmd files. These are scripts we utilize to build. Can you guess what the file ClickToBuild does? You probably guessed correctly. It takes this Orchard source, and generates a built project we can use to deploy. It also runs your tests for you. I should mention that you can <em>technically</em> put the source on your server, and it will work. Its also a massive waste of disk space. Don’t do it.</p>
+<p>Then finally there is the orchard src itself. Take a good look at how this entire source is laid out. This is par for the course how a good project should be laid out. The source has its own folder, and the parent folder has a lot of ‘meta’ stuff related to the source.</p>
+<p>Now look in the source itself, and then open Orchard.Web.</p>
+<img src="/images/orchard/orchard8.png">
+<p>Look familiar? it’s the same folder structure we saw from the Webmatrix project we got from the Web Platform installer. I’m pointing this out, because this is basically going to be the part that gets deployed, after the build, with some exception. I’ll explain Look in the Modules in this directory.</p>
+<img src="/images/orchard/orchard9.png">
+<p>Each one of these modules is an entirely separate self contained project. Each has its own code, dependencies, models, controllers – everything. During the build, each module’s dependencies are reduced down, otherwise the final build would be really really big.</p>
+<p>Now for the fun part, go back to the src folder and find the .sln file. That’s what Visual Studio Uses. First, hit the collapse all button. You’ll thank me later. Orchard is made up of a ton of smaller projects, one for each of those modules we saw, and of course the core and orchard.web itself. check out the solution explorer.</p>
+<img src="/images/orchard/orchard10.png">
+<p>There’s only a few projects in the root. the most important ones are Core and Web. Remember when we explored Orchard.Web earlier in the actual windows File explorer? Modules was inside of Orchard.Web. Here it appears outside, and at the top. That is, in fact the exact same folder. Now if you open in VS2010, it becomes more obvious. The folder looks like its opacity has been lowered, as if it’s a ghost folder. Nonetheless, that’s just an alias to the folder in Orchard.Web. Its listed atop for convenience, I assume.  Same case for Specs,Tests, Themes and Tools. Themes, for example is like Modules. The folder actually resides in the startup project, Orchard.Web.</p>
+<p>I’m just pointing this out, because at first it confused me. Then I realized how handy that actually was.</p>
+<p>So to rehash, these folders are all really located elsewhere:</p>
+<p>Modules – Actually is located in Orchard.Web and is literally every extra module you’ve downloaded or added to Orchard, as well as the ones that were already there. This thing is big.<br>Specs + Tests  - These are for unit testing, integrations tests and that sort of thing..<br>Themes – All you themes go here. This is the last stop for overriding the appearance of Orchard. The folder really lives in Orchard.Web<br>Tools – This has testing helpers, and the orchard command line. More on this later.<br>I think more project exploration is in order, and also covering the sparkle magic that is the orchard command line environment. But that is for another day!</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this]]>
+    </summary>
+    
+      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://yoursite.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Orchard CMS: Getting Setup, Part 1, the Non-Source Setup]]></title>
     <link href="http://yoursite.com/2013/04/05/using_orchard_cms_1/"/>
     <id>http://yoursite.com/2013/04/05/using_orchard_cms_1/</id>
@@ -184,41 +296,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about se]]>
-    </summary>
-    
-      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://yoursite.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Orchard CMS: Getting Setup, Part 2, Source Setup and Workflow]]></title>
-    <link href="http://yoursite.com/2013/04/05/using_orchard_cms_2/"/>
-    <id>http://yoursite.com/2013/04/05/using_orchard_cms_2/</id>
-    <published>2013-04-05T06:00:00.000Z</published>
-    <updated>2015-03-23T09:27:24.000Z</updated>
-    <content type="html"><![CDATA[<p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. First of all, there’s not layer of abstraction for you. Starting from the build is great, but there’s a lot of advantages to being able to start form the source, and build it yourself. This gets you in the game. Sometimes , for example there is an older version of a module in the gallery, and you want the latest one, which is available on the modules site. Maybe the way to make a module work, is just a simple fix, and would be easy if you could see the source. In fact, on the subject of modules, the source has many “must have” modules already included in the source drop, such as Tag Cloud, Lucene, Search and others. The built version you can download has been slimmed down for size. This isn’t an issue for use, since we will build ourselves. Since theres a lot already included, this helps you configure very quickly. Maybe you want to make your own module. Seriously, working from the source is the way to go. Plus, most importantly, its much more comfortable to work in Visual Studio. You know your personal arsenal of plugins is working fine, when everything builds and runs, and when you can run all your tests.</p>
-<p>There’s a number of ways to acquire the source. If you go to the Orchard project site, they are going to basically walk you through setting up Mercurial, and pulling the source down that way. You don’t necessarily have to do this. Clearly, I recommend using some manner of source control- and if you want to hang with the Orchard team you need to use Hg. That’s well and fine but I’m really into Github, so that’s what I use. If this is what you want to do, just go download the source from codeplex and then start your own repo. From here on out, this will be the main tool that powers all your orchard sites. When you build you can just include and exclude from this. If a site gets messed up, you can make a quick build and override the files. This source won’t overwrite your Media and Site folders; in fact- I put those folders in my .gitignore file. Whatever works for you in terms of deployment and source control is what you should do.</p>
-<p>I will add that I keep my personal clone of the orchard source on my local dev machine. Orchard is actually pretty big – well the source is. I suppose that’s a side effect of having so many projects and so much modularity.</p>
-<p>Go ahead and explore the Source drop. It should look like the image below (more or less) There’s some things to note here.</p>
-<img src="/images/orchard/orchard7.png">
-<p>First off there’s a ton of .hg files like hg tags and so on. This is all just stuff Mercurial uses. (Hg is the periodic table abbreviation for Mercury – get it? har har.) Neat.</p>
-<p>There is a lib folder. A bunch of third party libraries live there. Orchard uses them. What libraries? Autofac, Clay, Castle Windsor, Nuget, Lucene, Log4Net, jQuery, nHibernate and stuff like that. Basically a ton of flippin’ awesome open source tools you should probably learn about anyways.  Honestly seeing this lib folder was a huge step in helping me decide to adopt Orchard as a core tool in my toolbelt. The Orchard team- they have taste!</p>
-<p>Then, of course there are a few .cmd files. These are scripts we utilize to build. Can you guess what the file ClickToBuild does? You probably guessed correctly. It takes this Orchard source, and generates a built project we can use to deploy. It also runs your tests for you. I should mention that you can <em>technically</em> put the source on your server, and it will work. Its also a massive waste of disk space. Don’t do it.</p>
-<p>Then finally there is the orchard src itself. Take a good look at how this entire source is laid out. This is par for the course how a good project should be laid out. The source has its own folder, and the parent folder has a lot of ‘meta’ stuff related to the source.</p>
-<p>Now look in the source itself, and then open Orchard.Web.</p>
-<img src="/images/orchard/orchard8.png">
-<p>Look familiar? it’s the same folder structure we saw from the Webmatrix project we got from the Web Platform installer. I’m pointing this out, because this is basically going to be the part that gets deployed, after the build, with some exception. I’ll explain Look in the Modules in this directory.</p>
-<img src="/images/orchard/orchard9.png">
-<p>Each one of these modules is an entirely separate self contained project. Each has its own code, dependencies, models, controllers – everything. During the build, each module’s dependencies are reduced down, otherwise the final build would be really really big.</p>
-<p>Now for the fun part, go back to the src folder and find the .sln file. That’s what Visual Studio Uses. First, hit the collapse all button. You’ll thank me later. Orchard is made up of a ton of smaller projects, one for each of those modules we saw, and of course the core and orchard.web itself. check out the solution explorer.</p>
-<img src="/images/orchard/orchard10.png">
-<p>There’s only a few projects in the root. the most important ones are Core and Web. Remember when we explored Orchard.Web earlier in the actual windows File explorer? Modules was inside of Orchard.Web. Here it appears outside, and at the top. That is, in fact the exact same folder. Now if you open in VS2010, it becomes more obvious. The folder looks like its opacity has been lowered, as if it’s a ghost folder. Nonetheless, that’s just an alias to the folder in Orchard.Web. Its listed atop for convenience, I assume.  Same case for Specs,Tests, Themes and Tools. Themes, for example is like Modules. The folder actually resides in the startup project, Orchard.Web.</p>
-<p>I’m just pointing this out, because at first it confused me. Then I realized how handy that actually was.</p>
-<p>So to rehash, these folders are all really located elsewhere:</p>
-<p>Modules – Actually is located in Orchard.Web and is literally every extra module you’ve downloaded or added to Orchard, as well as the ones that were already there. This thing is big.<br>Specs + Tests  - These are for unit testing, integrations tests and that sort of thing..<br>Themes – All you themes go here. This is the last stop for overriding the appearance of Orchard. The folder really lives in Orchard.Web<br>Tools – This has testing helpers, and the orchard command line. More on this later.<br>I think more project exploration is in order, and also covering the sparkle magic that is the orchard command line environment. But that is for another day!</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this]]>
     </summary>
     
       <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://yoursite.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
