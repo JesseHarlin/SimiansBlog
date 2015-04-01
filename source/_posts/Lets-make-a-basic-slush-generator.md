@@ -54,7 +54,11 @@ Here's where we start really making this thing work...
 
 Open the file called `slushfile.js`. You'll notice this essentially bears a very strong resembelance to a `gulpfile.js`. That's because this basically *is* a gulpfile, that is using inquirer to ask you questions. Its that simple. Before we do any analysis and start plucking this project apart, lets do a quick test.
 
+
+First go to the generated project directory and link it.
+
 ```js
+npm link
 
 ```
 
