@@ -104,7 +104,8 @@
 <p>Man, what mess! Wouldnt it be awesome if you could just put the shader into a seperate file and load it that way?</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragmentSrc = <span class="built_in">require</span>(<span class="string">'../shaders/cubething.frag'</span>),</span><br></pre></td></tr></table></figure>
 <p>You could cut all that code out into a simple require statement! That is what this loader is for.</p>
-<h2 id="The_Solution">The Solution</h2><p>First, you need to add the loader to your list of loaders, most likely in your <code>webpack.config.js</code> file.</p>
+<h2 id="The_Solution">The Solution</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev phaser-glsl-loader</span><br></pre></td></tr></table></figure>
+<p>First, you need to add the loader to your list of loaders, most likely in your <code>webpack.config.js</code> file.</p>
 <p>Something like this:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> glFragmentLoader = <span class="built_in">require</span>(<span class="string">'phaser-glsl-loader'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.frag$/i</span>,</span><br><span class="line">        loader: <span class="string">'gl-fragment-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolveLoader: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'gl-fragment-loader'</span>: glFragmentLoader,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>Then you’ll be able to reference external files, instead of basically including a large array of strings!</p>
@@ -112,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/" data-id="ci7wslces0011xw4av0mirv55" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/" data-id="ci7ygm2ta0011104ap92hvgge" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/game-development/">game development</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node/">node</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/phaser/">phaser</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
@@ -123,11 +124,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/03/30/Lets-make-a-basic-slush-generator/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/03/30/Lets-Make-a-Basic-Slush-Generator/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Lets Make a Basic Slush Generator
+          Lets Make a Basic Slush Generator: Part I
         
       </div>
     </a>
@@ -183,7 +184,7 @@
       <ul>
         
           <li>
-            <a href="/2015/03/30/Lets-make-a-basic-slush-generator/">Lets Make a Basic Slush Generator</a>
+            <a href="/2015/03/30/Lets-Make-a-Basic-Slush-Generator/">Lets Make a Basic Slush Generator: Part I</a>
           </li>
         
           <li>
