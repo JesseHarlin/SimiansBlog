@@ -1,10 +1,10 @@
 title: "Testing a Slush Generator"
 date: 2015-04-04 22:43:43
-tags: slush, javascript, TDD, testing
+tags: slush, javascript, TDD, testing, scaffolding, generator
 ---
 
 
-One thing I'v enoticed while looking at the generators for both yeoman and sluch, is that overall, they tend to be undertested. I think this is for two reasons. Firstly, I think many folks consider this kind of dev tool to not be, generally speaking, differnt from production code. Its a tool to assist a dev work, and not necessarily subject to the same level of testing rigor. I think anothe reason is that testing file IO is fundamentally much more challengin then a typical unit test.
+One thing I've noticed while looking at the generators for both yeoman and slush, is that overall, they tend to be undertested. I think this is for two reasons. Firstly, I think many folks consider this kind of dev tool to not be, generally speaking, differnt from production code. Its a tool to assist a dev work, and not necessarily subject to the same level of testing rigor. I think anothe reason is that testing file IO is fundamentally much more challengin then a typical unit test.
 
 Thankfully, since we are testing gulp output, theres a handy module that does make things easier called [`mock-gulp-dest`.](https://github.com/slushjs/mock-gulp-dest) If you look at the source of `mock-gulp-dest`, you'll notice that it uses `through2` to essentially handle the mocking of the file IO. Of course you don't want to *actually* write files to the disk and assert their existance. It might be tempting to use one of the `fs` assertion tools and actually put the files somethere, but that's pretty messy in the long run, and not pragmatic for running tests in multiple environments. Rather, `mock-gulp-dest` actually stubbs the `dest` method with one that doesn't actually write, and then reverts it when complete. That said, this is ultimately a sophisticated function stub.
 
@@ -123,7 +123,7 @@ var mocha = require('gulp-mocha');
 function test(cb) {
 
   var mochaOpts = {
-    reporter: 'nyan'
+    reporter: 'nyan' //cool-mode
   };
 
   function runner() {
@@ -131,8 +131,7 @@ function test(cb) {
       .src(['./test/*.js'])
       .pipe(mocha(mochaOpts))
       .pipe(istanbul.writeReports())
-
-    .on('end', cb);
+      .on('end', cb);
   }
 
   gulp
@@ -195,6 +194,6 @@ Lines        : 80.65% ( 25/31 )
 [22:37:42] Finished 'test' after 734 ms
 ```
 
-Oh nice! We got two passing tests! Could use a fe more though :)
+Oh nice! We got two passing tests! Could use a few more though :)
 
 
