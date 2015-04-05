@@ -153,7 +153,13 @@ gulp test
 ```
 
 
-I always use the nyan cat reporter, because it delights me. NO judging here. Watch that kitty surf that poptart!!!
+I always use the nyan cat reporter, because it delights me. 
+
+{% img /images/slush-howto/slide-cat.gif "How I feel testing code" %}
+
+No judging here. 
+Watch that kitty surf that poptart!!!
+
 
 ```sh
 [22:37:41] Starting 'test'...
