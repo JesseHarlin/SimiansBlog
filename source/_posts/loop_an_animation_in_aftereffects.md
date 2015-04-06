@@ -11,6 +11,8 @@ Here is an example of how to do it. I have a clip I’m working here, where I’
 
 {% img /images/loop_an_animation_in_aftereffects/ae1.png %}
 
+<!-- more -->
+
 See that Gold  Square up there? I need that to blink, repeatedly- like a cursor. Then, I need to move that around and a typing animation plays, and this leads the text as it comes in. The effect is as if a person is quickly entering a password. Its really kickass. Lets make the cursor.
 
 I go into Photoshop, make a rectangle, add bevel and emboss  as a layer effect and voila: a cursor.

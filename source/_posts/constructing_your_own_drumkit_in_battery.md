@@ -9,6 +9,8 @@ One of my favorite sound sets is the 8-bit retro sound palette that one gets fro
 
 I’ve used it in a ton of musical tracks. A prominent one, was “God in my automatic Vacuum”, that I wrote nearly 9 years ago
 
+<!-- more -->
+
 {% img /images/battery_drumkit/nes_thumb.jpg %}
 
 I’d like to keep using it and generally the melodic lines aren’t so problematic- but the percussion parts I tend to write choke this baby up quite fast. Do you remember when you were a kit, and the Ninendo would freeze up, and you and your friends would pull out the cartridge and ‘blow on it’. Yeah, I’m not sure why we did that. The trick was actually simply reseating the cartridge. What I am saying is that, imagine having to go through that ritual periodically as you are writing a piece of music. See folks this is why old gear has a MIDI panic button. On this? The Panic button is labeled ‘power’. that right, simply resetting the unit isn’t good enough; you also have to drain that flea power too. Seriously, it can get tedious.

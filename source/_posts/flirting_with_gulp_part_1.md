@@ -7,6 +7,8 @@ Observation: Quality Javascript taskrunners tend to be named after gutteral nois
 
 I guess lately I've been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I'm late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. 
 
+<!-- more -->
+
 The big thing with grunt, I've noticed whilst working with it, is that the declarative JSON...mammoth.. gets pretty big after a while. I'm aware there are strategies for refactoring and organizing your Gruntfiles, i just feel like I often can't bring myself to find time to just sit and simply refactor my Grunt tasks. So lately, at the shop, we've been working on a scaffolding project to help us get up and running on future applications more rapidly. Now is my golden chance to refactor Grunt.. or?
 
 Gulp? Should I explore this as a viable option? Why not?

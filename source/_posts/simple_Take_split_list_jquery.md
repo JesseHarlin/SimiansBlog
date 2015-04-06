@@ -14,6 +14,7 @@ Foremost:  the code is pretty straightforward if you do this in jQuery. First, h
 
 {% jsfiddle the_Simian/ySL4U %}
 
+<!-- more -->
 
 So far, so good. Notice the first statement is simply to target a desired ul. the next bit uses an interesting jQuery pseudoselector: gt. This of course stands for 'greater than' and takes an index. since our list is 12 items, and index of 5 is exactly halfway in, since its 0 indexed. Its counterpart is lt, which is 'less than'.
 

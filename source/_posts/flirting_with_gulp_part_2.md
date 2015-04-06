@@ -1,4 +1,19 @@
+title: "Flirting with Gulp: Part 2"
+date: 2014-04-1 12:00:00
+tags: Gulp, Task Runners, Javascript
+---
+
+At this point I've played with gulp enough to make the decision that I'd like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:
+
+{% blockquote %}
+If it ain't broke, don't fix it.
+{% endblockquote %}
+
+At the same time, broke and "ain't broke" is a fairly binary way to see a system. Where does functional, yet unoptimized lie? Where does "working, but unscaleable" sit? Any software engineer knows there are often multiple approaches to solving a problem, and there is often merit to improving a system, for the sake of organization, optimization, maintenance and stability. I think switching to gulp is worth the work investment.
+
 You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.
+
+<!-- more -->
 
 First we do the node dance. Install Gulp!
 

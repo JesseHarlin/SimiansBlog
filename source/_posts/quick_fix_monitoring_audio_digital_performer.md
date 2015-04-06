@@ -9,6 +9,8 @@ That’s the column there, with the lighted speaker icon. Now you can hear the i
 
 {% img /images/quick_fix_monitoring_audio_digital_performer/tracks.png %}
 
+<!-- more -->
+
 However I ran into a problem. Usually when I’m recording a certain persnickety external module – and by that I mean my MIDI enabled NES. I need to run the incoming audio through a little bit of dynamic effects. For one, the Nes emmits a terrible 60hz hum, and is generally noisy. I don’t mind this so much on the actual percussive impulses of the notes – it adds..er… flavor (read: 8-bit trash ). the problem is when the instrument should be tacet it makes a hum.
 
 The point of this, is that I needed to be able to monitor the affect signal. I tried my usual trick of running through an aux..but.. it wasn’t working! Why?
