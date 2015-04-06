@@ -3,6 +3,10 @@ date: 2015-04-04 22:43:43
 tags: slush, javascript, TDD, testing, scaffolding, generator
 ---
 
+
+{% img /images/slush-howto/slush_test.png %}
+
+
 One thing I've noticed while looking at the generators for both yeoman and slush, is that overall, they tend to be undertested. I think this is for two reasons. Firstly, I think many folks consider this kind of dev tool to not be, generally speaking, differnt from production code. Its a tool to assist a dev work, and not necessarily subject to the same level of testing rigor. I think anothe reason is that testing file IO is fundamentally much more challengin then a typical unit test.
 
 <!-- more -->

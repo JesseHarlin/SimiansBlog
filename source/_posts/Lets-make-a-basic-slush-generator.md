@@ -3,7 +3,7 @@ date: 2015-03-30 23:09:52
 tags: [slush, javascript, gulp, generator, scaffolding]
 ---
 
-![Slush.js](http://slushjs.github.io/assets/slush.png)
+{% img /images/slush-howto/slushlogo.png %}
 
 I've been using gulp for a while now, and it has become my go-to build system. I have also spent a lot of time trying my very best to getused to using generators regularly in my workflow. I gave talk some time ago about Yeoman, which was a seemingly obvious first choice for a generator.
 

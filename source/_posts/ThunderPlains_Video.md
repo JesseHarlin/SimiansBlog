@@ -12,7 +12,7 @@ After a lot of time spend, I've finally finished editing all of the Thunder Plai
 
 <!-- more -->
 
-##There are 16 videos, in total
+##The 16 Videos
 
 1. [Luke Crouch - Web For America [ Thunder Plains 2014 ]](https://www.youtube.com/watch?v=oAgO9sJ7r54&list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&index=1)
 2. [Aaron Murray - Real World React.js [ Thunder Plains 2014 ]](https://www.youtube.com/watch?v=A8G6OBFTYk4&list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&index=2)
@@ -30,5 +30,7 @@ After a lot of time spend, I've finally finished editing all of the Thunder Plai
 14. [Chris Dickinson - Better Living through Control Flow Graph Generation [ Thunder Plains 2014 ]](https://www.youtube.com/watch?v=FTOojTR1KBw&index=14&list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_)
 15. [Adam Baldwin - Node.js Security Live [ Thunder plains 2014 ]](https://www.youtube.com/watch?v=4vccPZcq08w&index=15&list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_)
 16. [Chris Williams - Democratizing Hardware [ Thunder Plains 2014 ]](https://www.youtube.com/watch?v=ZwEXoFNrHwA&index=16&list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_)
+
+I hope you enjoy them. They took a very long time to edit, over the course of some months.
 
 
