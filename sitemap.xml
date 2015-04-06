@@ -3,17 +3,47 @@
   
   <url>
     <loc>http://yoursite.com/2015/04/04/testing-a-slush-generator/</loc>
-    <lastmod>2015-04-05T04:24:09.000Z</lastmod>
+    <lastmod>2015-04-06T03:26:15.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://yoursite.com/2015/03/30/Lets-Make-a-Basic-Slush-Generator/</loc>
-    <lastmod>2015-04-01T08:15:22.000Z</lastmod>
+    <lastmod>2015-04-06T03:25:46.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/01/18/ThunderPlains_Video/</loc>
+    <lastmod>2015-04-06T03:14:41.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2013/04/05/using_orchard_cms_1/</loc>
+    <lastmod>2015-04-06T03:02:13.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2013/04/05/using_orchard_cms_2/</loc>
+    <lastmod>2015-04-06T03:01:58.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2014/03/07/You-Need-a-Better-Console/</loc>
+    <lastmod>2015-04-06T03:01:34.000Z</lastmod>
   </url>
   
   <url>
     <loc>http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/</loc>
-    <lastmod>2015-03-31T04:42:37.000Z</lastmod>
+    <lastmod>2015-04-06T03:01:26.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/04/05/organizing-a-slush-generator/</loc>
+    <lastmod>2015-04-06T02:59:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/</loc>
+    <lastmod>2015-04-06T02:57:15.000Z</lastmod>
   </url>
   
   <url>
@@ -27,11 +57,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/03/27/refacotring-into-functional-patterns/</loc>
-    <lastmod>2015-03-28T03:01:54.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/about-me/index.html</loc>
     <lastmod>2015-03-27T02:58:59.000Z</lastmod>
   </url>
@@ -39,16 +64,6 @@
   <url>
     <loc>http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/</loc>
     <lastmod>2015-03-23T09:42:35.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2013/04/05/using_orchard_cms_2/</loc>
-    <lastmod>2015-03-23T09:27:24.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2013/04/05/using_orchard_cms_1/</loc>
-    <lastmod>2015-03-23T09:25:53.000Z</lastmod>
   </url>
   
   <url>
@@ -62,11 +77,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2014/03/07/You-Need-a-Better-Console/</loc>
-    <lastmod>2015-03-23T08:47:25.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/</loc>
     <lastmod>2015-03-23T08:42:56.000Z</lastmod>
   </url>
@@ -74,11 +84,6 @@
   <url>
     <loc>http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/</loc>
     <lastmod>2015-03-23T08:39:15.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/</loc>
-    <lastmod>2015-03-23T08:32:30.000Z</lastmod>
   </url>
   
   <url>
@@ -94,11 +99,6 @@
   <url>
     <loc>http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/</loc>
     <lastmod>2015-03-23T08:11:58.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2015/01/18/ThunderPlains_Video/</loc>
-    <lastmod>2015-03-19T10:49:25.000Z</lastmod>
   </url>
   
   <url>
