@@ -201,50 +201,6 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2015/03/23/flirting_with_gulp_part_2/"/>
-    <id>http://yoursite.com/2015/03/23/flirting_with_gulp_part_2/</id>
-    <published>2015-03-23T09:03:23.000Z</published>
-    <updated>2015-03-23T09:09:49.000Z</updated>
-    <content type="html"><![CDATA[<p>You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.</p>
-<p>First we do the node dance. Install Gulp!</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp</span><br></pre></td></tr></table></figure>
-<p>And then:</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
-<p>Now I add a gulpfile.js to my project, and </p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br></pre></td></tr></table></figure>
-<p>so far, so simple.</p>
-<p>now I actually need STUFF. Gulp plugins. Thankfully here is many. I just follwoed the same procedure for each</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-changed</span><br><span class="line">npm install --save-dev gulp-concat</span><br><span class="line">npm install --save-dev gulp-copy</span><br><span class="line">npm install --save-dev gulp-stylus</span><br><span class="line">npm install --save-dev gulp-clean</span><br><span class="line">npm install --save-dev gulp-htmlmin</span><br><span class="line">npm install --save-dev gulp-cssmin</span><br><span class="line">npm install --save-dev gulp-uglify</span><br></pre></td></tr></table></figure>
-<p>If you used it in Grunt, most likely it is also in gulp. Notice I didnt add watch? That’s already included in gulp. Awesome!</p>
-<p>Now one little thing you can do is explicitly include each plugin. That is well and good. Actually, if you start breaking your files up for organizational reasons (protip: we will) that’s the way to go. If you have a shorter gulpfile.js, or just want to include everythign easily, heres a little trick</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev matchdep</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function loadModule(module) &#123;</span><br><span class="line">    global[module.replace(/^gulp-/, '')] = require(module);</span><br><span class="line">&#125;</span><br><span class="line">require('matchdep')</span><br><span class="line">    .filterDev('gulp-*')</span><br><span class="line">    .forEach(loadModule);</span><br><span class="line">```    </span><br><span class="line">    </span><br><span class="line">Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!</span><br><span class="line"></span><br><span class="line">Again, this is more practical, if you're going to stick to one file. </span><br><span class="line"></span><br><span class="line">Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets. </span><br><span class="line"></span><br><span class="line">In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;</span><br><span class="line"></span><br><span class="line">Its someting like this:</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">options.themeList = function themeList(themes) &#123;</span><br><span class="line">            var obj = &#123;&#125;;</span><br><span class="line">            for (var i = 0, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">                var root = 'src/public/styles/themes/' + themes[i];</span><br><span class="line">                obj[root + '/theme.css'] = root + '/theme.styl';</span><br><span class="line">            &#125;</span><br><span class="line">            return obj;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>and somewhere I have a list of themes corresponding to folders, in my case I have 9 total. Lets pretend these are also attached to my session grunt options object. Basically:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">options.themes = [</span><br><span class="line">        <span class="string">'ThemeOne'</span>,</span><br><span class="line">        <span class="string">'ThemeTwo'</span>,</span><br><span class="line">        <span class="string">'ThemeThree'</span>,</span><br><span class="line">        <span class="string">'ThemeFour'</span>,</span><br><span class="line">        <span class="string">'ThemeFive'</span>,</span><br><span class="line">        <span class="string">'ThemeSix'</span>,</span><br><span class="line">        <span class="string">'ThemeSeven'</span>,</span><br><span class="line">        <span class="string">'ThemeEight'</span>,</span><br><span class="line">        <span class="string">'ThemeNine'</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
-<p>And then, this is used in the stylus plugin for Grunt, in the Gruntfile.js</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">stylus: &#123;</span><br><span class="line">         themes: &#123;</span><br><span class="line">             options: &#123;use: [<span class="built_in">require</span>(<span class="string">'nib'</span>)]&#125; <span class="comment">//some stylus options</span></span><br><span class="line">             files: options.themeList (options.themes)</span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
-<p>There are probably simpler, and more elegant ways to do this. Actually, in my actual code there are some minor varitions from this, taht are related to implementation, but this should get the point across, easily. Grunt’s initConfig Method is a big, honkin pile of JSON. Actually, in practice mine had gotton so large that I was looking at strategies to organize it when I stumbled upon Gulp.</p>
-<p>I wrote a similar setup in Gulp. I was able to encapsulate the method much more nicely, because Gulp is code-first! Its something like this:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'stylus:themes'</span>, <span class="function"><span class="keyword">function</span> <span class="title">stylusThemes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> themes = options.themes;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">makeThemes</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> theme = themes[i],</span><br><span class="line">                themeFolder = <span class="string">'src/public/styles/themes/'</span> + theme,</span><br><span class="line">                stylusConfig = &#123;</span><br><span class="line">                    use: [<span class="string">'nib'</span>]</span><br><span class="line">                &#125;;</span><br><span class="line"> </span><br><span class="line">            gulp</span><br><span class="line">                .src(themeFolder + <span class="string">'/theme.styl'</span>)</span><br><span class="line">                .pipe(stylus(stylusConfig))</span><br><span class="line">                .pipe(gulp.dest(themeFolder));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    makeThemes(themes); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p>As a side note, I can’t help but reflect upon some of the same organizational issues I encountered whilst working in say, Ext.js. There you have another, really big, configur-ish way to implement a module pattern. Its nice, but when you need to go outside the box, it can be challenging at a glance to figure out where stuff should live. I think theres a very reasonably attraction to tools like node and browserfy, and other very code-first approaches to code organization. I mentioned this in the last post, but in C# land, using more convention over configuration has proven time and time again to be a better way of doing things. I pity the dev using XML instead of FLuent nHibernate to configure nHibernate. It really is much better.</p>
-<p>So, there you have it. a Very very slightly not run-of-the mill task cross written on both platforms. To my eyes, the Gulp version is way more maintainable in the long run. However, the story doesn’t end there. I ran the two side by side, just out of curiosity, to see which one is faster. Now, recall, these are pretty big tasks here. These aren’t fired at request time from a client, but are preprocessed to make static resources. The only thing that truly benefits is like a file watch while working in the .stylus files. But, omigosh Gulp is faster.</p>
-<p>Here is the Grunt task ( I am using time-grunt to measure the speed):</p>
-<img src="/images/gulp/grunt-stylus-speed.png">
-<p>Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css </p>
-<p>Now, here is the same thing in Gulp.</p>
-<img src="/images/gulp/gulp-stylus.png">
-<p>I had to run it twice to be sure. Did it actually make the files? I looked. Yes, they’re there. That’s literally over 1000 times faster. 1064.891 times faster, to be more accurate.</p>
-<p>Wow. I expect huge gains during tasks that run under file watch during development.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.</p>
-<p>First we do the node dance. Install]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Thunder Plains 2014 Videos]]></title>
     <link href="http://yoursite.com/2015/01/18/ThunderPlains_Video/"/>
     <id>http://yoursite.com/2015/01/18/ThunderPlains_Video/</id>
@@ -300,6 +256,61 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Flirting with Gulp: Part 2]]></title>
+    <link href="http://yoursite.com/2014/04/01/flirting_with_gulp_part_2/"/>
+    <id>http://yoursite.com/2014/04/01/flirting_with_gulp_part_2/</id>
+    <published>2014-04-01T17:00:00.000Z</published>
+    <updated>2015-04-06T03:38:38.000Z</updated>
+    <content type="html"><![CDATA[<p>At this point I’ve played with gulp enough to make the decision that I’d like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:</p>
+<blockquote><p>If it ain’t broke, don’t fix it.</p>
+</blockquote>
+<p>At the same time, broke and “ain’t broke” is a fairly binary way to see a system. Where does functional, yet unoptimized lie? Where does “working, but unscaleable” sit? Any software engineer knows there are often multiple approaches to solving a problem, and there is often merit to improving a system, for the sake of organization, optimization, maintenance and stability. I think switching to gulp is worth the work investment.</p>
+<p>You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.</p>
+<a id="more"></a>
+<p>First we do the node dance. Install Gulp!</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp</span><br></pre></td></tr></table></figure>
+<p>And then:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
+<p>Now I add a gulpfile.js to my project, and </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br></pre></td></tr></table></figure>
+<p>so far, so simple.</p>
+<p>now I actually need STUFF. Gulp plugins. Thankfully here is many. I just follwoed the same procedure for each</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-changed</span><br><span class="line">npm install --save-dev gulp-concat</span><br><span class="line">npm install --save-dev gulp-copy</span><br><span class="line">npm install --save-dev gulp-stylus</span><br><span class="line">npm install --save-dev gulp-clean</span><br><span class="line">npm install --save-dev gulp-htmlmin</span><br><span class="line">npm install --save-dev gulp-cssmin</span><br><span class="line">npm install --save-dev gulp-uglify</span><br></pre></td></tr></table></figure>
+<p>If you used it in Grunt, most likely it is also in gulp. Notice I didnt add watch? That’s already included in gulp. Awesome!</p>
+<p>Now one little thing you can do is explicitly include each plugin. That is well and good. Actually, if you start breaking your files up for organizational reasons (protip: we will) that’s the way to go. If you have a shorter gulpfile.js, or just want to include everythign easily, heres a little trick</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev matchdep</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function loadModule(module) &#123;</span><br><span class="line">    global[module.replace(/^gulp-/, '')] = require(module);</span><br><span class="line">&#125;</span><br><span class="line">require('matchdep')</span><br><span class="line">    .filterDev('gulp-*')</span><br><span class="line">    .forEach(loadModule);</span><br><span class="line">```    </span><br><span class="line">    </span><br><span class="line">Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!</span><br><span class="line"></span><br><span class="line">Again, this is more practical, if you're going to stick to one file. </span><br><span class="line"></span><br><span class="line">Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets. </span><br><span class="line"></span><br><span class="line">In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;</span><br><span class="line"></span><br><span class="line">Its someting like this:</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">options.themeList = function themeList(themes) &#123;</span><br><span class="line">            var obj = &#123;&#125;;</span><br><span class="line">            for (var i = 0, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">                var root = 'src/public/styles/themes/' + themes[i];</span><br><span class="line">                obj[root + '/theme.css'] = root + '/theme.styl';</span><br><span class="line">            &#125;</span><br><span class="line">            return obj;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>and somewhere I have a list of themes corresponding to folders, in my case I have 9 total. Lets pretend these are also attached to my session grunt options object. Basically:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">options.themes = [</span><br><span class="line">        <span class="string">'ThemeOne'</span>,</span><br><span class="line">        <span class="string">'ThemeTwo'</span>,</span><br><span class="line">        <span class="string">'ThemeThree'</span>,</span><br><span class="line">        <span class="string">'ThemeFour'</span>,</span><br><span class="line">        <span class="string">'ThemeFive'</span>,</span><br><span class="line">        <span class="string">'ThemeSix'</span>,</span><br><span class="line">        <span class="string">'ThemeSeven'</span>,</span><br><span class="line">        <span class="string">'ThemeEight'</span>,</span><br><span class="line">        <span class="string">'ThemeNine'</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<p>And then, this is used in the stylus plugin for Grunt, in the Gruntfile.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">stylus: &#123;</span><br><span class="line">         themes: &#123;</span><br><span class="line">             options: &#123;use: [<span class="built_in">require</span>(<span class="string">'nib'</span>)]&#125; <span class="comment">//some stylus options</span></span><br><span class="line">             files: options.themeList (options.themes)</span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+<p>There are probably simpler, and more elegant ways to do this. Actually, in my actual code there are some minor varitions from this, taht are related to implementation, but this should get the point across, easily. Grunt’s initConfig Method is a big, honkin pile of JSON. Actually, in practice mine had gotton so large that I was looking at strategies to organize it when I stumbled upon Gulp.</p>
+<p>I wrote a similar setup in Gulp. I was able to encapsulate the method much more nicely, because Gulp is code-first! Its something like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'stylus:themes'</span>, <span class="function"><span class="keyword">function</span> <span class="title">stylusThemes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> themes = options.themes;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">makeThemes</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> theme = themes[i],</span><br><span class="line">                themeFolder = <span class="string">'src/public/styles/themes/'</span> + theme,</span><br><span class="line">                stylusConfig = &#123;</span><br><span class="line">                    use: [<span class="string">'nib'</span>]</span><br><span class="line">                &#125;;</span><br><span class="line"> </span><br><span class="line">            gulp</span><br><span class="line">                .src(themeFolder + <span class="string">'/theme.styl'</span>)</span><br><span class="line">                .pipe(stylus(stylusConfig))</span><br><span class="line">                .pipe(gulp.dest(themeFolder));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    makeThemes(themes); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>As a side note, I can’t help but reflect upon some of the same organizational issues I encountered whilst working in say, Ext.js. There you have another, really big, configur-ish way to implement a module pattern. Its nice, but when you need to go outside the box, it can be challenging at a glance to figure out where stuff should live. I think theres a very reasonably attraction to tools like node and browserfy, and other very code-first approaches to code organization. I mentioned this in the last post, but in C# land, using more convention over configuration has proven time and time again to be a better way of doing things. I pity the dev using XML instead of FLuent nHibernate to configure nHibernate. It really is much better.</p>
+<p>So, there you have it. a Very very slightly not run-of-the mill task cross written on both platforms. To my eyes, the Gulp version is way more maintainable in the long run. However, the story doesn’t end there. I ran the two side by side, just out of curiosity, to see which one is faster. Now, recall, these are pretty big tasks here. These aren’t fired at request time from a client, but are preprocessed to make static resources. The only thing that truly benefits is like a file watch while working in the .stylus files. But, omigosh Gulp is faster.</p>
+<p>Here is the Grunt task ( I am using time-grunt to measure the speed):</p>
+<img src="/images/gulp/grunt-stylus-speed.png">
+<p>Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css </p>
+<p>Now, here is the same thing in Gulp.</p>
+<img src="/images/gulp/gulp-stylus.png">
+<p>I had to run it twice to be sure. Did it actually make the files? I looked. Yes, they’re there. That’s literally over 1000 times faster. 1064.891 times faster, to be more accurate.</p>
+<p>Wow. I expect huge gains during tasks that run under file watch during development.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>At this point I’ve played with gulp enough to make the decision that I’d like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:</p>
+<blockquote><p>If it ain’t broke, don’t fix it.</p>
+</blockquote>
+<p>At the same time, broke and “ain’t broke” is a fairly binary way to see a system. Where does functional, yet unoptimized lie? Where does “working, but unscaleable” sit? Any software engineer knows there are often multiple approaches to solving a problem, and there is often merit to improving a system, for the sake of organization, optimization, maintenance and stability. I think switching to gulp is worth the work investment.</p>
+<p>You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.</p>]]>
+    
+    </summary>
+    
+      <category term="Gulp, Task Runners, Javascript" scheme="http://yoursite.com/tags/Gulp-Task-Runners-Javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Using Windows: You Need A Better Console]]></title>
     <link href="http://yoursite.com/2014/03/07/You-Need-a-Better-Console/"/>
     <id>http://yoursite.com/2014/03/07/You-Need-a-Better-Console/</id>
@@ -348,9 +359,10 @@
     <link href="http://yoursite.com/2014/03/06/flirting_with_gulp_part_1/"/>
     <id>http://yoursite.com/2014/03/06/flirting_with_gulp_part_1/</id>
     <published>2014-03-06T18:00:00.000Z</published>
-    <updated>2015-03-23T09:03:02.000Z</updated>
+    <updated>2015-04-06T03:30:11.000Z</updated>
     <content type="html"><![CDATA[<p>Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.</p>
 <p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. </p>
+<a id="more"></a>
 <p>The big thing with grunt, I’ve noticed whilst working with it, is that the declarative JSON…mammoth.. gets pretty big after a while. I’m aware there are strategies for refactoring and organizing your Gruntfiles, i just feel like I often can’t bring myself to find time to just sit and simply refactor my Grunt tasks. So lately, at the shop, we’ve been working on a scaffolding project to help us get up and running on future applications more rapidly. Now is my golden chance to refactor Grunt.. or?</p>
 <p>Gulp? Should I explore this as a viable option? Why not?</p>
 <p>These tools clearly compete for the exact same ‘job’ in my toolbox. One works off of configuration, the other uses streams; its sort of ‘code-first’. I like that.  I am reminded of when I switched to fluent nHibernate configuration years ago, rather than xml configuration. It really made everything easier to read and compose. Maybe I could achieve similar benefits here. It seems equally simple. Theres four main things, ‘task, watch, src, dest’. That’s really all. Also the modules seem smaller, and the concerns of each seem more seperate. And the most interesting part, is that the tasks seem to run as concurrently as possible. That, plus the fact they are essentialyl streams could result in much faster execution times. I suppose that isn’t as big a deal when you’re doing a preprocessing task, but during a file watch it can be really handy. It can also be handy if there are tasks related to CI.</p>
@@ -358,7 +370,8 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.</p>
-<p>I guess lately I’ve been having a]]>
+<p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. </p>]]>
+    
     </summary>
     
       <category term="Gulp, Task Runners, Javascript" scheme="http://yoursite.com/tags/Gulp-Task-Runners-Javascript/"/>
@@ -467,11 +480,12 @@
     <link href="http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/"/>
     <id>http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/</id>
     <published>2013-03-03T15:00:00.000Z</published>
-    <updated>2015-03-23T08:39:15.000Z</updated>
+    <updated>2015-04-06T03:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
 <p>Its really simple to do, and all you have to do is write one line of script.</p>
 <p>Here is an example of how to do it. I have a clip I’m working here, where I’m trying to simulate an old school NES password prompt.</p>
 <img src="/images/loop_an_animation_in_aftereffects/ae1.png">
+<a id="more"></a>
 <p>See that Gold  Square up there? I need that to blink, repeatedly- like a cursor. Then, I need to move that around and a typing animation plays, and this leads the text as it comes in. The effect is as if a person is quickly entering a password. Its really kickass. Lets make the cursor.</p>
 <p>I go into Photoshop, make a rectangle, add bevel and emboss  as a layer effect and voila: a cursor.</p>
 <p>Cursor<br><img src="/images/loop_an_animation_in_aftereffects/ae2.png"></p>
@@ -490,7 +504,11 @@
 <p>This technique is insanely useful, I use it all the time. A flickering flame, a flashing led, a walking sprite… It can all be done with this easy trick.</p>
 <img src="/images/loop_an_animation_in_aftereffects/password.gif">]]></content>
     <summary type="html">
-    <![CDATA[<p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips]]>
+    <![CDATA[<p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
+<p>Its really simple to do, and all you have to do is write one line of script.</p>
+<p>Here is an example of how to do it. I have a clip I’m working here, where I’m trying to simulate an old school NES password prompt.</p>
+<img src="/images/loop_an_animation_in_aftereffects/ae1.png">]]>
+    
     </summary>
     
       <category term="Animation, After Effects, Scripting" scheme="http://yoursite.com/tags/Animation-After-Effects-Scripting/"/>
@@ -519,11 +537,12 @@
     <link href="http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/"/>
     <id>http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/</id>
     <published>2012-10-01T16:30:00.000Z</published>
-    <updated>2015-04-06T02:57:15.000Z</updated>
+    <updated>2015-04-06T03:39:44.000Z</updated>
     <content type="html"><![CDATA[<p>One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I really enjoy using in my studio, and that is a Nintendo that has modified cartridge that acts as a midi controller in it. We’ve had some good times together. I’ve been using this thing, literally since the 90s and its been a frequent go-to toy in my arsenal. As some point along the way, I swapped out my bulkier TV screen I used with it for a smaller one, I mounted on the front. </p>
 <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/168244021&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 
 <p>I’ve used it in a ton of musical tracks. A prominent one, was “God in my automatic Vacuum”, that I wrote nearly 9 years ago</p>
+<a id="more"></a>
 <img src="/images/battery_drumkit/nes_thumb.jpg">
 <p>I’d like to keep using it and generally the melodic lines aren’t so problematic- but the percussion parts I tend to write choke this baby up quite fast. Do you remember when you were a kit, and the Ninendo would freeze up, and you and your friends would pull out the cartridge and ‘blow on it’. Yeah, I’m not sure why we did that. The trick was actually simply reseating the cartridge. What I am saying is that, imagine having to go through that ritual periodically as you are writing a piece of music. See folks this is why old gear has a MIDI panic button. On this? The Panic button is labeled ‘power’. that right, simply resetting the unit isn’t good enough; you also have to drain that flea power too. Seriously, it can get tedious.</p>
 <img src="/images/battery_drumkit/8-Bit-NES-Cartridge-Blow-Me-Poster-Post-545x300_thumb_1.jpg">
@@ -565,7 +584,11 @@
 <p>That’s it for part one. Next time I am going to cover how to make multiple kits form the sample set, and what, in my opinion constitutes a good kit. Truthfully, one sample set can yield a lot of versatility, and with a few tricks you can make you kits sound absolutely awesome with Battery.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I ]]>
+    <![CDATA[<p>One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I really enjoy using in my studio, and that is a Nintendo that has modified cartridge that acts as a midi controller in it. We’ve had some good times together. I’ve been using this thing, literally since the 90s and its been a frequent go-to toy in my arsenal. As some point along the way, I swapped out my bulkier TV screen I used with it for a smaller one, I mounted on the front. </p>
+<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/168244021&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+
+<p>I’ve used it in a ton of musical tracks. A prominent one, was “God in my automatic Vacuum”, that I wrote nearly 9 years ago</p>]]>
+    
     </summary>
     
       <category term="Audio Editing" scheme="http://yoursite.com/tags/Audio-Editing/"/>
@@ -587,10 +610,11 @@
     <link href="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/"/>
     <id>http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/</id>
     <published>2012-08-01T16:30:00.000Z</published>
-    <updated>2015-03-23T08:20:24.000Z</updated>
+    <updated>2015-04-06T03:39:58.000Z</updated>
     <content type="html"><![CDATA[<p>Recently I was working on a short project, and I was in need of monitoring my input audio as it was being passed thorough my inserts. As you know the later versions of Digital Performer (in this case 7.24) have a really useful column you may have noticed: the “Mon” column next to the input column in the tacks view of the sequencer.</p>
 <p>That’s the column there, with the lighted speaker icon. Now you can hear the input as you send your midi sequence.</p>
 <img src="/images/quick_fix_monitoring_audio_digital_performer/tracks.png">
+<a id="more"></a>
 <p>However I ran into a problem. Usually when I’m recording a certain persnickety external module – and by that I mean my MIDI enabled NES. I need to run the incoming audio through a little bit of dynamic effects. For one, the Nes emmits a terrible 60hz hum, and is generally noisy. I don’t mind this so much on the actual percussive impulses of the notes – it adds..er… flavor (read: 8-bit trash ). the problem is when the instrument should be tacet it makes a hum.</p>
 <p>The point of this, is that I needed to be able to monitor the affect signal. I tried my usual trick of running through an aux..but.. it wasn’t working! Why?</p>
 <p>The stranger part of it all,w as that it worked wonderfully with virtual instruments. And I said to myself “Bro, do you even know how to Aux/bus?”</p>
@@ -603,7 +627,10 @@
 <p>In any case, that’s the fix.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Recently I was working on a short project, and I was in need of monitoring my input audio as it was being passed thorough my inserts. As ]]>
+    <![CDATA[<p>Recently I was working on a short project, and I was in need of monitoring my input audio as it was being passed thorough my inserts. As you know the later versions of Digital Performer (in this case 7.24) have a really useful column you may have noticed: the “Mon” column next to the input column in the tacks view of the sequencer.</p>
+<p>That’s the column there, with the lighted speaker icon. Now you can hear the input as you send your midi sequence.</p>
+<img src="/images/quick_fix_monitoring_audio_digital_performer/tracks.png">]]>
+    
     </summary>
     
       <category term="Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects" scheme="http://yoursite.com/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/"/>
@@ -615,12 +642,13 @@
     <link href="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/"/>
     <id>http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/</id>
     <published>2012-03-18T17:00:00.000Z</published>
-    <updated>2015-03-23T09:42:35.000Z</updated>
+    <updated>2015-04-06T03:40:23.000Z</updated>
     <content type="html"><![CDATA[<p>Occasionally someone taps my should to ask a quick javascript question. I figure that if someone is asking, its probably worth writing a quick blog post about. This post is geared to someone that is more or less newer to frontend stuff, and is looking for a few tips to help them out.</p>
 <p>The question was: I have a list of 12 items, in a ul. I’d like to split it in half, and make two seperate lists. How can I do this?</p>
 <p>Actually, this seemingly straightforward question is a good chance to talk about a few things.</p>
 <p>Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way: </p>
 <iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/ySL4U/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<a id="more"></a>
 <p>So far, so good. Notice the first statement is simply to target a desired ul. the next bit uses an interesting jQuery pseudoselector: gt. This of course stands for ‘greater than’ and takes an index. since our list is 12 items, and index of 5 is exactly halfway in, since its 0 indexed. Its counterpart is lt, which is ‘less than’.</p>
 <p>Now, at this point, I always suggest pulling something off the DOM, working ‘in memory’ and then doing a single DOM resinsertion. Get in the practice of thinking like this. Working directly on the DOM is slow-sauce, and you don’t want to go there. So, we use .remove(). Notice the selection itself is cached in our variable $last6lis. I should add that I personally always preface a jQuery variable with $. This is a way of keeping your jQuery DOM pieces separated from plain old javascript ‘data’.</p>
 <p>Then we make a ‘ul’ tag in memory, pop our list items in that, and push it back onto the DOM, directly after our targetd item.</p>
@@ -637,7 +665,12 @@
 <p>Neat! now no matter what the length our li’s grow to be, we can always bisect them! Anytime you can do a small amount of work to make your code not require as much updating, that is handy.  Of course taking this to the next level, would be to pull this code out and put it in a function, or a plugin and begin to make it truly reuseable, but for now, for a quick ‘document ready’ script - this is fine.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Occasionally someone taps my should to ask a quick javascript question. I figure that if someone is asking, its probably worth writing a ]]>
+    <![CDATA[<p>Occasionally someone taps my should to ask a quick javascript question. I figure that if someone is asking, its probably worth writing a quick blog post about. This post is geared to someone that is more or less newer to frontend stuff, and is looking for a few tips to help them out.</p>
+<p>The question was: I have a list of 12 items, in a ul. I’d like to split it in half, and make two seperate lists. How can I do this?</p>
+<p>Actually, this seemingly straightforward question is a good chance to talk about a few things.</p>
+<p>Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way: </p>
+<iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/ySL4U/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>]]>
+    
     </summary>
     
       <category term="Javascript, jQuery" scheme="http://yoursite.com/tags/Javascript-jQuery/"/>
@@ -649,8 +682,9 @@
     <link href="http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/"/>
     <id>http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/</id>
     <published>2012-02-01T14:30:00.000Z</published>
-    <updated>2015-03-23T08:11:58.000Z</updated>
+    <updated>2015-04-06T03:40:34.000Z</updated>
     <content type="html"><![CDATA[<p>I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWriter, rather than the HTML editor on the remote blog. For one, you can work offline, which might be handy now and then if you’re in a situation where you don’t have a decent internet connection. A second advantage is the fact that you can keep a local backup of all your posts. I don’t recommend this being your only backup, of course- but hey a little replication doesn’t hurt. Of course my favorite reason is to make use of the superior editor and plugins. Really, the editor is nice. It feels like Word with spell check and such, but you can also go into the source view and make sure everything is clean. It doesn’t inject a bunch of junk into your markup either.</p>
+<a id="more"></a>
 <p>Ok, so the first thing to make sure of, is that you actually have Live Writer already installed. In my case I did, because it came with the Windows Live suite, but if you don’t : Here is the link to get it.</p>
 <p>Now lets assume you’ve already deployed Orchard on your server, or into the cloud or however you wish to do it. I started Live Writer and was Immediately prompted with this:</p>
 <img src="/images/orchard_and_livewriter/choose-blog-service-orchard-livewriter_thumb.jpg">
@@ -668,7 +702,8 @@
 <img src="/images/orchard_and_livewriter/livewriter-and-orchard-name-blog_thumb.jpg">
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWrite]]>
+    <![CDATA[<p>I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWriter, rather than the HTML editor on the remote blog. For one, you can work offline, which might be handy now and then if you’re in a situation where you don’t have a decent internet connection. A second advantage is the fact that you can keep a local backup of all your posts. I don’t recommend this being your only backup, of course- but hey a little replication doesn’t hurt. Of course my favorite reason is to make use of the superior editor and plugins. Really, the editor is nice. It feels like Word with spell check and such, but you can also go into the source view and make sure everything is clean. It doesn’t inject a bunch of junk into your markup either.</p>]]>
+    
     </summary>
     
       <category term="Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing" scheme="http://yoursite.com/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/"/>
