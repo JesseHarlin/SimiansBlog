@@ -1,9 +1,11 @@
 title: "Using Windows: You Need A Better Console"
 date: 2014-3-7 11:30:00
-tags: Conemu, Console, Tools
+tags: [Conemu, Console, Tools]
 ---
 
 I use a lot of operating systems. Regularly, I use Windows, OSX and Linux. It seems like at work, unless I'm doing somethig with virtual machines, I'm typically on Windows. Now, I am not a fanboy of any particular OS. I believe they all have strengths and weaknesses, and I find I use them differntly, for differnt tasks. One very admitable shortcoming in Windows, is most certainly its console. It Just Sucks™.
+
+<!-- more -->
 
 Now if you work in git, you might have installed, at some point, for windows the bash console emulator, Msys Git. Its nice, but not perfect. If you do any node development, you probably have many, many consoles open. Some are bash, some are standard windows. It gets annoying.
 

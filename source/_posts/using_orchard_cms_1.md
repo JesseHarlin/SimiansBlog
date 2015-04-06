@@ -5,7 +5,9 @@ tags: Orchard CMS, Orchard CMS Tutorial
 
 Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.
 
-Prebuilt Setup
+<!-- more -->
+
+##Prebuilt Setup
 
 I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup. 
 

@@ -7,6 +7,8 @@ You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itse
 
 THis is exactly the problem I encountered in Phaser.js, so I made a quick solution.
 
+<!-- more -->
+
 ##Phaser GLSL Loader
 
 [![Build Status](https://travis-ci.org/the-simian/phaser-glsl-loader.svg)](https://travis-ci.org/the-simian/phaser-glsl-loader)
@@ -14,7 +16,6 @@ THis is exactly the problem I encountered in Phaser.js, so I made a quick soluti
 [![Coverage Status](https://coveralls.io/repos/the-simian/phaser-glsl-loader/badge.svg?branch=master)](https://coveralls.io/r/the-simian/phaser-glsl-loader?branch=master)
 
 [![Code Climate](https://codeclimate.com/github/the-simian/phaser-glsl-loader/badges/gpa.svg)](https://codeclimate.com/github/the-simian/phaser-glsl-loader)
-
 
 [![David-Dm](https://david-dm.org/the-simian/phaser-glsl-loader.svg)](https://david-dm.org/the-simian/phaser-glsl-loader)
 
