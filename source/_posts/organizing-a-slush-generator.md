@@ -6,6 +6,8 @@ tags: [slush, scaffolding, project organization]
 
 If you're making a scaffold, or even a gulpfile of any degree of size or signifigance, you'll quickly learn that placing every task you make in a single file can lead to a big mess after a while. One of the most attractive things about slush, is that it uses gulp, and one of the most attractive things about gulp is that it is extremely organizeable, due to its modular task building system.
 
+<!-- more -->
+
 When you first get started, or run the `slush generator-generator`, the first thing you will notice is that a lot of folks put everything in the main slush file. I don't really recommend this. Its easier, at least to first make a separate `folder` called "slush".
 
 What we want is to separate the tasks by folder, and then per task, separate each one of these by function. If there is a complex task, consisting of smaller parts, we cna break those down by file in the folder. When you're doing tests, its much easier to have your test directory match that of your slush directory. Assuming each file is single responsibility, and each task has a folder, you will then also have one test file and folder to match the source.
