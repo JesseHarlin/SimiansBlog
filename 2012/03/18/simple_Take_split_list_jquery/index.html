@@ -86,30 +86,48 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Occasionally someone taps my should to ask a quick javascript question. I figure that if someone is asking, its probably worth writing a quick blog post about. This post is geared to someone that is more or less newer to frontend stuff, and is looking for a few tips to help them out.</p>
-<p>The question was: I have a list of 12 items, in a ul. I’d like to split it in half, and make two seperate lists. How can I do this?</p>
-<p>Actually, this seemingly straightforward question is a good chance to talk about a few things.</p>
-<p>Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way: </p>
-<iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/ySL4U/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-<a id="more"></a>
-<p>So far, so good. Notice the first statement is simply to target a desired ul. the next bit uses an interesting jQuery pseudoselector: gt. This of course stands for ‘greater than’ and takes an index. since our list is 12 items, and index of 5 is exactly halfway in, since its 0 indexed. Its counterpart is lt, which is ‘less than’.</p>
-<p>Now, at this point, I always suggest pulling something off the DOM, working ‘in memory’ and then doing a single DOM resinsertion. Get in the practice of thinking like this. Working directly on the DOM is slow-sauce, and you don’t want to go there. So, we use .remove(). Notice the selection itself is cached in our variable $last6lis. I should add that I personally always preface a jQuery variable with $. This is a way of keeping your jQuery DOM pieces separated from plain old javascript ‘data’.</p>
-<p>Then we make a ‘ul’ tag in memory, pop our list items in that, and push it back onto the DOM, directly after our targetd item.</p>
-<p>And all is right in the world.</p>
-<p>Only… we can do just a tiny bit more. </p>
-<p>first of all, while the lt and gt selectors are certainly great, the <code>.splice()</code> function is technically faster, and in my opinion more clear. Recall that jQuery selectors, are really lists of jQuery objects. Actually, if you can internalize that with jQuery its ‘always’ a list - that makes life easier. </p>
-<p>So lets try a quick experiment: first lets ditch the :gt selector and replace it with <code>splice()</code>. That means we need indexes 6-11, so we’d write something like: </p>
-<p><code>$ul.find(&#39;li&#39;).splice(6,11)</code> instead of <code>$ul.find(&#39;li:gt(5)&#39;)</code></p>
-<p>That’s cool and all, but if you drop that directly in the fiddle.. it totally doesnt work! Why?</p>
-<p>Simple answer: remember earlier that jQuery selectors always return a list of jQuery objects! what does splice return?  Just a primitive array.  The fix: Just wrap the result of the splice in a new jQuery function, and you’re back in action, rockin’ the suburbs.</p>
-<p><code>$($ul.find(&#39;li&#39;).splice(6,11))</code>  .. like this.</p>
-<p>Well, this is cool! now we can even change these numbers around, and select different segments of the initial list. Now, what if we wanted to refactor and make something that would always split our list in half, regardless of length? The answer is much more clear now, you could do something a bit like this:</p>
-<iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/GgXXL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
-<p>Neat! now no matter what the length our li’s grow to be, we can always bisect them! Anytime you can do a small amount of work to make your code not require as much updating, that is handy.  Of course taking this to the next level, would be to pull this code out and put it in a function, or a plugin and begin to make it truly reuseable, but for now, for a quick ‘document ready’ script - this is fine.</p>
 
+<p>The question was: I have a list of 12 items, in a ul. I&#39;d like to split it in half, and make two seperate lists. How can I do this?</p>
+
+<p>Actually, this seemingly straightforward question is a good chance to talk about a few things.</p>
+
+<p>Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way: </p>
+
+<p><iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/ySL4U/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe></p>
+
+<p>&lt;!-- more --&gt;</p>
+
+<p>So far, so good. Notice the first statement is simply to target a desired ul. the next bit uses an interesting jQuery pseudoselector: gt. This of course stands for &#39;greater than&#39; and takes an index. since our list is 12 items, and index of 5 is exactly halfway in, since its 0 indexed. Its counterpart is lt, which is &#39;less than&#39;.</p>
+
+<p>Now, at this point, I always suggest pulling something off the DOM, working &#39;in memory&#39; and then doing a single DOM resinsertion. Get in the practice of thinking like this. Working directly on the DOM is slow-sauce, and you don&#39;t want to go there. So, we use .remove(). Notice the selection itself is cached in our variable $last6lis. I should add that I personally always preface a jQuery variable with $. This is a way of keeping your jQuery DOM pieces separated from plain old javascript &#39;data&#39;.</p>
+
+<p>Then we make a &#39;ul&#39; tag in memory, pop our list items in that, and push it back onto the DOM, directly after our targetd item.</p>
+
+<p>And all is right in the world.</p>
+
+<p>Only... we can do just a tiny bit more. </p>
+
+<p>first of all, while the lt and gt selectors are certainly great, the <code>.splice()</code> function is technically faster, and in my opinion more clear. Recall that jQuery selectors, are really lists of jQuery objects. Actually, if you can internalize that with jQuery its &#39;always&#39; a list - that makes life easier. </p>
+
+<p>So lets try a quick experiment: first lets ditch the :gt selector and replace it with <code>splice()</code>. That means we need indexes 6-11, so we&#39;d write something like: </p>
+
+<p><code>$ul.find(&#39;li&#39;).splice(6,11)</code> instead of <code>$ul.find(&#39;li:gt(5)&#39;)</code></p>
+
+<p>That&#39;s cool and all, but if you drop that directly in the fiddle.. it totally doesnt work! Why?</p>
+
+<p>Simple answer: remember earlier that jQuery selectors always return a list of jQuery objects! what does splice return?  Just a primitive array.  The fix: Just wrap the result of the splice in a new jQuery function, and you&#39;re back in action, rockin&#39; the suburbs.</p>
+
+<p><code>$($ul.find(&#39;li&#39;).splice(6,11))</code>  .. like this.</p>
+
+<p>Well, this is cool! now we can even change these numbers around, and select different segments of the initial list. Now, what if we wanted to refactor and make something that would always split our list in half, regardless of length? The answer is much more clear now, you could do something a bit like this:</p>
+
+<p><iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/GgXXL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe></p>
+
+<p>Neat! now no matter what the length our li&#39;s grow to be, we can always bisect them! Anytime you can do a small amount of work to make your code not require as much updating, that is handy.  Of course taking this to the next level, would be to pull this code out and put it in a function, or a plugin and begin to make it truly reuseable, but for now, for a quick &#39;document ready&#39; script - this is fine.</p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/" data-id="ci8l1rjis000b244ac3gcnq98" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/" data-id="ci8l1s1an000boo4atn29441k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a></li></ul>
