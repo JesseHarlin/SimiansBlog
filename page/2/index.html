@@ -88,56 +88,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. </p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>First of all, there’s not layer of abstraction for you. Starting from the build is great, but there’s a lot of advantages to being able to start form the source, and build it yourself. This gets you in the game. Sometimes , for example there is an older version of a module in the gallery, and you want the latest one, which is available on the modules site. Maybe the way to make a module work, is just a simple fix, and would be easy if you could see the source. In fact, on the subject of modules, the source has many “must have” modules already included in the source drop, such as Tag Cloud, Lucene, Search and others. The built version you can download has been slimmed down for size. This isn’t an issue for use, since we will build ourselves. Since theres a lot already included, this helps you configure very quickly. Maybe you want to make your own module. Seriously, working from the source is the way to go. Plus, most importantly, its much more comfortable to work in Visual Studio. You know your personal arsenal of plugins is working fine, when everything builds and runs, and when you can run all your tests.</p>
-
-<p>There’s a number of ways to acquire the source. If you go to the Orchard project site, they are going to basically walk you through setting up Mercurial, and pulling the source down that way. You don’t necessarily have to do this. Clearly, I recommend using some manner of source control- and if you want to hang with the Orchard team you need to use Hg. That’s well and fine but I’m really into Github, so that’s what I use. If this is what you want to do, just go download the source from codeplex and then start your own repo. From here on out, this will be the main tool that powers all your orchard sites. When you build you can just include and exclude from this. If a site gets messed up, you can make a quick build and override the files. This source won’t overwrite your Media and Site folders; in fact- I put those folders in my .gitignore file. Whatever works for you in terms of deployment and source control is what you should do.</p>
-
-<p>I will add that I keep my personal clone of the orchard source on my local dev machine. Orchard is actually pretty big – well the source is. I suppose that’s a side effect of having so many projects and so much modularity.</p>
-
-<p>Go ahead and explore the Source drop. It should look like the image below (more or less) There’s some things to note here.</p>
-
-<p><img src="/images/orchard/orchard7.png"></p>
-
-<p>First off there’s a ton of .hg files like hg tags and so on. This is all just stuff Mercurial uses. (Hg is the periodic table abbreviation for Mercury – get it? har har.) Neat.</p>
-
-<p>There is a lib folder. A bunch of third party libraries live there. Orchard uses them. What libraries? Autofac, Clay, Castle Windsor, Nuget, Lucene, Log4Net, jQuery, nHibernate and stuff like that. Basically a ton of flippin’ awesome open source tools you should probably learn about anyways.  Honestly seeing this lib folder was a huge step in helping me decide to adopt Orchard as a core tool in my toolbelt. The Orchard team- they have taste!</p>
-
-<p>Then, of course there are a few .cmd files. These are scripts we utilize to build. Can you guess what the file ClickToBuild does? You probably guessed correctly. It takes this Orchard source, and generates a built project we can use to deploy. It also runs your tests for you. I should mention that you can <em>technically</em> put the source on your server, and it will work. Its also a massive waste of disk space. Don’t do it.</p>
-
-<p>Then finally there is the orchard src itself. Take a good look at how this entire source is laid out. This is par for the course how a good project should be laid out. The source has its own folder, and the parent folder has a lot of ‘meta’ stuff related to the source.</p>
-
-<p>Now look in the source itself, and then open Orchard.Web.</p>
-
-<p><img src="/images/orchard/orchard8.png"></p>
-
-<p>Look familiar? it’s the same folder structure we saw from the Webmatrix project we got from the Web Platform installer. I’m pointing this out, because this is basically going to be the part that gets deployed, after the build, with some exception. I’ll explain Look in the Modules in this directory.</p>
-
-<p><img src="/images/orchard/orchard9.png"></p>
-
-<p>Each one of these modules is an entirely separate self contained project. Each has its own code, dependencies, models, controllers – everything. During the build, each module’s dependencies are reduced down, otherwise the final build would be really really big.</p>
-
-<p>Now for the fun part, go back to the src folder and find the .sln file. That’s what Visual Studio Uses. First, hit the collapse all button. You’ll thank me later. Orchard is made up of a ton of smaller projects, one for each of those modules we saw, and of course the core and orchard.web itself. check out the solution explorer.</p>
-
-<p><img src="/images/orchard/orchard10.png"></p>
-
-<p>There’s only a few projects in the root. the most important ones are Core and Web. Remember when we explored Orchard.Web earlier in the actual windows File explorer? Modules was inside of Orchard.Web. Here it appears outside, and at the top. That is, in fact the exact same folder. Now if you open in VS2010, it becomes more obvious. The folder looks like its opacity has been lowered, as if it’s a ghost folder. Nonetheless, that’s just an alias to the folder in Orchard.Web. Its listed atop for convenience, I assume.  Same case for Specs,Tests, Themes and Tools. Themes, for example is like Modules. The folder actually resides in the startup project, Orchard.Web.</p>
-
-<p>I’m just pointing this out, because at first it confused me. Then I realized how handy that actually was.</p>
-
-<p>So to rehash, these folders are all really located elsewhere:</p>
-
-<p>Modules – Actually is located in Orchard.Web and is literally every extra module you’ve downloaded or added to Orchard, as well as the ones that were already there. This thing is big.
-Specs + Tests  - These are for unit testing, integrations tests and that sort of thing..
-Themes – All you themes go here. This is the last stop for overriding the appearance of Orchard. The folder really lives in Orchard.Web
-Tools – This has testing helpers, and the orchard command line. More on this later.
-I think more project exploration is in order, and also covering the sparkle magic that is the orchard command line environment. But that is for another day!</p>
+        
+          <p class="article-more-link">
+            <a href="/2013/04/05/using_orchard_cms_2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_2/" data-id="ci8l1pdxd0003p44a2wgi3b07" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_2/" data-id="ci8l1rjik0003244aggs1pt79" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a></li></ul>
@@ -172,12 +131,12 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>Recently, I decided to make a short video intro to put in front of the videos we record at my usergroup. I composed the music myself and did all the animation and compositing.</p>
+<div class="video-container"><iframe src="//www.youtube.com/embed/1_1cSOctjg4" frameborder="0" allowfullscreen></iframe></div>
 
-<p><div class="video-container"><iframe src="//www.youtube.com/embed/1_1cSOctjg4" frameborder="0" allowfullscreen></iframe></div></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/" data-id="ci8l1pdxx0010p44aplct54ot" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/" data-id="ci8l1rjj30010244alsjxbh7q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/">OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community</a></li></ul>
@@ -212,53 +171,18 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
-
 <p>Its really simple to do, and all you have to do is write one line of script.</p>
-
 <p>Here is an example of how to do it. I have a clip I’m working here, where I’m trying to simulate an old school NES password prompt.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae1.png"></p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>See that Gold  Square up there? I need that to blink, repeatedly- like a cursor. Then, I need to move that around and a typing animation plays, and this leads the text as it comes in. The effect is as if a person is quickly entering a password. Its really kickass. Lets make the cursor.</p>
-
-<p>I go into Photoshop, make a rectangle, add bevel and emboss  as a layer effect and voila: a cursor.</p>
-
-<p>Cursor
-<img src="/images/loop_an_animation_in_aftereffects/ae2.png"></p>
-
-<p>There is is. Bask in its majesty! A Cursor. Whooo!</p>
-
-<p>Now, I take the cursor and add it to my After Effect’s project resources.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae3.png"></p>
-
-<p>Wonderful. So far, so easy. Now I want it to flash. I make a new composition, and simply adjust the opacity, to make it fade out.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae4.png"></p>
-
-<p>This composition is small – only 5 frames. this thing is going to flash quickly, like a password cursor prompt does. So, lets make it flash in my composition. This is a simple 3 step process.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae5.png"></p>
-
-<p>Step one: Enable Time Remapping. After you drag your composition onto the track canvas, just right click and go to the time submenu and click it. It will be checked now, and then you’re ready for part two.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae6.png"></p>
-
-<p>You select that Fancy new Time Remap row that just popped up under your composition, and Add Expression. Its under the Animation submenu. A new track will appear under the Time Remap, and you can click in the row, and type whatever you need to. You’re ready for step three: the script.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae7.png"></p>
-
-<p>On the row, type this : loop_out(“cycle”, 0). Now the 5-frame loop I made will repeat over and over.  The cursor is blinking! I can now apply any normal compositing techniques from here.</p>
-
-<p>This technique is insanely useful, I use it all the time. A flickering flame, a flashing led, a walking sprite… It can all be done with this easy trick.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/password.gif"></p>
+<img src="/images/loop_an_animation_in_aftereffects/ae1.png">
+        
+          <p class="article-more-link">
+            <a href="/2013/03/03/loop_an_animation_in_aftereffects/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/" data-id="ci8l1pdxs000op44ajvyskcx5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/" data-id="ci8l1rjiy000o244au7loli67" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Animation-After-Effects-Scripting/">Animation, After Effects, Scripting</a></li></ul>
@@ -293,12 +217,12 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>Tomorrow, my usergroup is going to have a talk I’m absolutely certain will be incredibly awesome. The guys at Goldfire Studios, James Simpson and Luke Simpkins,  are going to be running the show and talking about their recent creation “Casino RPG”.  It was featured recently on a kickstarter, that, along with many others,  my wife and I contributed to.</p>
+<img src="/images/the_making_of_an_html5_game/2013-february-casinorpg_thumb.jpg">
 
-<p><img src="/images/the_making_of_an_html5_game/2013-february-casinorpg_thumb.jpg"></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/02/18/OKCjs_making_of_an_html5_game/" data-id="ci8l1pdye001wp44azwb13yk0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2013/02/18/OKCjs_making_of_an_html5_game/" data-id="ci8l1rjjj001w244a8fxq8nrf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/">Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG</a></li></ul>
@@ -333,94 +257,18 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I really enjoy using in my studio, and that is a Nintendo that has modified cartridge that acts as a midi controller in it. We’ve had some good times together. I’ve been using this thing, literally since the 90s and its been a frequent go-to toy in my arsenal. As some point along the way, I swapped out my bulkier TV screen I used with it for a smaller one, I mounted on the front. </p>
-
-<p>&lt;iframe width=&quot;100%&quot; height=&quot;450&quot; scrolling=&quot;no&quot; frameborder=&quot;no&quot; src=&quot;https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/168244021&amp;amp;auto<em>play=false&amp;amp;hide</em>related=false&amp;amp;show<em>comments=true&amp;amp;show</em>user=true&amp;amp;show_reposts=false&amp;amp;visual=true&quot;&gt;&lt;/iframe&gt;</p>
+<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/168244021&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 
 <p>I’ve used it in a ton of musical tracks. A prominent one, was “God in my automatic Vacuum”, that I wrote nearly 9 years ago</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p><img src="/images/battery_drumkit/nes_thumb.jpg"></p>
-
-<p>I’d like to keep using it and generally the melodic lines aren’t so problematic- but the percussion parts I tend to write choke this baby up quite fast. Do you remember when you were a kit, and the Ninendo would freeze up, and you and your friends would pull out the cartridge and ‘blow on it’. Yeah, I’m not sure why we did that. The trick was actually simply reseating the cartridge. What I am saying is that, imagine having to go through that ritual periodically as you are writing a piece of music. See folks this is why old gear has a MIDI panic button. On this? The Panic button is labeled ‘power’. that right, simply resetting the unit isn’t good enough; you also have to drain that flea power too. Seriously, it can get tedious.</p>
-
-<p><img src="/images/battery_drumkit/8-Bit-NES-Cartridge-Blow-Me-Poster-Post-545x300_thumb_1.jpg"></p>
-
-<p>For those who know me, know that one of my favorite tools is Battery 3 by Native instruments. When it comes to working with percussion lines, especially in the context of electronic music, I consider it second to none. I’ve always wanted to make a battery kit of this thing. I clearly like it enough to keep it for a long time, so why not get it into the Virtual Instrument space? There is a clear theme, to this collection of sounds – and with Battery I can make multiple copies of my ‘8-bit’ drum set, run the individual cells through some awesome dsp, and generally have more control.</p>
-
-<p>At this point, I am going to assume a very novice level of understanding of Battery 3 if you’re reading this. 128 sounds is the largest size of a patch Battery 3 can support (16 x 8). For me, at least ; this is what we want. There is no reason to make a smaller kit than this, we have 8 bit samples aplenty.</p>
-
-<p>In battery you can use the + and – buttons in the corner of the matrix to add and remove columns.</p>
-
-<p><img src="/images/battery_drumkit/bat_thumb.jpg"></p>
-
-<p>That’s nice and all, but the most efficient way is to click the edit dropdown and select the appropriate matrix size..in this case 16 x 8.</p>
-
-<p><img src="/images/battery_drumkit/batttery-select-matrix_thumb.jpg"></p>
-
-<p>Now we need to get our samples. In my case, I am going to be using Digital Performer to capture them from the NES. I set up a MIDI track an aux and an audio track.</p>
-
-<p><img src="/images/battery_drumkit/analog.png"></p>
-
-<p>I’ll explain why I’ve done this. The mono audio track is where I will actually be capturing the samples. The aux track is so that I can use inserts to clean up the samples on the way in. In this instance, the NES is a dirty , dirty little machine. Its noisy, glitch and in dire need of dynamics effects.</p>
-
-<p><img src="/images/battery_drumkit/cells.png"></p>
-
-<p>The first item is the gate. Really the only point of this is to make the track actually silent when the samples aren’t playing. Next, is a preamp. This, I am using simply to sweeten the sound a bit. Directly from the NES the sample was a bit dull. This added a bit of compression and some punch on some of the bassier clips. The final unit is a multiband compressor, that I am using to tame some of the wilder samples. and bring up the quieter ones. Since the NES responds pretty differently depending on the frequency range, I used a 3 band multiband compressor. I had good results with that. The final effect you see above in the insert sequence was a Limiter. I found I really ended up not needing that after all, so its bypassed here.</p>
-
-<p>The midi track is dead simple- its simply a chromatic scale that ascends, to fire each sample one after the other on the hardware unit.</p>
-
-<p>Now? We capture. This admittedly took a few tries. 80s hardware likes to croak now and then, and occasionally I had it fire samples twice or thrice.</p>
-
-<p><img src="/images/battery_drumkit/slices.png"></p>
-
-<p>See how frequently it croaks? Those dark bars are where it fires more often than It was supposed to. Don’t get me wrong- I really really like the unpredictability of it on some level, but for this I wanted to keep things a bit clean, relative to my usual workflow.</p>
-
-<p>Now Lets make a place to save out kit, but first a little bit about battery kits.  Check out the folder structure below. As you can see, we can organize our kits by folder, and then the kit consists of a folder with a particular name, and then in that is a folder with the samples, and in the parent directory is the .kt3 file.</p>
-
-<p><img src="/images/battery_drumkit/directory.png"></p>
-
-<p>This corresponds to this in the editor:</p>
-
-<p><img src="/images/battery_drumkit/editor.png"></p>
-
-<p>This is handy because it makes it pretty easy to organize your kits. So, I’m going to essentially duplicate this kind of structure for my own kit. There will be a folder for samples and I will save the kit itself in the parent. So first I duplicate the folder structure.</p>
-
-<p><img src="/images/battery_drumkit/directory2.png"></p>
-
-<p>Then, when I go back into battery  “Save As” and I choose the Nes Kit Samples for the sample Sub folder. Unfortunately when I did this, I got an error related to permissions.</p>
-
-<p><img src="/images/battery_drumkit/directory3.png"></p>
-
-<p>The fix is simple. - just leave the chosen folder spot blank- let battery make the folder for you. Thanks Battery. After saving you have this:</p>
-
-<p><img src="/images/battery_drumkit/directory4.png"></p>
-
-<p>So far, so good.</p>
-
-<p>Ok honestly, this next part is the tedious bit. There might be some shortcut way of doing this, but I don’t know it.  It will involve exporting each sound, and naming it. Thank goodness this only happens once.</p>
-
-<p>First Select the waveform, and make sure you also select the master track too. Bounce it to disk. I bounced as a 16-bit wav. That works fine.</p>
-
-<p><img src="/images/battery_drumkit/bounce1.png"></p>
-
-<p><img src="/images/battery_drumkit/bounce2.png"></p>
-
-<p>Make sure you saved to the samples folder, it should appear in the folder now.</p>
-
-<p>The final step-You drag the sample to the target cell you wish to map to. You can even drag a batch of samples, and they will map sequentially, one square after another.</p>
-
-<p><img src="/images/battery_drumkit/just_drag.jpg"></p>
-
-<p>Boom just drag. Here is my amazing kit with ONE whole sample! Now I’m going to do this for all the others. As I go thorough he waveforms I intend to audition each one, normalize it and then bounce it. Name them as best you can.</p>
-
-<p>It’s the same repetitive process over and over. Snip out the waveform, then I was using the Mono Trim Plugin to normalize and audition simultaneously. Honestly, naming these things is the hardest. Ever think about how many adjective you really have to describe a bass drum? Less than you think.</p>
-
-<p>That’s it for part one. Next time I am going to cover how to make multiple kits form the sample set, and what, in my opinion constitutes a good kit. Truthfully, one sample set can yield a lot of versatility, and with a few tricks you can make you kits sound absolutely awesome with Battery.</p>
+        
+          <p class="article-more-link">
+            <a href="/2012/10/01/constructing_your_own_drumkit_in_battery/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/" data-id="ci8l1pdy30018p44ax25drcq3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/" data-id="ci8l1rjj90018244anjw3vily" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Audio-Editing/">Audio Editing</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Aux/">Aux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Bus/">Bus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Digital-Performer/">Digital Performer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Insert-Effects/">Insert Effects</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Monitor/">Monitor</a></li></ul>
@@ -455,36 +303,17 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>Recently I was working on a short project, and I was in need of monitoring my input audio as it was being passed thorough my inserts. As you know the later versions of Digital Performer (in this case 7.24) have a really useful column you may have noticed: the “Mon” column next to the input column in the tacks view of the sequencer.</p>
-
 <p>That’s the column there, with the lighted speaker icon. Now you can hear the input as you send your midi sequence.</p>
-
-<p><img src="/images/quick_fix_monitoring_audio_digital_performer/tracks.png"></p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>However I ran into a problem. Usually when I’m recording a certain persnickety external module – and by that I mean my MIDI enabled NES. I need to run the incoming audio through a little bit of dynamic effects. For one, the Nes emmits a terrible 60hz hum, and is generally noisy. I don’t mind this so much on the actual percussive impulses of the notes – it adds..er… flavor (read: 8-bit trash ). the problem is when the instrument should be tacet it makes a hum.</p>
-
-<p>The point of this, is that I needed to be able to monitor the affect signal. I tried my usual trick of running through an aux..but.. it wasn’t working! Why?</p>
-
-<p>The stranger part of it all,w as that it worked wonderfully with virtual instruments. And I said to myself “Bro, do you even know how to Aux/bus?”</p>
-
-<p>Then I found the answer. It was in a strange location, so hence the post – After messing with the Audio Patch through, Audio Monitor, Settings and a host of other settings, the answer was right up in the menu.</p>
-
-<p><img src="/images/quick_fix_monitoring_audio_digital_performer/setup.png"></p>
-
-<p>In the Configure Audio System fly out, there is an option for Input Monitoring Mode. Select that.</p>
-
-<p>Then, allow Monitor record-enabled tracks through effects.</p>
-
-<p><img src="/images/quick_fix_monitoring_audio_digital_performer/input.png"></p>
-
-<p>I don’t know about you, but I found this setting to be in sort of an unusual place. I think I initially predicted its location to be in the Bundles menu, but I suppose that’s not an optimal spot eiter.</p>
-
-<p>In any case, that’s the fix.</p>
+<img src="/images/quick_fix_monitoring_audio_digital_performer/tracks.png">
+        
+          <p class="article-more-link">
+            <a href="/2012/08/01/quick_fix_monitoring_audio_digital_performer/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/" data-id="ci8l1pdxo000ep44ag0wmogkp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/" data-id="ci8l1rjiu000e244a6hpeqg0u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a></li></ul>
@@ -519,48 +348,19 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>Occasionally someone taps my should to ask a quick javascript question. I figure that if someone is asking, its probably worth writing a quick blog post about. This post is geared to someone that is more or less newer to frontend stuff, and is looking for a few tips to help them out.</p>
-
-<p>The question was: I have a list of 12 items, in a ul. I&#39;d like to split it in half, and make two seperate lists. How can I do this?</p>
-
+<p>The question was: I have a list of 12 items, in a ul. I’d like to split it in half, and make two seperate lists. How can I do this?</p>
 <p>Actually, this seemingly straightforward question is a good chance to talk about a few things.</p>
-
 <p>Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way: </p>
-
-<p><iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/ySL4U/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe></p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>So far, so good. Notice the first statement is simply to target a desired ul. the next bit uses an interesting jQuery pseudoselector: gt. This of course stands for &#39;greater than&#39; and takes an index. since our list is 12 items, and index of 5 is exactly halfway in, since its 0 indexed. Its counterpart is lt, which is &#39;less than&#39;.</p>
-
-<p>Now, at this point, I always suggest pulling something off the DOM, working &#39;in memory&#39; and then doing a single DOM resinsertion. Get in the practice of thinking like this. Working directly on the DOM is slow-sauce, and you don&#39;t want to go there. So, we use .remove(). Notice the selection itself is cached in our variable $last6lis. I should add that I personally always preface a jQuery variable with $. This is a way of keeping your jQuery DOM pieces separated from plain old javascript &#39;data&#39;.</p>
-
-<p>Then we make a &#39;ul&#39; tag in memory, pop our list items in that, and push it back onto the DOM, directly after our targetd item.</p>
-
-<p>And all is right in the world.</p>
-
-<p>Only... we can do just a tiny bit more. </p>
-
-<p>first of all, while the lt and gt selectors are certainly great, the <code>.splice()</code> function is technically faster, and in my opinion more clear. Recall that jQuery selectors, are really lists of jQuery objects. Actually, if you can internalize that with jQuery its &#39;always&#39; a list - that makes life easier. </p>
-
-<p>So lets try a quick experiment: first lets ditch the :gt selector and replace it with <code>splice()</code>. That means we need indexes 6-11, so we&#39;d write something like: </p>
-
-<p><code>$ul.find(&#39;li&#39;).splice(6,11)</code> instead of <code>$ul.find(&#39;li:gt(5)&#39;)</code></p>
-
-<p>That&#39;s cool and all, but if you drop that directly in the fiddle.. it totally doesnt work! Why?</p>
-
-<p>Simple answer: remember earlier that jQuery selectors always return a list of jQuery objects! what does splice return?  Just a primitive array.  The fix: Just wrap the result of the splice in a new jQuery function, and you&#39;re back in action, rockin&#39; the suburbs.</p>
-
-<p><code>$($ul.find(&#39;li&#39;).splice(6,11))</code>  .. like this.</p>
-
-<p>Well, this is cool! now we can even change these numbers around, and select different segments of the initial list. Now, what if we wanted to refactor and make something that would always split our list in half, regardless of length? The answer is much more clear now, you could do something a bit like this:</p>
-
-<p><iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/GgXXL/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe></p>
-
-<p>Neat! now no matter what the length our li&#39;s grow to be, we can always bisect them! Anytime you can do a small amount of work to make your code not require as much updating, that is handy.  Of course taking this to the next level, would be to pull this code out and put it in a function, or a plugin and begin to make it truly reuseable, but for now, for a quick &#39;document ready&#39; script - this is fine.</p>
+<iframe width="100%" height="300" src="http://jsfiddle.net/the_Simian/ySL4U/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+        
+          <p class="article-more-link">
+            <a href="/2012/03/18/simple_Take_split_list_jquery/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/" data-id="ci8l1pdxl000bp44aq0mb4owc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/" data-id="ci8l1rjis000b244ac3gcnq98" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript-jQuery/">Javascript, jQuery</a></li></ul>
@@ -595,42 +395,15 @@ I think more project exploration is in order, and also covering the sparkle magi
     <div class="article-entry" itemprop="articleBody">
       
         <p>I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWriter, rather than the HTML editor on the remote blog. For one, you can work offline, which might be handy now and then if you’re in a situation where you don’t have a decent internet connection. A second advantage is the fact that you can keep a local backup of all your posts. I don’t recommend this being your only backup, of course- but hey a little replication doesn’t hurt. Of course my favorite reason is to make use of the superior editor and plugins. Really, the editor is nice. It feels like Word with spell check and such, but you can also go into the source view and make sure everything is clean. It doesn’t inject a bunch of junk into your markup either.</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>Ok, so the first thing to make sure of, is that you actually have Live Writer already installed. In my case I did, because it came with the Windows Live suite, but if you don’t : Here is the link to get it.</p>
-
-<p>Now lets assume you’ve already deployed Orchard on your server, or into the cloud or however you wish to do it. I started Live Writer and was Immediately prompted with this:</p>
-
-<p><img src="/images/orchard_and_livewriter/choose-blog-service-orchard-livewriter_thumb.jpg"></p>
-
-<p>Make sure you pick the last option: Other Services. Now you’ll be prompted to fill our your blog information:</p>
-
-<p><img src="/images/orchard_and_livewriter/orchad-and-livewriter-fill-out-settings_thumb.jpg"></p>
-
-<p>This part may give you some trouble if you’re not sure what to type, so I’ll be clear here. The address is not for the address of your root Orchard installation(your homepage) , but for the blog itself. Orchard is capable of hosting many blogs per orchard site, you see. If you are using Orchard though, for just one blog – that blog may very well be your homepage in that case. For me, my blog wasn’t my homepage at all – it was somewhere else. As for the Username and password, that is the user that will be posting. The user needs permissions to post of course. Then type that user’s password in. This might be your admin name, it may not- but either way the user needs to exist on the Orchard site and needs to be able to make blog posts.</p>
-
-<p>So everything is good … you click next and</p>
-
-<p><img src="/images/orchard_and_livewriter/orchard-and-livewriter-mess-up_thumb.jpg"></p>
-
-<p>Whoops. If you saw this, then something went wrong. The most likely culprit is that your Orchard installation did not have remote publishing enabled. No problemo, that’s an easy fix.</p>
-
-<p><img src="/images/orchard_and_livewriter/orchard-and-livewriter-enable-remote_thumb.jpg"></p>
-
-<p>I logged in, and went to the modules section in the Dashboard of my site. You can search for the module, and enable it. In case you’re curious, this all works by Xml-RPC. That’s “eXtended Markup Language Remote Procedure Call”, for what its worth. If you’re really curious, Orchard has some documentation about it. Try connecting again, just hit the back button and then re run it.</p>
-
-<p>If things go well, you get a different window, after Live Writer Discovers your blog.</p>
-
-<p><img src="/images/orchard_and_livewriter/orchard-and-livewriter_thumb.jpg"></p>
-
-<p>Basically, Live Writer is attempting to discover your blog’s theme in order to make the blog preview. go ahead and select ‘Yes’. In my case, the preview wasn’t perfect – some of the formatting wasn’t quite right, but it was useful enough to help give me an idea.</p>
-
-<p><img src="/images/orchard_and_livewriter/livewriter-and-orchard-name-blog_thumb.jpg"></p>
+        
+          <p class="article-more-link">
+            <a href="/2012/02/01/Orchard_and_LiveWriter/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/" data-id="ci8l1pdyd001tp44aokl7h6v9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/" data-id="ci8l1rjjh001t244afkpkeoe7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/">Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing</a></li></ul>
