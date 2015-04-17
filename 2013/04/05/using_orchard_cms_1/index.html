@@ -92,36 +92,63 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.</p>
-<a id="more"></a>
-<h2 id="Prebuilt_Setup">Prebuilt Setup</h2><p>I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup. </p>
-<p>First get <a href="http://www.microsoft.com/web/webmatrix/" target="_blank" rel="external">Webmatrix</a>. Its already on version 3! This is really amazing to me. It was just released in 2011, and its made so much progress. Version 2 was out just last September. This particular tool is moving at breakneck speed, and its free.</p>
-<p>So once you have Webmatrix, and you’re ready to make a site you go to the App Gallery (formerly Web Gallery).</p>
-<img src="/images/orchard/orchard1.png">
-<p>Then, you click on the Orchard CMS Button.</p>
-<img src="/images/orchard/orchard2.png">
-<p>Easy. Click Next a few times, and the installer literally does all the rest.</p>
-<img src="/images/orchard/orchard3.png">
-<p>Couldn’t be easier, right?</p>
-<p>Within seconds of the bar completing, you click OK, and you’ll be prompted in Webmatrix with a folder structure sort of like this:</p>
-<img src="/images/orchard/orchard4.png">
-<p>More on that later…</p>
-<p>And a big giant prompt like this:</p>
-<img src="/images/orchard/orchard5.png">
-<p>Go ahead and fill this out, you site name and what you want the superuser account to be. Just select Default for the Orchard Recipe. Select SQL Server Compact for data storage.</p>
-<p>Now you have a site. Cool! At this point, you’d start configuring it like you need to, possibly install a module or two form the gallery. Probably install a different theme, and so on. Even though this is the non-source setup, you do have some latitude in configuring the project, you can alter the html on the views, namely and possibly fiddle around with some CSS. Don’t expect to do heavy development here though, that’s not what this workflow is really for.</p>
-<p>Look at the folder structure for a moment. You are looking at what in the source will be the Orchard.Web project – one of 67 or so projects. You’ll notice that in this built project, you have every module listed in your module folder. It will be like this in the source too, though in Visual Studio you’ll see an aliased folder. Every image you add, and every piece of media you upload ends up, some way in the Media Folder.  Every theme you make or download ends up in the theme folder.  Its generally quite organized.</p>
-<p>I want to draw attention to one very important folder: App_Data. Open that. Now drill down Sites –&gt; Default. Look in there. see the Orchard.sdf file? That’s your site. Basically.</p>
-<img src="/images/orchard/orchard6.png">
-<p>If your site gets completely blown away, you can reinstall it all, and drop that in and all your blog posts, and content will be back. I hope this makes it clear how easy it is to back up an Orchard site, you just really need to account for the Media folder, because it has all your pictures and stuff, and this folder in your Sites.</p>
-<p>So at this point, you can put this Orchard install on your server, or push it to Azure or whatever you like. Boom, you installed Orchard. Beyond that its up to you. You might like simply editing posts in the online editor, or you might set up Live Writer to edit them. I’ve written about how to set up Live Writer in the past. Its not hard, and it works well. The bottom line is that I can’t stress the importance of your Media Sites –&gt; Default folders.  Back these up.</p>
-<p>Recently, my wife’s blog was spammed to the max. Eventually the attackers were able to bring down the blog. A similar situation in Wordpress or some other system would have really bothered me, but with her we simply backed up the imporant folders, then pulled our personal Orchard build from github, replacing everything. Then? We replaced the Media and Sites—&gt; Default folders.  It was a complete recovery.</p>
-<p>Next though, we need to get setup from the source. I’m gearing these tutorials to be used in Visual Studio. Honestly, if you’re a c# developer that’s the way to go. you get all the advantages of your favorite IDE, such as Resharper – and also you can build the project.</p>
-<p>We’ll cover that next.</p>
 
+<p>&lt;!-- more --&gt;</p>
+
+<h2>Prebuilt Setup</h2>
+
+<p>I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup. </p>
+
+<p>First get <a href="http://www.microsoft.com/web/webmatrix/" target="_blank" rel="external">Webmatrix</a>. Its already on version 3! This is really amazing to me. It was just released in 2011, and its made so much progress. Version 2 was out just last September. This particular tool is moving at breakneck speed, and its free.</p>
+
+<p>So once you have Webmatrix, and you’re ready to make a site you go to the App Gallery (formerly Web Gallery).</p>
+
+<p><img src="/images/orchard/orchard1.png"></p>
+
+<p>Then, you click on the Orchard CMS Button.</p>
+
+<p><img src="/images/orchard/orchard2.png"></p>
+
+<p>Easy. Click Next a few times, and the installer literally does all the rest.</p>
+
+<p><img src="/images/orchard/orchard3.png"></p>
+
+<p>Couldn’t be easier, right?</p>
+
+<p>Within seconds of the bar completing, you click OK, and you’ll be prompted in Webmatrix with a folder structure sort of like this:</p>
+
+<p><img src="/images/orchard/orchard4.png"></p>
+
+<p>More on that later…</p>
+
+<p>And a big giant prompt like this:</p>
+
+<p><img src="/images/orchard/orchard5.png"></p>
+
+<p>Go ahead and fill this out, you site name and what you want the superuser account to be. Just select Default for the Orchard Recipe. Select SQL Server Compact for data storage.</p>
+
+<p>Now you have a site. Cool! At this point, you’d start configuring it like you need to, possibly install a module or two form the gallery. Probably install a different theme, and so on. Even though this is the non-source setup, you do have some latitude in configuring the project, you can alter the html on the views, namely and possibly fiddle around with some CSS. Don’t expect to do heavy development here though, that’s not what this workflow is really for.</p>
+
+<p>Look at the folder structure for a moment. You are looking at what in the source will be the Orchard.Web project – one of 67 or so projects. You’ll notice that in this built project, you have every module listed in your module folder. It will be like this in the source too, though in Visual Studio you’ll see an aliased folder. Every image you add, and every piece of media you upload ends up, some way in the Media Folder.  Every theme you make or download ends up in the theme folder.  Its generally quite organized.</p>
+
+<p>I want to draw attention to one very important folder: App_Data. Open that. Now drill down Sites –&gt; Default. Look in there. see the Orchard.sdf file? That’s your site. Basically.</p>
+
+<p><img src="/images/orchard/orchard6.png"></p>
+
+<p>If your site gets completely blown away, you can reinstall it all, and drop that in and all your blog posts, and content will be back. I hope this makes it clear how easy it is to back up an Orchard site, you just really need to account for the Media folder, because it has all your pictures and stuff, and this folder in your Sites.</p>
+
+<p>So at this point, you can put this Orchard install on your server, or push it to Azure or whatever you like. Boom, you installed Orchard. Beyond that its up to you. You might like simply editing posts in the online editor, or you might set up Live Writer to edit them. I’ve written about how to set up Live Writer in the past. Its not hard, and it works well. The bottom line is that I can’t stress the importance of your Media Sites –&gt; Default folders.  Back these up.</p>
+
+<p>Recently, my wife’s blog was spammed to the max. Eventually the attackers were able to bring down the blog. A similar situation in Wordpress or some other system would have really bothered me, but with her we simply backed up the imporant folders, then pulled our personal Orchard build from github, replacing everything. Then? We replaced the Media and Sites—&gt; Default folders.  It was a complete recovery.</p>
+
+<p>Next though, we need to get setup from the source. I’m gearing these tutorials to be used in Visual Studio. Honestly, if you’re a c# developer that’s the way to go. you get all the advantages of your favorite IDE, such as Resharper – and also you can build the project.</p>
+
+<p>We’ll cover that next.
+ </p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_1/" data-id="ci8l1iumb0006mc4aygwejqai" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2013/04/05/using_orchard_cms_1/" data-id="ci8l1kc2900065g4aspvmhx2i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Orchard-CMS-Orchard-CMS-Tutorial/">Orchard CMS, Orchard CMS Tutorial</a></li></ul>
