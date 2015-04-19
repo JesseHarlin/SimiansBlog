@@ -11,7 +11,6 @@
 <meta property="og:url" content="http://yoursite.com/2015/04/05/organizing-a-slush-generator/index.html">
 <meta property="og:site_name" content="Simian's Blog">
 <meta property="og:description" content="If you’re making a scaffold, or even a gulpfile of any degree of size or signifigance, you’ll quickly learn that placing every task you make in a single file can lead to a big mess after a while. One">
-<meta property="og:image" content="/images/slush-howto/organized-files.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="organizing a slush generator">
 <meta name="twitter:description" content="If you’re making a scaffold, or even a gulpfile of any degree of size or signifigance, you’ll quickly learn that placing every task you make in a single file can lead to a big mess after a while. One">
@@ -101,14 +100,14 @@
 </ul>
 <p>These are, in my opinion good ways to break apart the tasks. Have one file for default answers, one for questions, and one for tasks. Let each file require only what it needs. Instead of putting everyting in one big file, lets break it up.</p>
 <p>We add the <code>slush folder</code> in the root and give a folderr to the default task. We will do this for every task henceforth!</p>
-<img src="/images/slush-howto/organized-files.jpg">
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+-- default</span><br><span class="line">|   +-- questions.js</span><br><span class="line">|   +-- task.js</span><br><span class="line">|   +-- defaults.js</span><br><span class="line"></span><br><span class="line">slushfile.js</span><br></pre></td></tr></table></figure>
 <p>A single slush file becomes something like this.</p>
-<p>How, we can divide the tasks up.</p>
+<p>Now, in the sluhfile itself, you can include a reference to the files in the folder.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/05/organizing-a-slush-generator/" data-id="ci8l1t2y5000hao4aa4g7tfqu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/04/05/organizing-a-slush-generator/" data-id="ci8nza9xx000hl04ayhx1y86s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/project-organization/">project organization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scaffolding/">scaffolding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slush/">slush</a></li></ul>

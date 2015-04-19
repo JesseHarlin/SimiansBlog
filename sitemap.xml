@@ -2,13 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2015/03/30/lets-make-a-basic-slush-generator/</loc>
-    <lastmod>2015-04-17T03:37:38.000Z</lastmod>
+    <loc>http://yoursite.com/2015/04/05/organizing-a-slush-generator/</loc>
+    <lastmod>2015-04-19T04:46:38.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://yoursite.com/2015/04/05/organizing-a-slush-generator/</loc>
-    <lastmod>2015-04-17T03:34:23.000Z</lastmod>
+    <loc>http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/</loc>
+    <lastmod>2015-04-17T22:20:17.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2015/03/30/lets-make-a-basic-slush-generator/</loc>
+    <lastmod>2015-04-17T03:37:38.000Z</lastmod>
   </url>
   
   <url>
@@ -24,11 +29,6 @@
   <url>
     <loc>http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/</loc>
     <lastmod>2015-04-06T03:39:58.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/</loc>
-    <lastmod>2015-04-06T03:39:44.000Z</lastmod>
   </url>
   
   <url>
@@ -102,7 +102,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/2014/12/16/Angular_and_React_Talk/</loc>
+    <loc>http://yoursite.com/2014/12/16/angular-and-react-talk/</loc>
     <lastmod>2015-03-19T10:43:29.000Z</lastmod>
   </url>
   
