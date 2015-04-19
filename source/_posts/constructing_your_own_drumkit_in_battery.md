@@ -3,7 +3,7 @@ date: 2012-10-1 11:30:00
 tags: [Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects]
 ---
 
-One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I really enjoy using in my studio, and that is a Nintendo that has modified cartridge that acts as a midi controller in it. We’ve had some good times together. I’ve been using this thing, literally since the 90s and its been a frequent go-to toy in my arsenal. As some point along the way, I swapped out my bulkier TV screen I used with it for a smaller one, I mounted on the front. 
+One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I really enjoy using in my studio, and that is a Nintendo that has modified cartridge that acts as a midi controller in it. We’ve had some good times together. I’ve been using this thing, literally since the 90s and its been a frequent go-to toy in my arsenal. As some point along the way, I swapped out my bulkier TV screen I used with it for a smaller one, I mounted on the front.
 
 <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/168244021&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
 

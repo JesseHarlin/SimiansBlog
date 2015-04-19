@@ -19,7 +19,7 @@ Its seriously hard to believe that was actually a year ago!
 
 
 
-## About Slush 
+## About Slush
 
 Slush can best be summarized by the info on the website
 
@@ -29,7 +29,7 @@ Slush is a tool to be able to use Gulp for project scaffolding.
 Slush does not contain anything "out of the box", except the ability to locate installed slush generators and to run them with [liftoff](https://www.npmjs.com/package/liftoff).
 {% endblockquote %}
 
-OK. perfect! All the scaffolding goodness I want, but with gulp as the core mechanism to get stuff done. 
+OK. perfect! All the scaffolding goodness I want, but with gulp as the core mechanism to get stuff done.
 
 I'm ready to make a scaffold. The website spells it out pretty straightforward.
 
@@ -141,19 +141,19 @@ Which makes these qppear in the console:
 ```
 Yielding this JSON..
 ```js
-{ 
+{
   appName: 'ballz',
   appDescription: 'Some description',
   appVersion: '6.6.6',
   authorName: 'Jesse Harlin',
   authorEmail: 'harlinjesse@gmail.com',
   userName: 'Jesse_Harlin',
-  moveon: true 
+  moveon: true
 }
 ```
 
-Nice. 
-And you can just make templates with that. 
+Nice.
+And you can just make templates with that.
 
 In case you're wondering, the `defaults` object you see above is just an object created elsewhere in the code that provides some sensible default values for the string of questions. You can put whatever you what there.
 
@@ -170,7 +170,7 @@ if (!answers.moveon) {
 
 answers.appNameSlug = _.slugify(answers.appName);
 
-```    
+```
     
 The function `done()` is just the callback. That means the first few lines, before the gulp statement are just to handle situations where no answers were provided or to clean up the project name fromt he first question. Big picture is that, you'd handle all data manipulation before doing templating here.
 
@@ -190,12 +190,12 @@ gulp
     done();
   });
 ```
-Here is the meat and potatoes. We go to templates, grab *everything*, template it all, and move it to the destination folder - which is what you are scaffolding. Simple. Of course nothing is happening simply because theres nothing to template. The template folder starts empty. 
+Here is the meat and potatoes. We go to templates, grab *everything*, template it all, and move it to the destination folder - which is what you are scaffolding. Simple. Of course nothing is happening simply because theres nothing to template. The template folder starts empty.
 
 Try this, throw a quick file in there. I made a markdown file called `example.md`. with the contents:
 
 ```md
-#<%= appName %> 
+#<%= appName %>
 
 ##About
 <%= appDescription %>
@@ -219,7 +219,7 @@ Run the generator again.
 These anspwers make a file with these contents
 
 ```md
-#ballz 
+#ballz
 
 ##About
 Bouncy, happy, glorious, scrumtrelescant balls! Basket Balls! Bowling Balls! Redball!

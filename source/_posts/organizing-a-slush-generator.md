@@ -127,9 +127,17 @@ These are, in my opinion good ways to break apart the tasks. Have one file for d
 
 We add the `slush folder` in the root and give a folderr to the default task. We will do this for every task henceforth!
 
-{% img /images/slush-howto/organized-files.jpg %}
+```sh
+
++-- default
+|   +-- questions.js
+|   +-- task.js
+|   +-- defaults.js
+
+slushfile.js
+```
 
 A single slush file becomes something like this.
 
-How, we can divide the tasks up.
+Now, in the sluhfile itself, you can include a reference to the files in the folder.
 
