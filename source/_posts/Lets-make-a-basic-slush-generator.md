@@ -17,8 +17,6 @@ Its seriously hard to believe that was actually a year ago!
 
 
 
-
-
 ## About Slush
 
 Slush can best be summarized by the info on the website

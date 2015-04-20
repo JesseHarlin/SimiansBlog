@@ -120,6 +120,7 @@ I should add that the default generator is not concerned with testing at all, bu
 
 - we are requiring "stuff"
 - we need some default answers
+- we need to take those answers and make them template-ready (transform)
 - we ask some questions
 - we do a task.
 
@@ -132,6 +133,7 @@ We add the `slush folder` in the root and give a folderr to the default task. We
 +-- default
 |   +-- questions.js
 |   +-- task.js
+|   +-- transforms.js
 |   +-- defaults.js
 
 slushfile.js
@@ -139,5 +141,29 @@ slushfile.js
 
 A single slush file becomes something like this.
 
-Now, in the sluhfile itself, you can include a reference to the files in the folder.
+Now, in the slushfile itself, you can include a reference to the files in the folder. You really only need to refrence the `task` file in the default directory.
+
+```js
+var gulp = require('gulp');
+
+var options = {
+  templatesDir: __dirname + '/templates/**'
+};
+
+require('./slush/default/task')(options);
+```
+
+It might end up looking something like that.
+
+Now, for every taks you add, you can include it in the one parent slushfile. Any global options, you's want to pass around (such as the location of your templates directory), you can make an options object.
+
+Aside from overall organization, this is going to make your entire slush project much, much easier to test. The questions module is largely declarative. There's going to be some complexity there, due to SLOc, but theres no cyclomatic complxity to it, or branching. It basically won't reall yneed test coverage. Its nice to separate that out early.
+
+Then comes the `transforms.js`. This is probably the main point of failure if somethign goes wrong. The idea is that we don't want to make the templating mechanism do too much work. Basically, if you need your app name slugified in some places, but not others, if you need to sanitize input - this is where all that happens. Do it here, and test it easily...do it in your template and it gets murkier. These tests will look like a bunch of input json objects, and expected output json objects. Very straightforward.
+
+There is also the `defaults.js`. Thsi is where you'd put any default answers for questions you might expect. For example, what if for a username, you want to try and guess it from `process.env`, or something like that. You can do that here.
+
+The final file is `task.js`. thankfully, since you proke everythign apart, this really has a single,testable, purpose.. template and write your files in a directory. This can be done with the `mock-gulp-dest` module very easily.
+
+
 

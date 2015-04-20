@@ -6,7 +6,7 @@
 title: Simian's Blog
 subtitle: Code, Music, Interactive Media, Community
 description: A Blog about Stuff I do
-author: Jesse Harlin  
+author: Jesse Harlin
 language:
 timezone: America/Chicago
 
@@ -41,6 +41,7 @@ highlight:
   enable: true
   line_number: true
   tab_replace:
+
 
 # Category & Tag
 default_category: uncategorized
