@@ -95,19 +95,27 @@
 <ul>
 <li>we are requiring “stuff”</li>
 <li>we need some default answers</li>
+<li>we need to take those answers and make them template-ready (transform)</li>
 <li>we ask some questions</li>
 <li>we do a task.</li>
 </ul>
 <p>These are, in my opinion good ways to break apart the tasks. Have one file for default answers, one for questions, and one for tasks. Let each file require only what it needs. Instead of putting everyting in one big file, lets break it up.</p>
 <p>We add the <code>slush folder</code> in the root and give a folderr to the default task. We will do this for every task henceforth!</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+-- default</span><br><span class="line">|   +-- questions.js</span><br><span class="line">|   +-- task.js</span><br><span class="line">|   +-- defaults.js</span><br><span class="line"></span><br><span class="line">slushfile.js</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+-- default</span><br><span class="line">|   +-- questions.js</span><br><span class="line">|   +-- task.js</span><br><span class="line">|   +-- transforms.js</span><br><span class="line">|   +-- defaults.js</span><br><span class="line"></span><br><span class="line">slushfile.js</span><br></pre></td></tr></table></figure>
 <p>A single slush file becomes something like this.</p>
-<p>Now, in the sluhfile itself, you can include a reference to the files in the folder.</p>
+<p>Now, in the slushfile itself, you can include a reference to the files in the folder. You really only need to refrence the <code>task</code> file in the default directory.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  templatesDir: __dirname + <span class="string">'/templates/**'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./slush/default/task'</span>)(options);</span><br></pre></td></tr></table></figure>
+<p>It might end up looking something like that.</p>
+<p>Now, for every taks you add, you can include it in the one parent slushfile. Any global options, you’s want to pass around (such as the location of your templates directory), you can make an options object.</p>
+<p>Aside from overall organization, this is going to make your entire slush project much, much easier to test. The questions module is largely declarative. There’s going to be some complexity there, due to SLOc, but theres no cyclomatic complxity to it, or branching. It basically won’t reall yneed test coverage. Its nice to separate that out early.</p>
+<p>Then comes the <code>transforms.js</code>. This is probably the main point of failure if somethign goes wrong. The idea is that we don’t want to make the templating mechanism do too much work. Basically, if you need your app name slugified in some places, but not others, if you need to sanitize input - this is where all that happens. Do it here, and test it easily…do it in your template and it gets murkier. These tests will look like a bunch of input json objects, and expected output json objects. Very straightforward.</p>
+<p>There is also the <code>defaults.js</code>. Thsi is where you’d put any default answers for questions you might expect. For example, what if for a username, you want to try and guess it from <code>process.env</code>, or something like that. You can do that here.</p>
+<p>The final file is <code>task.js</code>. thankfully, since you proke everythign apart, this really has a single,testable, purpose.. template and write your files in a directory. This can be done with the <code>mock-gulp-dest</code> module very easily.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/04/05/organizing-a-slush-generator/" data-id="ci8nza9xx000hl04ayhx1y86s" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/04/05/organizing-a-slush-generator/" data-id="ci8pc7thx000hm44ap1ot7d5e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/project-organization/">project organization</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/scaffolding/">scaffolding</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/slush/">slush</a></li></ul>
