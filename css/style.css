@@ -9,6 +9,34 @@ body:after {
 body:after {
   clear: both;
 }
+@font-face {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
+  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
+}
+@font-face {
+  font-family: Architect;
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/arkitechlight.eot?v=#1.0.0");
+  src: url("fonts/arkitechlight.eot?#iefix&v=#1.0.0") format("embedded-opentype"), url("fonts/arkitechlight.woff?v=#1.0.0") format("woff"), url("fonts/arkitechlight.ttf?v=#1.0.0") format("truetype"), url("fonts/arkitechlight.svg#fontawesomeregular?v=#1.0.0") format("svg");
+}
+@font-face {
+  font-family: Neogrey;
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/neogreyregular-webfont.eot?v=#1.0.0");
+  src: url("fonts/neogreyregular-webfont.eot?#iefix&v=#1.0.0") format("embedded-opentype"), url("fonts/neogreyregular-webfont.woff?v=#1.0.0") format("woff"), url("fonts/neogreyregular-webfont.ttf?v=#1.0.0") format("truetype"), url("fonts/neogreyregular-webfont.svg#fontawesomeregular?v=#1.0.0") format("svg");
+}
+@font-face {
+  font-family: Spaceman;
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/spaceman-webfont.eot?v=#1.0.0");
+  src: url("fonts/spaceman-webfont.eot?#iefix&v=#1.0.0") format("embedded-opentype"), url("fonts/spaceman-webfont.woff?v=#1.0.0") format("woff"), url("fonts/spaceman-webfont.ttf?v=#1.0.0") format("truetype"), url("fonts/spaceman-webfont.svg#fontawesomeregular?v=#1.0.0") format("svg");
+}
 html,
 body,
 div,
@@ -100,6 +128,23 @@ td {
 a img {
   border: none;
 }
+h1 {
+  font-family: Architect, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 6pt;
+  word-spacing: 5pt;
+}
+h2 {
+  letter-spacing: 3pt;
+  word-spacing: 2.5pt;
+}
+article h1 {
+  font-family: Architect, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: 3pt;
+  word-spacing: 2pt;
+}
+p {
+  text-align: justify;
+}
 input,
 button {
   margin: 0;
@@ -110,20 +155,13 @@ button::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
-@font-face {
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  src: url("fonts/fontawesome-webfont.eot?v=#4.0.3");
-  src: url("fonts/fontawesome-webfont.eot?#iefix&v=#4.0.3") format("embedded-opentype"), url("fonts/fontawesome-webfont.woff?v=#4.0.3") format("woff"), url("fonts/fontawesome-webfont.ttf?v=#4.0.3") format("truetype"), url("fonts/fontawesome-webfont.svg#fontawesomeregular?v=#4.0.3") format("svg");
-}
 html,
 body,
 #container {
   height: 100%;
 }
 body {
-  background: #eee;
+  background: #fff;
   font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
@@ -174,7 +212,7 @@ body {
   -ms-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   z-index: 1;
-  background: #eee;
+  background: #fff;
 }
 .mobile-nav-on #wrap {
   left: 280px;
@@ -309,7 +347,7 @@ body {
   font-weight: bold;
 }
 #header {
-  height: 300px;
+  height: 200px;
   position: relative;
   border-bottom: 1px solid #ddd;
 }
@@ -373,12 +411,10 @@ body {
 #logo {
   font-size: 40px;
   line-height: 40px;
-  letter-spacing: 2px;
 }
 #subtitle {
   font-size: 16px;
   line-height: 16px;
-  letter-spacing: 1px;
 }
 #subtitle-wrap {
   margin-top: 16px;
@@ -682,7 +718,7 @@ a.article-title:hover {
   padding: 6px 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
-  background: #eee;
+  background: #fff;
   color: #999;
   text-shadow: 0 1px #fff;
   text-decoration: none;
@@ -852,7 +888,7 @@ a.article-title:hover {
   line-height: 36px;
 }
 .article-share-links {
-  background: #eee;
+  background: #fff;
 }
 .article-share-links:before,
 .article-share-links:after {
@@ -1050,8 +1086,6 @@ a.article-title:hover {
 #page-nav a,
 #page-nav span {
   padding: 10px 20px;
-  line-height: 1;
-  height: 2ex;
 }
 #page-nav a {
   color: #999;
@@ -1083,7 +1117,7 @@ a.article-title:hover {
   color: #ddd;
 }
 #footer {
-  background: #262a30;
+  background: #ddd;
   padding: 50px 0;
   border-top: 1px solid #ddd;
   color: #999;
@@ -1121,7 +1155,7 @@ a.article-title:hover {
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
 }
 .article-entry code {
-  background: #eee;
+  background: #fff;
   text-shadow: 0 1px #fff;
   padding: 0 0.3em;
 }
@@ -1237,7 +1271,7 @@ pre .built_in,
 pre .literal,
 pre .params,
 pre .constant {
-  color: #f99157;
+  color: #f99200;
 }
 pre .class,
 pre .ruby .class .title,
@@ -1306,7 +1340,7 @@ pre .javascript .function {
 .widget {
   color: #777;
   text-shadow: 0 1px #fff;
-  background: #ddd;
+  background: #fff;
   -webkit-box-shadow: 0 -1px 4px #ccc inset;
   box-shadow: 0 -1px 4px #ccc inset;
   border: 1px solid #ccc;
