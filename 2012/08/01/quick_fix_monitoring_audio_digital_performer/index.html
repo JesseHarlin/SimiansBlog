@@ -88,36 +88,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Recently I was working on a short project, and I was in need of monitoring my input audio as it was being passed thorough my inserts. As you know the later versions of Digital Performer (in this case 7.24) have a really useful column you may have noticed: the “Mon” column next to the input column in the tacks view of the sequencer.</p>
-
 <p>That’s the column there, with the lighted speaker icon. Now you can hear the input as you send your midi sequence.</p>
-
-<p><img src="/images/quick_fix_monitoring_audio_digital_performer/tracks.png"></p>
-
-<p>&lt;!-- more --&gt;</p>
-
+<img src="/images/quick_fix_monitoring_audio_digital_performer/tracks.png">
+<a id="more"></a>
 <p>However I ran into a problem. Usually when I’m recording a certain persnickety external module – and by that I mean my MIDI enabled NES. I need to run the incoming audio through a little bit of dynamic effects. For one, the Nes emmits a terrible 60hz hum, and is generally noisy. I don’t mind this so much on the actual percussive impulses of the notes – it adds..er… flavor (read: 8-bit trash ). the problem is when the instrument should be tacet it makes a hum.</p>
-
 <p>The point of this, is that I needed to be able to monitor the affect signal. I tried my usual trick of running through an aux..but.. it wasn’t working! Why?</p>
-
 <p>The stranger part of it all,w as that it worked wonderfully with virtual instruments. And I said to myself “Bro, do you even know how to Aux/bus?”</p>
-
 <p>Then I found the answer. It was in a strange location, so hence the post – After messing with the Audio Patch through, Audio Monitor, Settings and a host of other settings, the answer was right up in the menu.</p>
-
-<p><img src="/images/quick_fix_monitoring_audio_digital_performer/setup.png"></p>
-
+<img src="/images/quick_fix_monitoring_audio_digital_performer/setup.png">
 <p>In the Configure Audio System fly out, there is an option for Input Monitoring Mode. Select that.</p>
-
 <p>Then, allow Monitor record-enabled tracks through effects.</p>
-
-<p><img src="/images/quick_fix_monitoring_audio_digital_performer/input.png"></p>
-
+<img src="/images/quick_fix_monitoring_audio_digital_performer/input.png">
 <p>I don’t know about you, but I found this setting to be in sort of an unusual place. I think I initially predicted its location to be in the Bundles menu, but I suppose that’s not an optimal spot eiter.</p>
-
 <p>In any case, that’s the fix.</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/" data-id="ci8quvo8r000eog4a3bujq5b1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/" data-id="ci8quwbun000edc4aar30cv1e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/">Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects</a></li></ul>
