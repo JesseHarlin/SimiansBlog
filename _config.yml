@@ -42,6 +42,8 @@ highlight:
   line_number: true
   tab_replace:
 
+# Disqus
+disqus_shortname: simiansblog
 
 # Category & Tag
 default_category: uncategorized
