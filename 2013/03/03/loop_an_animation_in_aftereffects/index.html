@@ -93,49 +93,27 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
-
 <p>Its really simple to do, and all you have to do is write one line of script.</p>
-
 <p>Here is an example of how to do it. I have a clip I’m working here, where I’m trying to simulate an old school NES password prompt.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae1.png"></p>
-
-<p>&lt;!-- more --&gt;</p>
-
+<img src="/images/loop_an_animation_in_aftereffects/ae1.png">
+<a id="more"></a>
 <p>See that Gold  Square up there? I need that to blink, repeatedly- like a cursor. Then, I need to move that around and a typing animation plays, and this leads the text as it comes in. The effect is as if a person is quickly entering a password. Its really kickass. Lets make the cursor.</p>
-
 <p>I go into Photoshop, make a rectangle, add bevel and emboss  as a layer effect and voila: a cursor.</p>
-
-<p>Cursor
-<img src="/images/loop_an_animation_in_aftereffects/ae2.png"></p>
-
+<p>Cursor<br><img src="/images/loop_an_animation_in_aftereffects/ae2.png"></p>
 <p>There is is. Bask in its majesty! A Cursor. Whooo!</p>
-
 <p>Now, I take the cursor and add it to my After Effect’s project resources.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae3.png"></p>
-
+<img src="/images/loop_an_animation_in_aftereffects/ae3.png">
 <p>Wonderful. So far, so easy. Now I want it to flash. I make a new composition, and simply adjust the opacity, to make it fade out.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae4.png"></p>
-
+<img src="/images/loop_an_animation_in_aftereffects/ae4.png">
 <p>This composition is small – only 5 frames. this thing is going to flash quickly, like a password cursor prompt does. So, lets make it flash in my composition. This is a simple 3 step process.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae5.png"></p>
-
+<img src="/images/loop_an_animation_in_aftereffects/ae5.png">
 <p>Step one: Enable Time Remapping. After you drag your composition onto the track canvas, just right click and go to the time submenu and click it. It will be checked now, and then you’re ready for part two.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae6.png"></p>
-
+<img src="/images/loop_an_animation_in_aftereffects/ae6.png">
 <p>You select that Fancy new Time Remap row that just popped up under your composition, and Add Expression. Its under the Animation submenu. A new track will appear under the Time Remap, and you can click in the row, and type whatever you need to. You’re ready for step three: the script.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/ae7.png"></p>
-
+<img src="/images/loop_an_animation_in_aftereffects/ae7.png">
 <p>On the row, type this : loop_out(“cycle”, 0). Now the 5-frame loop I made will repeat over and over.  The cursor is blinking! I can now apply any normal compositing techniques from here.</p>
-
 <p>This technique is insanely useful, I use it all the time. A flickering flame, a flashing led, a walking sprite… It can all be done with this easy trick.</p>
-
-<p><img src="/images/loop_an_animation_in_aftereffects/password.gif"></p>
+<img src="/images/loop_an_animation_in_aftereffects/password.gif">
       
     </div>
     <footer class="article-footer">

@@ -86,45 +86,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>If you&#39;re making a scaffold, or even a gulpfile of any degree of size or signifigance, you&#39;ll quickly learn that placing every task you make in a single file can lead to a big mess after a while. One of the most attractive things about slush, is that it uses gulp, and one of the most attractive things about gulp is that it is extremely organizeable, due to its modular task building system.</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>When you first get started, or run the <code>slush generator-generator</code>, the first thing you will notice is that a lot of folks put everything in the main slush file. I don&#39;t really recommend this. Its easier, at least to first make a separate <code>folder</code> called &quot;slush&quot;.</p>
-
-<p>What we want is to separate the tasks by folder, and then per task, separate each one of these by function. If there is a complex task, consisting of smaller parts, we cna break those down by file in the folder. When you&#39;re doing tests, its much easier to have your test directory match that of your slush directory. Assuming each file is single responsibility, and each task has a folder, you will then also have one test file and folder to match the source.</p>
-
-<p>Lets factor out a default task. Consider some code, that is like what is spit out by the default <code>generator-generator</code></p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line"> * slush-test</span><br><span class="line"> * https://github.com/the-simian/slush-test</span><br><span class="line"> *</span><br><span class="line"> * Copyright (c) 2015, Jesse Harlin</span><br><span class="line"> * Licensed under the MIT license.</span><br><span class="line"> */</span></span><br><span class="line"><span class="pi"></span><br><span class="line">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</span><br><span class="line">    install = <span class="built_in">require</span>(<span class="string">'gulp-install'</span>),</span><br><span class="line">    template = <span class="built_in">require</span>(<span class="string">'gulp-template'</span>),</span><br><span class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>),</span><br><span class="line">    _ = <span class="built_in">require</span>(<span class="string">'underscore.string'</span>),</span><br><span class="line">    inquirer = <span class="built_in">require</span>(<span class="string">'inquirer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">format</span><span class="params">(string)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> username = string.toLowerCase();</span><br><span class="line">    <span class="keyword">return</span> username.replace(<span class="regexp">/\s/g</span>, <span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> defaults = (<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> workingDirName = path.basename(process.cwd()),</span><br><span class="line">      homeDir, osUserName, configFile, user;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (process.platform === <span class="string">'win32'</span>) &#123;</span><br><span class="line">        homeDir = process.env.USERPROFILE;</span><br><span class="line">        osUserName = process.env.USERNAME || path.basename(homeDir).toLowerCase();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        homeDir = process.env.HOME || process.env.HOMEPATH;</span><br><span class="line">        osUserName = homeDir &amp;&amp; homeDir.split(<span class="string">'/'</span>).pop() || <span class="string">'root'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    configFile = path.join(homeDir, <span class="string">'.gitconfig'</span>);</span><br><span class="line">    user = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">require</span>(<span class="string">'fs'</span>).existsSync(configFile)) &#123;</span><br><span class="line">        user = <span class="built_in">require</span>(<span class="string">'iniparser'</span>).parseSync(configFile).user;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        appName: workingDirName,</span><br><span class="line">        userName: osUserName || format(user.name || <span class="string">''</span>),</span><br><span class="line">        authorName: user.name || <span class="string">''</span>,</span><br><span class="line">        authorEmail: user.email || <span class="string">''</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'default'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(done)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> prompts = [&#123;</span><br><span class="line">        name: <span class="string">'appName'</span>,</span><br><span class="line">        message: <span class="string">'What is the name of your project?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: defaults.appName</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: <span class="string">'appDescription'</span>,</span><br><span class="line">        message: <span class="string">'What is the description?'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: <span class="string">'appVersion'</span>,</span><br><span class="line">        message: <span class="string">'What is the version of your project?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: <span class="string">'0.1.0'</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: <span class="string">'authorName'</span>,</span><br><span class="line">        message: <span class="string">'What is the author name?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: defaults.authorName</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: <span class="string">'authorEmail'</span>,</span><br><span class="line">        message: <span class="string">'What is the author email?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: defaults.authorEmail</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        name: <span class="string">'userName'</span>,</span><br><span class="line">        message: <span class="string">'What is the github username?'</span>,</span><br><span class="line">        <span class="keyword">default</span>: defaults.userName</span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        type: <span class="string">'confirm'</span>,</span><br><span class="line">        name: <span class="string">'moveon'</span>,</span><br><span class="line">        message: <span class="string">'Continue?'</span></span><br><span class="line">    &#125;];</span><br><span class="line">    <span class="comment">//Ask</span></span><br><span class="line">    inquirer.prompt(prompts,</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="params">(answers)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!answers.moveon) &#123;</span><br><span class="line">                <span class="keyword">return</span> done();</span><br><span class="line">            &#125;</span><br><span class="line">            answers.appNameSlug = _.slugify(answers.appName);</span><br><span class="line">            gulp.src(__dirname + <span class="string">'/templates/**'</span>)</span><br><span class="line">                .pipe(template(answers))</span><br><span class="line">                .pipe(rename(<span class="function"><span class="keyword">function</span> <span class="params">(file)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">if</span> (file.basename[<span class="number">0</span>] === <span class="string">'_'</span>) &#123;</span><br><span class="line">                        file.basename = <span class="string">'.'</span> + file.basename.slice(<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;))</span><br><span class="line">                .pipe(gulp.dest(<span class="string">'./'</span>))</span><br><span class="line">                .pipe(install())</span><br><span class="line">                .on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">                    done();</span><br><span class="line">                &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-
-<p>I should add that the default generator is not concerned with testing at all, but we are. So what is happening, big picture in this file?</p>
-
-<ul><li>we are requiring &quot;stuff&quot;</li><li>we need some default answers</li><li>we need to take those answers and make them template-ready (transform)</li><li>we ask some questions</li><li>we do a task.</li></ul>
-
-<p>These are, in my opinion good ways to break apart the tasks. Have one file for default answers, one for questions, and one for tasks. Let each file require only what it needs. Instead of putting everyting in one big file, lets break it up.</p>
-
-<p>We add the <code>slush folder</code> in the root and give a folderr to the default task. We will do this for every task henceforth!</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+-- default</span><br><span class="line">|   +-- questions.js</span><br><span class="line">|   +-- task.js</span><br><span class="line">|   +-- transforms.js</span><br><span class="line">|   +-- defaults.js</span><br><span class="line"></span><br><span class="line">slushfile.js</span><br></pre></td></tr></table></figure></p>
-
-<p>A single slush file becomes something like this.</p>
-
-<p>Now, in the slushfile itself, you can include a reference to the files in the folder. You really only need to refrence the <code>task</code> file in the default directory.</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> options = &#123;</span><br><span class="line">  templatesDir: __dirname + <span class="string">'/templates/**'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'./slush/default/task'</span>)(options);</span><br></pre></td></tr></table></figure></p>
-
-<p>It might end up looking something like that.</p>
-
-<p>Now, for every taks you add, you can include it in the one parent slushfile. Any global options, you&#39;s want to pass around (such as the location of your templates directory), you can make an options object.</p>
-
-<p>Aside from overall organization, this is going to make your entire slush project much, much easier to test. The questions module is largely declarative. There&#39;s going to be some complexity there, due to SLOc, but theres no cyclomatic complxity to it, or branching. It basically won&#39;t reall yneed test coverage. Its nice to separate that out early.</p>
-
-<p>Then comes the <code>transforms.js</code>. This is probably the main point of failure if somethign goes wrong. The idea is that we don&#39;t want to make the templating mechanism do too much work. Basically, if you need your app name slugified in some places, but not others, if you need to sanitize input - this is where all that happens. Do it here, and test it easily...do it in your template and it gets murkier. These tests will look like a bunch of input json objects, and expected output json objects. Very straightforward.</p>
-
-<p>There is also the <code>defaults.js</code>. Thsi is where you&#39;d put any default answers for questions you might expect. For example, what if for a username, you want to try and guess it from <code>process.env</code>, or something like that. You can do that here.</p>
-
-<p>The final file is <code>task.js</code>. thankfully, since you proke everythign apart, this really has a single,testable, purpose.. template and write your files in a directory. This can be done with the <code>mock-gulp-dest</code> module very easily.</p>
+        <p>If you’re making a scaffold, or even a gulpfile of any degree of size or signifigance, you’ll quickly learn that placing every task you make in a single file can lead to a big mess after a while. One of the most attractive things about slush, is that it uses gulp, and one of the most attractive things about gulp is that it is extremely organizeable, due to its modular task building system.</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/04/05/organizing-a-slush-generator/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -162,52 +129,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/slush-howto/slush_test.png"></p>
-
-<p>One thing I&#39;ve noticed while looking at the generators for both yeoman and slush, is that overall, they tend to be undertested. I think this is for two reasons. Firstly, I think many folks consider this kind of dev tool to not be, generally speaking, differnt from production code. Its a tool to assist a dev work, and not necessarily subject to the same level of testing rigor. I think anothe reason is that testing file IO is fundamentally much more challengin then a typical unit test.</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>Thankfully, since we are testing gulp output, theres a handy module that does make things easier called <a href="https://github.com/slushjs/mock-gulp-dest" target="_blank" rel="external"><code>mock-gulp-dest</code>.</a> If you look at the source of <code>mock-gulp-dest</code>, you&#39;ll notice that it uses <code>through2</code> to essentially handle the mocking of the file IO. Of course you don&#39;t want to <em>actually</em> write files to the disk and assert their existance. It might be tempting to use one of the <code>fs</code> assertion tools and actually put the files somethere, but that&#39;s pretty messy in the long run, and not pragmatic for running tests in multiple environments. Rather, <code>mock-gulp-dest</code> actually stubbs the <code>dest</code> method with one that doesn&#39;t actually write, and then reverts it when complete. That said, this is ultimately a sophisticated function stub.</p>
-
-<p>Firstly, its handy to make a fixture to mock the inquirer output. </p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> inquirer = <span class="built_in">require</span>(<span class="string">'inquirer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mockPrompt</span><span class="params">(answers)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">assignAnswer</span><span class="params">(prompt)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!(prompt.name <span class="keyword">in</span> answers)) &#123;</span><br><span class="line">      answers[prompt.name] = prompt.default;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">inquirerPrompt</span><span class="params">(prompts, done)</span> </span>&#123;</span><br><span class="line">    [].concat(prompts).forEach(assignAnswer);</span><br><span class="line">    done(answers);</span><br><span class="line">  &#125;</span><br><span class="line">  inquirer.prompt = inquirerPrompt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = mockPrompt;</span><br></pre></td></tr></table></figure></p>
-
-<p>This is the contents of an inquirer fixture that handles that well. Once you have that, just include it in your test files where you are going to mock the prompts. You&#39;ll also want to include the actual slushfile you&#39;re testing. In this case, imagine there is just one main slushfile to test:</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mockPrompt = <span class="built_in">require</span>(<span class="string">'./inquirer-prompt-fixture'</span>);</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'../slushfile'</span>);</span><br></pre></td></tr></table></figure></p>
-
-<p>To my taste, I am partial to mocha for a test runner and chai&#39;s expect syntax for assertion. YOu can use whatever you want, but this is what I use.</p>
-
-<p>Here is an example fo a file performing two simple tests:</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="pi">'use strict'</span>;</span><br><span class="line"><span class="keyword">var</span> chai = <span class="built_in">require</span>(<span class="string">'chai'</span>), <span class="comment">//chai for assertion</span></span><br><span class="line">  gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>), </span><br><span class="line">  mockGulpDest = <span class="built_in">require</span>(<span class="string">'mock-gulp-dest'</span>)(gulp), <span class="comment">//here is our dest stub</span></span><br><span class="line">  expect = chai.expect; <span class="comment">//I use expect, but I dont expect(you).to.also()</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//this is to mock inquirer</span></span><br><span class="line"><span class="keyword">var</span> mockPrompt = <span class="built_in">require</span>(<span class="string">'./inquirer-prompt-fixture'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//and the thing we are testing</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">'../slushfile'</span>);</span><br><span class="line"></span><br><span class="line">describe(<span class="string">'your awesome module!!!'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  describe(<span class="string">'taskname'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//before each of these mocks, I need to provide mock data for what might have been responses</span></span><br><span class="line">    beforeEach(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">      mockPrompt(&#123;</span><br><span class="line">        appName: <span class="string">'test-app'</span>,</span><br><span class="line">        userName: <span class="string">'the-simian'</span>,</span><br><span class="line">        authorName: <span class="string">'Fancypants Harlin'</span>,</span><br><span class="line">        authorEmail: <span class="string">'derp@derp.derp'</span>,</span><br><span class="line">        appDescription: <span class="string">'some description'</span>,</span><br><span class="line">        moveon: <span class="literal">true</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    it(<span class="string">'should make a readme'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(done)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">assertDirectories</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mockGulpDest.assertDestContains(<span class="string">'README.md'</span>);</span><br><span class="line">        done();</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">//here's the tricky part....</span></span><br><span class="line">      gulp</span><br><span class="line">        .start(<span class="string">'default'</span>)</span><br><span class="line">        .once(<span class="string">'task_stop'</span>, assertDirectories);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    it(<span class="string">'should make a package.json'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(done)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">assertDirectories</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mockGulpDest.assertDestContains(<span class="string">'package.json'</span>);</span><br><span class="line">        done();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      gulp</span><br><span class="line">        .start(<span class="string">'default'</span>)</span><br><span class="line">        .once(<span class="string">'task_stop'</span>, assertDirectories);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-
-<p>Now for a description of the tricky part. The file writing is essentially an async process. You&#39;ll need to use a testing framework that can elegantly handle an async assertion with a callback. In this case, its idiomatic in <code>mocha</code> to use done in this manner. You can use <code>gulp.start(&#39;yourtaskname&#39;)</code> to kick off a stask, but the very important part is that you attach the assertion to the handler of <code>task_stop</code>. Be wary, you might see <code>on(&#39;finish&#39;)</code> , <code>on(&#39;stop&#39;)</code> or other variants in other folk&#39;s code. If you use <code>on</code>, you might get some errors in your runner, such as</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Error: <span class="keyword">done</span>() called multiple <span class="built_in">times</span></span><br></pre></td></tr></table></figure></p>
-
-<p>Or if you attach to a differnt event,  your runner will fail because it times out, because the asserting function never gets called at all (and hence the <code>done</code> function never is called).</p>
-
-<p>To test, I cam calling my testing method from gulp. Its pretty straightforward in the gulpfile.</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br><span class="line"><span class="keyword">var</span> istanbul = <span class="built_in">require</span>(<span class="string">'gulp-istanbul'</span>);</span><br><span class="line"><span class="keyword">var</span> mocha = <span class="built_in">require</span>(<span class="string">'gulp-mocha'</span>);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span><span class="params">(cb)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> mochaOpts = &#123;</span><br><span class="line">    reporter: <span class="string">'nyan'</span> <span class="comment">//cool-mode</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">runner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    gulp</span><br><span class="line">      .src([<span class="string">'./test/*.js'</span>])</span><br><span class="line">      .pipe(mocha(mochaOpts))</span><br><span class="line">      .pipe(istanbul.writeReports())</span><br><span class="line">      .on(<span class="string">'end'</span>, cb);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  gulp</span><br><span class="line">    .src([<span class="string">'./slushfile.js'</span>])</span><br><span class="line">    .pipe(istanbul())</span><br><span class="line">    .pipe(istanbul.hookRequire())</span><br><span class="line">    .on(<span class="string">'finish'</span>, runner);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">gulp.task(<span class="string">'test'</span>, test)</span><br></pre></td></tr></table></figure></p>
-
-<p>So to actually run the test, I call</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gulp test</span><br></pre></td></tr></table></figure></p>
-
-<p>I always use the nyan cat reporter, because it delights me. </p>
-
-<p><img src="/images/slush-howto/slide-cat.gif" title="How I feel testing code"></p>
-
-<p>No judging here. 
-Watch that kitty surf that poptart!!!</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">22</span>:<span class="number">37</span>:<span class="number">41</span>] Starting <span class="string">'test'</span>...</span><br><span class="line">[<span class="number">22</span>:<span class="number">37</span>:<span class="number">41</span>] Starting <span class="string">'default'</span>...</span><br><span class="line">[<span class="number">22</span>:<span class="number">37</span>:<span class="number">41</span>] Finished <span class="string">'default'</span> after <span class="number">16</span> ms</span><br><span class="line">readme</span><br><span class="line">[<span class="number">22</span>:<span class="number">37</span>:<span class="number">41</span>] Starting <span class="string">'default'</span>...</span><br><span class="line">[<span class="number">22</span>:<span class="number">37</span>:<span class="number">41</span>] Finished <span class="string">'default'</span> after <span class="number">5.07</span> ms</span><br><span class="line">package~|_( ^ .^)</span><br><span class="line"> <span class="number">2</span>   -_-_,------,</span><br><span class="line"> <span class="number">0</span>   -_-_|   /\_/\</span><br><span class="line"> <span class="number">0</span>   -_-^|__( ^ .^)</span><br><span class="line">     -_-  <span class="string">""</span>  <span class="string">""</span></span><br><span class="line"></span><br><span class="line">  <span class="number">2</span> passing (<span class="number">36</span>ms)</span><br><span class="line"></span><br><span class="line">-------------------------|-----------|-----------|-----------|-----------|</span><br><span class="line">File                     |   % Stmts |% Branches |   % Funcs |   % Lines |</span><br><span class="line">-------------------------|-----------|-----------|-----------|-----------|</span><br><span class="line">   your-module-name\     |     <span class="number">80.65</span> |     <span class="number">40.74</span> |        <span class="number">80</span> |     <span class="number">80.65</span> |</span><br><span class="line">      slushfile.js       |     <span class="number">80.65</span> |     <span class="number">40.74</span> |        <span class="number">80</span> |     <span class="number">80.65</span> |</span><br><span class="line">-------------------------|-----------|-----------|-----------|-----------|</span><br><span class="line">All files                |     <span class="number">80.65</span> |     <span class="number">40.74</span> |        <span class="number">80</span> |     <span class="number">80.65</span> |</span><br><span class="line">-------------------------|-----------|-----------|-----------|-----------|</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">=============================== Coverage summary ===============================</span><br><span class="line">Statements   : <span class="number">80.65</span>% ( <span class="number">25</span>/<span class="number">31</span> )</span><br><span class="line">Branches     : <span class="number">40.74</span>% ( <span class="number">11</span>/<span class="number">27</span> )</span><br><span class="line">Functions    : <span class="number">80</span>% ( <span class="number">4</span>/<span class="number">5</span> )</span><br><span class="line">Lines        : <span class="number">80.65</span>% ( <span class="number">25</span>/<span class="number">31</span> )</span><br><span class="line">================================================================================</span><br><span class="line">[<span class="number">22</span>:<span class="number">37</span>:<span class="number">42</span>] Finished <span class="string">'test'</span> after <span class="number">734</span> ms</span><br></pre></td></tr></table></figure></p>
-
-<p>Oh nice! We got two passing tests! Could use a few more though :)</p>
+        <img src="/images/slush-howto/slush_test.png">
+<p>One thing I’ve noticed while looking at the generators for both yeoman and slush, is that overall, they tend to be undertested. I think this is for two reasons. Firstly, I think many folks consider this kind of dev tool to not be, generally speaking, differnt from production code. Its a tool to assist a dev work, and not necessarily subject to the same level of testing rigor. I think anothe reason is that testing file IO is fundamentally much more challengin then a typical unit test.</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/04/04/testing-a-slush-generator/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -245,119 +173,14 @@ Watch that kitty surf that poptart!!!</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/images/slush-howto/slushlogo.png"></p>
-
-<p>I&#39;ve been using gulp for a while now, and it has become my go-to build system. I have also spent a lot of time trying my very best to getused to using generators regularly in my workflow. I gave talk some time ago about Yeoman, which was a seemingly obvious first choice for a generator.</p>
-
-<p>As I&#39;ve used gulp more and more, I&#39;ve appreciated its direct simplicity. Its a quick, streaming build system, and I find I am using it more and mor eon a regular basis to solve problems. Yeoman, while an excellent tool is something I&#39;ve felt like when I want to really customize something to my liking, can be a bit of work. I was really excited when I came across Slush.js</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>Its seriously hard to believe that was actually a year ago!</p>
-
-<p><img alt="My Yeoman Talk" src="http://okcjs.com/images/posters/2014-feb-yeoman.jpg"></p>
-
-<h2>About Slush</h2>
-
-<p>Slush can best be summarized by the info on the website</p>
-
-<p><blockquote><p>Slush is a tool to be able to use Gulp for project scaffolding.
-... a tool to help you generate new project structures to get you up and running with your new project in a matter of seconds.
-Slush does not contain anything &quot;out of the box&quot;, except the ability to locate installed slush generators and to run them with <a href="https://www.npmjs.com/package/liftoff" target="_blank" rel="external">liftoff</a>.</p><footer><strong>https://github.com/slushjs/slush</strong></footer></blockquote></p>
-
-<p>OK. perfect! All the scaffolding goodness I want, but with gulp as the core mechanism to get stuff done.</p>
-
-<p>I&#39;m ready to make a scaffold. The website spells it out pretty straightforward.</p>
-
-<p>You need <code>gulp</code> and <code>slush</code>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g slush</span><br><span class="line">npm install -g gulp</span><br><span class="line">npm install -g slush-generator</span><br></pre></td></tr></table></figure></p>
-
-<p>If you&#39;ve used Yeoman, you know there&#39;s a <code>generator-generator</code>. That helps you generate , well ..generators! This is like the <code>npm init</code> of slush. Its how we are going to kick off our new slush project.</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slush generator</span><br></pre></td></tr></table></figure></p>
-
-<p>You will be asked things, not unlike when you run <code>npm init</code>. Fill out the project name, the decription, your name and stuff like that. Consider letting it replace your readme and your package.json. The scaffolded readme is handy and the scaffolded package.json will have just about everything you need. Also just be aware that the scaffold will handle the <code>slush</code> prefix for you. If your project is <code>slush-radgenerator</code>, just call it <code>radgenerator</code>.</p>
-
-<p>The fully scaffolded project is really nice. It includes your gitignore, liscence file, travis file and a number of other things for you.</p>
-
-<p>Here&#39;s where we start really making this thing work...</p>
-
-<p>Open the file called <code>slushfile.js</code>. You&#39;ll notice this essentially bears a very strong resembelance to a <code>gulpfile.js</code>. That&#39;s because this basically <em>is</em> a gulpfile, that is using inquirer to ask you questions. Its that simple. Before we do any analysis and start plucking this project apart, lets do a quick test.</p>
-
-<p>First go to the generated project directory and link it.</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm link</span><br></pre></td></tr></table></figure></p>
-
-<p>Then go make some new folder and run your generator</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slush your-generator-name-here</span><br></pre></td></tr></table></figure></p>
-
-<p>You will basically run the absolute default generator stuff. It should scaffold a small project.</p>
-
-<p>Here is me making a non-project taht could be about basketballs</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">? What is the name of your project? ballz</span><br><span class="line">? What is the description? Lets all <span class="keyword">do</span> things with our balls!</span><br><span class="line">? What is the version of your project? <span class="number">6.6</span>.<span class="number">6</span></span><br><span class="line">? What is the author name? (Jesse Harlin)</span><br></pre></td></tr></table></figure></p>
-
-<p>Actually with inquirer it looks very nice, like this:
-<img src="/images/slush-howto/ballz.png"></p>
-
-<p>Of course not much is gonna happen yet.</p>
-
-<p>If you look at the code, things are really pretty straighforward. Its refreshing.</p>
-
-<ol><li>Ask questions with Inquirer.js.</li><li>Take the answers and pass them to a callback.</li><li>Do stuff. Template Stuff.</li></ol>
-
-<p>Check it out, logging the json from the answers you can see exactly what inquirer is really doing, a simple question with a callback.</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//every inquirer statement is made like this.</span></span><br><span class="line">inquirer.prompt( questions, callback )</span><br></pre></td></tr></table></figure></p>
-
-<p>And this is all driven by this simple bit of JSON
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> prompts = [&#123;</span><br><span class="line">  name: <span class="string">'appName'</span>,</span><br><span class="line">  message: <span class="string">'What is the name of your project?'</span>,</span><br><span class="line">  <span class="keyword">default</span>: defaults.appName</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  name: <span class="string">'appDescription'</span>,</span><br><span class="line">  message: <span class="string">'What is the description?'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  name: <span class="string">'appVersion'</span>,</span><br><span class="line">  message: <span class="string">'What is the version of your project?'</span>,</span><br><span class="line">  <span class="keyword">default</span>: <span class="string">'0.1.0'</span></span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  name: <span class="string">'authorName'</span>,</span><br><span class="line">  message: <span class="string">'What is the author name?'</span>,</span><br><span class="line">  <span class="keyword">default</span>: defaults.authorName</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  name: <span class="string">'authorEmail'</span>,</span><br><span class="line">  message: <span class="string">'What is the author email?'</span>,</span><br><span class="line">  <span class="keyword">default</span>: defaults.authorEmail</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  name: <span class="string">'userName'</span>,</span><br><span class="line">  message: <span class="string">'What is the github username?'</span>,</span><br><span class="line">  <span class="keyword">default</span>: defaults.userName</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">  type: <span class="string">'confirm'</span>,</span><br><span class="line">  name: <span class="string">'moveon'</span>,</span><br><span class="line">  message: <span class="string">'Continue?'</span></span><br><span class="line">  &#125;];</span><br></pre></td></tr></table></figure></p>
-
-<p>Which makes these qppear in the console:
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">? What is the name of your project? ballz</span><br><span class="line">? What is the description? Some description</span><br><span class="line">? What is the version of your project? <span class="number">6.6</span>.<span class="number">6</span></span><br><span class="line">? What is the author name? Jesse Harlin</span><br><span class="line">? What is the author email? harlinjesse@gmail.com</span><br><span class="line">? What is the github username? Jesse_Harlin</span><br><span class="line">? Continue? Yes</span><br></pre></td></tr></table></figure></p>
-
-<p>Yielding this JSON..
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  appName: <span class="string">'ballz'</span>,</span><br><span class="line">  appDescription: <span class="string">'Some description'</span>,</span><br><span class="line">  appVersion: <span class="string">'6.6.6'</span>,</span><br><span class="line">  authorName: <span class="string">'Jesse Harlin'</span>,</span><br><span class="line">  authorEmail: <span class="string">'harlinjesse@gmail.com'</span>,</span><br><span class="line">  userName: <span class="string">'Jesse_Harlin'</span>,</span><br><span class="line">  moveon: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-<p>Nice.
-And you can just make templates with that.</p>
-
-<p>In case you&#39;re wondering, the <code>defaults</code> object you see above is just an object created elsewhere in the code that provides some sensible default values for the string of questions. You can put whatever you what there.</p>
-
-<p>I want to point out that <a href="https://github.com/SBoudrias/Inquirer.js/" target="_blank" rel="external">inquirer</a> has some very very handy features. Its the same tool that Yeoman uses, if you&#39;re familiar. You can do a lot of cool things like, have folks <a href="https://github.com/SBoudrias/Inquirer.js/#list----type-list-" target="_blank" rel="external">select from lists</a>, <a href="https://github.com/SBoudrias/Inquirer.js/#checkbox----type-checkbox-" target="_blank" rel="external">check items in a list</a> they want and stuff like that. It all looks really nice. All you really must do it change the <code>type</code> of question being asked, and then provide some options, depending on the type, like provide choices for a list of things to select.</p>
-
-<p>The question obejct is <a href="https://github.com/SBoudrias/Inquirer.js/#question" target="_blank" rel="external">fully documented here</a>.</p>
-
-<p>In the boilerplate, you can see what happens after the questions..</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!answers.moveon) &#123;</span><br><span class="line">  <span class="keyword">return</span> done();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">answers.appNameSlug = _.slugify(answers.appName);</span><br></pre></td></tr></table></figure></p>
-
-<p>The function <code>done()</code> is just the callback. That means the first few lines, before the gulp statement are just to handle situations where no answers were provided or to clean up the project name fromt he first question. Big picture is that, you&#39;d handle all data manipulation before doing templating here.</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">gulp</span><br><span class="line">  .src(__dirname + <span class="string">'/templates/**'</span>)</span><br><span class="line">  .pipe(template(answers))</span><br><span class="line">  .pipe(rename(<span class="function"><span class="keyword">function</span> <span class="params">(file)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (file.basename[<span class="number">0</span>] === <span class="string">'_'</span>) &#123;</span><br><span class="line">      file.basename = <span class="string">'.'</span> + file.basename.slice(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;))</span><br><span class="line">  .pipe(conflict(<span class="string">'./'</span>))</span><br><span class="line">  .pipe(gulp.dest(<span class="string">'./'</span>))</span><br><span class="line">  .pipe(install())</span><br><span class="line">  .on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    done();</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure></p>
-
-<p>Here is the meat and potatoes. We go to templates, grab <em>everything</em>, template it all, and move it to the destination folder - which is what you are scaffolding. Simple. Of course nothing is happening simply because theres nothing to template. The template folder starts empty.</p>
-
-<p>Try this, throw a quick file in there. I made a markdown file called <code>example.md</code>. with the contents:</p>
-
-<p><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">#&lt;%= appName %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="header">##About</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">appDescription</span> %&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="header">###Author</span></span><br><span class="line">Name: <span class="xml"><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">authorName</span> %&gt;</span></span></span><br><span class="line">Email: <span class="xml"><span class="tag">&lt;<span class="title">%=</span> <span class="attribute">authorEmail</span> %&gt;</span></span></span><br></pre></td></tr></table></figure></p>
-
-<p>Run the generator again.</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">? What is the description? Bouncy, happy, glorious, scrumtrelescant balls! Basket Balls! Bowling Balls! Redball!</span><br><span class="line">? What is the version of your project? <span class="number">0.1</span>.<span class="number">0</span></span><br><span class="line">? What is the author name? Jesse Harlin</span><br><span class="line">? What is the author email? harlinjesse@gmail.com</span><br><span class="line">? What is the github username? the-simian</span><br><span class="line">? Continue? Yes</span><br></pre></td></tr></table></figure></p>
-
-<p>These anspwers make a file with these contents</p>
-
-<p><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">#ballz</span></span><br><span class="line"></span><br><span class="line"><span class="header">##About</span></span><br><span class="line">Bouncy, happy, glorious, scrumtrelescant balls! Basket Balls! Bowling Balls! Redball!</span><br><span class="line"></span><br><span class="line"><span class="header">###Author</span></span><br><span class="line">Name: Jesse Harlin</span><br><span class="line">Email: harlinjesse@gmail.com</span><br></pre></td></tr></table></figure></p>
-
-<p>How simple is that? In tis case we are using <code>gulp-template</code> as the module to handle templating. Its a very common syntax, sort o flike what <code>lodash</code> uses. I suppose there is no reason a developer couldn&#39;t use really anything she wanted to template with.</p>
-
-<p>At this point, really you just template your project, like you would any project! Its probably good to make templates for a <code>readme.md</code>, a <code>package.json</code>, a <code>.gitignore</code>, and so on!</p>
-
-<p>Perhaps in another post, I will tlak more about some strategies for slushfile project organization. If tis project grows, especially if we add subgenerators - I would venture that a single slushfile would be a bad idea.</p>
-
-<p>Have fun getting slushy!</p>
+        <img src="/images/slush-howto/slushlogo.png">
+<p>I’ve been using gulp for a while now, and it has become my go-to build system. I have also spent a lot of time trying my very best to getused to using generators regularly in my workflow. I gave talk some time ago about Yeoman, which was a seemingly obvious first choice for a generator.</p>
+<p>As I’ve used gulp more and more, I’ve appreciated its direct simplicity. Its a quick, streaming build system, and I find I am using it more and mor eon a regular basis to solve problems. Yeoman, while an excellent tool is something I’ve felt like when I want to really customize something to my liking, can be a bit of work. I was really excited when I came across Slush.js</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/30/lets-make-a-basic-slush-generator/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -395,51 +218,13 @@ And you can just make templates with that.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itself. What also sucks is including code for a totally differnt language as a list of strings in your codebase. Whenever you come across this sort of thing, its usually best to try and store the &quot;nonindigenous code&quot; somewhere sles, like a seperate file. This is especially true if you find it can be templated.</p>
-
+        <p>You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itself. What also sucks is including code for a totally differnt language as a list of strings in your codebase. Whenever you come across this sort of thing, its usually best to try and store the “nonindigenous code” somewhere sles, like a seperate file. This is especially true if you find it can be templated.</p>
 <p>THis is exactly the problem I encountered in Phaser.js, so I made a quick solution.</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<h2>Phaser GLSL Loader</h2>
-
-<p><a href="https://travis-ci.org/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img alt="Build Status" src="https://travis-ci.org/the-simian/phaser-glsl-loader.svg"></a></p>
-
-<p><a href="https://coveralls.io/r/the-simian/phaser-glsl-loader?branch=master" target="_blank" rel="external"><img alt="Coverage Status" src="https://coveralls.io/repos/the-simian/phaser-glsl-loader/badge.svg?branch=master"></a></p>
-
-<p><a href="https://codeclimate.com/github/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img alt="Code Climate" src="https://codeclimate.com/github/the-simian/phaser-glsl-loader/badges/gpa.svg"></a></p>
-
-<p><a href="https://david-dm.org/the-simian/phaser-glsl-loader" target="_blank" rel="external"><img alt="David-Dm" src="https://david-dm.org/the-simian/phaser-glsl-loader.svg"></a></p>
-
-<p>This is a simple GLSL loader that is meant to work with Phaser and Webpack.</p>
-
-<h2>The Problem:</h2>
-
-<p>Lets say you&#39;re working in phaser, and you see a really cool looking fragment shader you want to use.</p>
-
-<p><img alt="Some cool shader" src="http://i.imgur.com/1xys0Iy.png"></p>
-
-<p>So you go to the phaser examples, and they show you to integrate your code just like this:</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> game = <span class="keyword">new</span> Phaser.Game(<span class="number">800</span>, <span class="number">600</span>, Phaser.AUTO, <span class="string">'phaser-example'</span>, &#123; create: create, update: update &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> filter;</span><br><span class="line"><span class="keyword">var</span> sprite;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">create</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  From http://glslsandbox.com/e#20450.0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> fragmentSrc = [</span><br><span class="line">        <span class="string">"precision mediump float;"</span>,</span><br><span class="line">        <span class="string">"uniform vec2      resolution;"</span>,</span><br><span class="line">        <span class="string">"uniform float     time;"</span>,</span><br><span class="line"></span><br><span class="line">        <span class="string">"float size = 0.002;"</span>,</span><br><span class="line"></span><br><span class="line">        <span class="string">"void main( void ) &#123;"</span>,</span><br><span class="line">            <span class="string">"vec2 view = ( gl_FragCoord.xy - resolution / 2.0 ) / ( resolution.y / 2.0);"</span>,</span><br><span class="line">            <span class="string">"float time = time + length(view)*8.;"</span>,</span><br><span class="line">            <span class="string">"vec4 color = vec4(0);"</span>,</span><br><span class="line">            <span class="string">"vec2 center = vec2(0);"</span>,</span><br><span class="line">            <span class="string">"float rotationVelocity = 2.0;"</span>,</span><br><span class="line">            <span class="string">"for( int j = 0; j &lt; 20; j++ ) &#123;"</span>,</span><br><span class="line">                <span class="string">"for( int i = 0; i &lt; 20; i++ ) &#123;"</span>,</span><br><span class="line">                    <span class="string">"float amplitude = ( cos( time / 10.0 ) + sin(  time /5.0 ) ) / 2.0;"</span>,</span><br><span class="line">                    <span class="string">"float angle =   sin( float(j) * time) * rotationVelocity + 2.0 * 3.14 * float(i) / 20.0;"</span>,</span><br><span class="line">                    <span class="string">"center.x = cos( 7.0 * float(j) / 20.0 * 2.0 * 3.14 ) + sin( time / 4.0);"</span>,</span><br><span class="line">                    <span class="string">"center.y = sin( 3.0 * float(j) / 20.0 * 2.0 *  3.14 )+ cos( time / 8.0);"</span>,</span><br><span class="line">                    <span class="string">"vec2 light = center + amplitude * vec2( cos( angle ), sin( angle ));"</span>,</span><br><span class="line">                    <span class="string">"//size = sin( time ) * 0.005;"</span>,</span><br><span class="line">                    <span class="string">"float l = size / length( view - light );"</span>,</span><br><span class="line">                    <span class="string">"vec4 c = vec4( l / 20.0, l, l, 1.0 ) / 5.0;"</span>,</span><br><span class="line">                    <span class="string">"color += c;"</span>,</span><br><span class="line">                <span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"&#125;"</span>,</span><br><span class="line">            <span class="string">"gl_FragColor = color;"</span>,</span><br><span class="line">        <span class="string">"&#125;"</span></span><br><span class="line">    ];</span><br><span class="line"></span><br><span class="line">    filter = <span class="keyword">new</span> Phaser.Filter(game, <span class="literal">null</span>, fragmentSrc);</span><br><span class="line">    filter.setResolution(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line"></span><br><span class="line">    sprite = game.add.sprite();</span><br><span class="line">    sprite.width = <span class="number">800</span>;</span><br><span class="line">    sprite.height = <span class="number">600</span>;</span><br><span class="line"></span><br><span class="line">    sprite.filters = [ filter ];</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    filter.update();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-<p>Man, what mess! Wouldnt it be awesome if you could just put the shader into a seperate file and load it that way?</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fragmentSrc = <span class="built_in">require</span>(<span class="string">'../shaders/cubething.frag'</span>),</span><br></pre></td></tr></table></figure></p>
-
-<p>You could cut all that code out into a simple require statement! That is what this loader is for.</p>
-
-<h2>The Solution</h2>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev phaser-glsl-loader</span><br></pre></td></tr></table></figure></p>
-
-<p>First, you need to add the loader to your list of loaders, most likely in your <code>webpack.config.js</code> file.</p>
-
-<p>Something like this:</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> glFragmentLoader = <span class="built_in">require</span>(<span class="string">'phaser-glsl-loader'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    loaders: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.frag$/i</span>,</span><br><span class="line">        loader: <span class="string">'gl-fragment-loader'</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  resolveLoader: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      <span class="string">'gl-fragment-loader'</span>: glFragmentLoader,</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-
-<p>Then you&#39;ll be able to reference external files, instead of basically including a large array of strings!</p>
+        
+          <p class="article-more-link">
+            <a href="/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -477,19 +262,13 @@ And you can just make templates with that.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>After a lot of time spend, I&#39;ve finally finished editing all of the Thunder Plains videos from 2014. You can find them all <a href="https://www.youtube.com/watch?v=oAgO9sJ7r54&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">online</a></p>
-
-<h2>Thunder Plains 2014 PLaylist</h2>
-
-<p>&lt;iframe width=&quot;100%&quot;  height=&quot;525&quot; src=&quot;https://www.youtube.com/embed/videoseries?list=PLdW0ayjzW<em>LCC4wYjQkivRl8QK4EvZ3i</em>&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<h2>The 16 Videos</h2>
-
-<ol><li><a href="https://www.youtube.com/watch?v=oAgO9sJ7r54&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=1" target="_blank" rel="external">Luke Crouch - Web For America [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=A8G6OBFTYk4&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=2" target="_blank" rel="external">Aaron Murray - Real World React.js [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=Zu2kanX5l9U&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=3" target="_blank" rel="external">Waylon Flinn - Making Magic with Node.js and Redis [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=T97mEDEVUMk&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=4" target="_blank" rel="external">Josh Bavari - Mobile Applications with JS and Ionic [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=2h7-nHFV90Y&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=5" target="_blank" rel="external">Kassandra Perch - NodeBots Wearables: Javascripting Your Wardrobe [ Thunderplains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=iCgi4DIwVts&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=6" target="_blank" rel="external">Tracy Hinds - Use Your Words! [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=rfCeOKpMYns&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=7" target="_blank" rel="external">Eric Schoffstall - Genome.js [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=nWH-hEmDJjA&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=8" target="_blank" rel="external">Jenn Schiffer - Your Grandparents Probably Didn&#39;t Have Node [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=-Mg2xj8U6J8&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=9" target="_blank" rel="external">Jennifer Wadella - The Importance of Building Developer Communities [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=wONjcD9ObpA&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_&amp;index=10" target="_blank" rel="external">Jeremy Green - Supercharge Your Productivity with Ember.js [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=SZJYlAq3v4E&amp;index=11&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">Derick Bailey - Johnny Five is Alive! [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=wAQsVv9Yedo&amp;index=12&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">Gordon Bockus - Building Massive Angular Apps [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=S3O8QcovtSs&amp;index=13&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">Jeff French - Awesomify Your Dev Environment with Docker + Vagrant [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=FTOojTR1KBw&amp;index=14&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">Chris Dickinson - Better Living through Control Flow Graph Generation [ Thunder Plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=4vccPZcq08w&amp;index=15&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">Adam Baldwin - Node.js Security Live [ Thunder plains 2014 ]</a></li><li><a href="https://www.youtube.com/watch?v=ZwEXoFNrHwA&amp;index=16&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">Chris Williams - Democratizing Hardware [ Thunder Plains 2014 ]</a></li></ol>
-
-<p>I hope you enjoy them. They took a very long time to edit, over the course of some months.</p>
+        <p>After a lot of time spend, I’ve finally finished editing all of the Thunder Plains videos from 2014. You can find them all <a href="https://www.youtube.com/watch?v=oAgO9sJ7r54&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_">online</a></p>
+<h2 id="Thunder_Plains_2014_PLaylist">Thunder Plains 2014 PLaylist</h2><iframe width="100%"  height="525" src="https://www.youtube.com/embed/videoseries?list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" frameborder="0" allowfullscreen></iframe>
+        
+          <p class="article-more-link">
+            <a href="/2015/01/18/ThunderPlains_Video/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -525,29 +304,11 @@ And you can just make templates with that.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1>Angular with React.js</h1>
+        <h1 id="Angular_with_React-js">Angular with React.js</h1><h2 id="About">About</h2><p>I recently gave a talk at the local Javascript user group about my experiences with using Angular and React in a similar project. In some ways, this was a technical talk, covering various ways to integrate an external lib (React) properly into the context of a very differnt framework (Angular). However, much of the talk really centered around the role of abstraction in a project, and learning how to assess the tradeoffs of various tools one might adopt.</p>
+<img src="/images/posters/2014-dec-angular-with-reactjs.png" width="700" title="Angular w/ React.js Angular with React.js">
+<h2 id="The_code">The code</h2><p>You can find the repo for the talk <a href="https://github.com/the-simian/OKCJS-December-2014-Angular-and-React" target="_blank" rel="external">here</a></p>
+<h2 id="Slides">Slides</h2><p>Here are the slides if you’d like to see them<br>  <iframe src="//slides.com/jesseharlin/deck/embed" width="100%" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen><br>    </iframe></p>
 
-<h2>About</h2>
-
-<p>I recently gave a talk at the local Javascript user group about my experiences with using Angular and React in a similar project. In some ways, this was a technical talk, covering various ways to integrate an external lib (React) properly into the context of a very differnt framework (Angular). However, much of the talk really centered around the role of abstraction in a project, and learning how to assess the tradeoffs of various tools one might adopt.</p>
-
-<p><img src="/images/posters/2014-dec-angular-with-reactjs.png" width="700" title="Angular w/ React.js Angular with React.js"></p>
-
-<h2>The code</h2>
-
-<p>You can find the repo for the talk <a href="https://github.com/the-simian/OKCJS-December-2014-Angular-and-React" target="_blank" rel="external">here</a></p>
-
-<h2>Slides</h2>
-
-<p>Here are the slides if you&#39;d like to see them
-  &lt;iframe 
-          src=&quot;//slides.com/jesseharlin/deck/embed&quot;
-          width=&quot;100%&quot; 
-          height=&quot;420&quot; 
-          scrolling=&quot;no&quot; 
-          frameborder=&quot;0&quot; 
-          webkitallowfullscreen mozallowfullscreen allowfullscreen&gt;
-    &lt;/iframe&gt;</p>
       
     </div>
     <footer class="article-footer">
@@ -583,73 +344,16 @@ And you can just make templates with that.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>At this point I&#39;ve played with gulp enough to make the decision that I&#39;d like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:</p>
-
-<p><blockquote><p>If it ain&#39;t broke, don&#39;t fix it.</p></blockquote></p>
-
-<p>At the same time, broke and &quot;ain&#39;t broke&quot; is a fairly binary way to see a system. Where does functional, yet unoptimized lie? Where does &quot;working, but unscaleable&quot; sit? Any software engineer knows there are often multiple approaches to solving a problem, and there is often merit to improving a system, for the sake of organization, optimization, maintenance and stability. I think switching to gulp is worth the work investment.</p>
-
+        <p>At this point I’ve played with gulp enough to make the decision that I’d like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:</p>
+<blockquote><p>If it ain’t broke, don’t fix it.</p>
+</blockquote>
+<p>At the same time, broke and “ain’t broke” is a fairly binary way to see a system. Where does functional, yet unoptimized lie? Where does “working, but unscaleable” sit? Any software engineer knows there are often multiple approaches to solving a problem, and there is often merit to improving a system, for the sake of organization, optimization, maintenance and stability. I think switching to gulp is worth the work investment.</p>
 <p>You can bet I have a massive Gruntfile to rework. Every journey begins with the smallest step.</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>First we do the node dance. Install Gulp!</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp</span><br></pre></td></tr></table></figure></p>
-
-<p>And then:</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure></p>
-
-<p>Now I add a gulpfile.js to my project, and </p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br></pre></td></tr></table></figure></p>
-
-<p>so far, so simple.</p>
-
-<p>now I actually need STUFF. Gulp plugins. Thankfully here is many. I just follwoed the same procedure for each</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp-changed</span><br><span class="line">npm install --save-dev gulp-concat</span><br><span class="line">npm install --save-dev gulp-copy</span><br><span class="line">npm install --save-dev gulp-stylus</span><br><span class="line">npm install --save-dev gulp-clean</span><br><span class="line">npm install --save-dev gulp-htmlmin</span><br><span class="line">npm install --save-dev gulp-cssmin</span><br><span class="line">npm install --save-dev gulp-uglify</span><br></pre></td></tr></table></figure></p>
-
-<p>If you used it in Grunt, most likely it is also in gulp. Notice I didnt add watch? That&#39;s already included in gulp. Awesome!</p>
-
-<p>Now one little thing you can do is explicitly include each plugin. That is well and good. Actually, if you start breaking your files up for organizational reasons (protip: we will) that&#39;s the way to go. If you have a shorter gulpfile.js, or just want to include everythign easily, heres a little trick</p>
-
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev matchdep</span><br></pre></td></tr></table></figure></p>
-
-<p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function loadModule(module) &#123;</span><br><span class="line">    global[module.replace(/^gulp-/, '')] = require(module);</span><br><span class="line">&#125;</span><br><span class="line">require('matchdep')</span><br><span class="line">    .filterDev('gulp-*')</span><br><span class="line">    .forEach(loadModule);</span><br><span class="line">```    </span><br><span class="line">    </span><br><span class="line">Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!</span><br><span class="line"></span><br><span class="line">Again, this is more practical, if you're going to stick to one file. </span><br><span class="line"></span><br><span class="line">Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets. </span><br><span class="line"></span><br><span class="line">In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;</span><br><span class="line"></span><br><span class="line">Its someting like this:</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">options.themeList = function themeList(themes) &#123;</span><br><span class="line">            var obj = &#123;&#125;;</span><br><span class="line">            for (var i = 0, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">                var root = 'src/public/styles/themes/' + themes[i];</span><br><span class="line">                obj[root + '/theme.css'] = root + '/theme.styl';</span><br><span class="line">            &#125;</span><br><span class="line">            return obj;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-
-<p>and somewhere I have a list of themes corresponding to folders, in my case I have 9 total. Lets pretend these are also attached to my session grunt options object. Basically:</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">options.themes = [</span><br><span class="line">        <span class="string">'ThemeOne'</span>,</span><br><span class="line">        <span class="string">'ThemeTwo'</span>,</span><br><span class="line">        <span class="string">'ThemeThree'</span>,</span><br><span class="line">        <span class="string">'ThemeFour'</span>,</span><br><span class="line">        <span class="string">'ThemeFive'</span>,</span><br><span class="line">        <span class="string">'ThemeSix'</span>,</span><br><span class="line">        <span class="string">'ThemeSeven'</span>,</span><br><span class="line">        <span class="string">'ThemeEight'</span>,</span><br><span class="line">        <span class="string">'ThemeNine'</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure></p>
-
-<p>And then, this is used in the stylus plugin for Grunt, in the Gruntfile.js</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">stylus: &#123;</span><br><span class="line">         themes: &#123;</span><br><span class="line">             options: &#123;use: [<span class="built_in">require</span>(<span class="string">'nib'</span>)]&#125; <span class="comment">//some stylus options</span></span><br><span class="line">             files: options.themeList (options.themes)</span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure></p>
-
-<p>There are probably simpler, and more elegant ways to do this. Actually, in my actual code there are some minor varitions from this, taht are related to implementation, but this should get the point across, easily. Grunt&#39;s initConfig Method is a big, honkin pile of JSON. Actually, in practice mine had gotton so large that I was looking at strategies to organize it when I stumbled upon Gulp.</p>
-
-<p>I wrote a similar setup in Gulp. I was able to encapsulate the method much more nicely, because Gulp is code-first! Its something like this:</p>
-
-<p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'stylus:themes'</span>, <span class="function"><span class="keyword">function</span> <span class="title">stylusThemes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> themes = options.themes;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">makeThemes</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> theme = themes[i],</span><br><span class="line">                themeFolder = <span class="string">'src/public/styles/themes/'</span> + theme,</span><br><span class="line">                stylusConfig = &#123;</span><br><span class="line">                    use: [<span class="string">'nib'</span>]</span><br><span class="line">                &#125;;</span><br><span class="line"> </span><br><span class="line">            gulp</span><br><span class="line">                .src(themeFolder + <span class="string">'/theme.styl'</span>)</span><br><span class="line">                .pipe(stylus(stylusConfig))</span><br><span class="line">                .pipe(gulp.dest(themeFolder));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    makeThemes(themes); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-
-<p>As a side note, I can&#39;t help but reflect upon some of the same organizational issues I encountered whilst working in say, Ext.js. There you have another, really big, configur-ish way to implement a module pattern. Its nice, but when you need to go outside the box, it can be challenging at a glance to figure out where stuff should live. I think theres a very reasonably attraction to tools like node and browserfy, and other very code-first approaches to code organization. I mentioned this in the last post, but in C# land, using more convention over configuration has proven time and time again to be a better way of doing things. I pity the dev using XML instead of FLuent nHibernate to configure nHibernate. It really is much better.</p>
-
-<p>So, there you have it. a Very very slightly not run-of-the mill task cross written on both platforms. To my eyes, the Gulp version is way more maintainable in the long run. However, the story doesn&#39;t end there. I ran the two side by side, just out of curiosity, to see which one is faster. Now, recall, these are pretty big tasks here. These aren&#39;t fired at request time from a client, but are preprocessed to make static resources. The only thing that truly benefits is like a file watch while working in the .stylus files. But, omigosh Gulp is faster.</p>
-
-<p>Here is the Grunt task ( I am using time-grunt to measure the speed):</p>
-
-<p><img src="/images/gulp/grunt-stylus-speed.png"></p>
-
-<p>Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css </p>
-
-<p>Now, here is the same thing in Gulp.</p>
-
-<p><img src="/images/gulp/gulp-stylus.png"></p>
-
-<p>I had to run it twice to be sure. Did it actually make the files? I looked. Yes, they&#39;re there. That&#39;s literally over 1000 times faster. 1064.891 times faster, to be more accurate.</p>
-
-<p>Wow. I expect huge gains during tasks that run under file watch during development.</p>
+        
+          <p class="article-more-link">
+            <a href="/2014/04/01/flirting_with_gulp_part_2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -687,35 +391,12 @@ And you can just make templates with that.</p>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>I use a lot of operating systems. Regularly, I use Windows, OSX and Linux. It seems like at work, unless I&#39;m doing somethig with virtual machines, I&#39;m typically on Windows. Now, I am not a fanboy of any particular OS. I believe they all have strengths and weaknesses, and I find I use them differntly, for differnt tasks. One very admitable shortcoming in Windows, is most certainly its console. It Just Sucks™.</p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>Now if you work in git, you might have installed, at some point, for windows the bash console emulator, Msys Git. Its nice, but not perfect. If you do any node development, you probably have many, many consoles open. Some are bash, some are standard windows. It gets annoying.</p>
-
-<p>Lately I&#39;ve been using Conemu. Its honestly fantastic, and frequently updated. And really resolved the issue of working between worlds. I did a few things to get it set up like I like.</p>
-
-<p>One of my favorite things about the Git console is, admittedly this little feature:</p>
-
-<p><img src="/images/you_need_a_better_console/Git-Bash-Here.png"></p>
-
-<p>uch a little thing, makes a big differnce.</p>
-
-<p>In conemu, do the following:</p>
-
-<ol><li>Open the settings. Either ightclick and select fromt he menu or Win+ Alt + P. Whatever.</li></ol>
-
-<p><img src="/images/you_need_a_better_console/conemu1.png"></p>
-
-<ol><li>Go to integration. Make sure the &quot;Conmemu Here&quot; is there, and the command looks correct. Should say someting like &quot;smd -cur_console:n&quot;</li></ol>
-
-<p><img src="/images/you_need_a_better_console/conemu2.png"></p>
-
-<ol><li><p>Click Register.</p></li><li><p>Magic</p></li></ol>
-
-<p><img src="/images/you_need_a_better_console/conemu3.png"></p>
-
-<p>You can also do cool stuff like automatically open Conemu with certain tabs open, use differnt themes and a lot of other stuff.</p>
+        <p>I use a lot of operating systems. Regularly, I use Windows, OSX and Linux. It seems like at work, unless I’m doing somethig with virtual machines, I’m typically on Windows. Now, I am not a fanboy of any particular OS. I believe they all have strengths and weaknesses, and I find I use them differntly, for differnt tasks. One very admitable shortcoming in Windows, is most certainly its console. It Just Sucks™.</p>
+        
+          <p class="article-more-link">
+            <a href="/2014/03/07/You-Need-a-Better-Console/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -754,18 +435,12 @@ And you can just make templates with that.</p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.</p>
-
-<p>I guess lately I&#39;ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I&#39;m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. </p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>The big thing with grunt, I&#39;ve noticed whilst working with it, is that the declarative JSON...mammoth.. gets pretty big after a while. I&#39;m aware there are strategies for refactoring and organizing your Gruntfiles, i just feel like I often can&#39;t bring myself to find time to just sit and simply refactor my Grunt tasks. So lately, at the shop, we&#39;ve been working on a scaffolding project to help us get up and running on future applications more rapidly. Now is my golden chance to refactor Grunt.. or?</p>
-
-<p>Gulp? Should I explore this as a viable option? Why not?</p>
-
-<p>These tools clearly compete for the exact same &#39;job&#39; in my toolbox. One works off of configuration, the other uses streams; its sort of &#39;code-first&#39;. I like that.  I am reminded of when I switched to fluent nHibernate configuration years ago, rather than xml configuration. It really made everything easier to read and compose. Maybe I could achieve similar benefits here. It seems equally simple. Theres four main things, &#39;task, watch, src, dest&#39;. That&#39;s really all. Also the modules seem smaller, and the concerns of each seem more seperate. And the most interesting part, is that the tasks seem to run as concurrently as possible. That, plus the fact they are essentialyl streams could result in much faster execution times. I suppose that isn&#39;t as big a deal when you&#39;re doing a preprocessing task, but during a file watch it can be really handy. It can also be handy if there are tasks related to CI.</p>
-
-<p>OK, let&#39;s play.</p>
+<p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. </p>
+        
+          <p class="article-more-link">
+            <a href="/2014/03/06/flirting_with_gulp_part_1/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -804,52 +479,11 @@ And you can just make templates with that.</p>
     <div class="article-entry" itemprop="articleBody">
       
         <p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. </p>
-
-<p>&lt;!-- more --&gt;</p>
-
-<p>First of all, there’s not layer of abstraction for you. Starting from the build is great, but there’s a lot of advantages to being able to start form the source, and build it yourself. This gets you in the game. Sometimes , for example there is an older version of a module in the gallery, and you want the latest one, which is available on the modules site. Maybe the way to make a module work, is just a simple fix, and would be easy if you could see the source. In fact, on the subject of modules, the source has many “must have” modules already included in the source drop, such as Tag Cloud, Lucene, Search and others. The built version you can download has been slimmed down for size. This isn’t an issue for use, since we will build ourselves. Since theres a lot already included, this helps you configure very quickly. Maybe you want to make your own module. Seriously, working from the source is the way to go. Plus, most importantly, its much more comfortable to work in Visual Studio. You know your personal arsenal of plugins is working fine, when everything builds and runs, and when you can run all your tests.</p>
-
-<p>There’s a number of ways to acquire the source. If you go to the Orchard project site, they are going to basically walk you through setting up Mercurial, and pulling the source down that way. You don’t necessarily have to do this. Clearly, I recommend using some manner of source control- and if you want to hang with the Orchard team you need to use Hg. That’s well and fine but I’m really into Github, so that’s what I use. If this is what you want to do, just go download the source from codeplex and then start your own repo. From here on out, this will be the main tool that powers all your orchard sites. When you build you can just include and exclude from this. If a site gets messed up, you can make a quick build and override the files. This source won’t overwrite your Media and Site folders; in fact- I put those folders in my .gitignore file. Whatever works for you in terms of deployment and source control is what you should do.</p>
-
-<p>I will add that I keep my personal clone of the orchard source on my local dev machine. Orchard is actually pretty big – well the source is. I suppose that’s a side effect of having so many projects and so much modularity.</p>
-
-<p>Go ahead and explore the Source drop. It should look like the image below (more or less) There’s some things to note here.</p>
-
-<p><img src="/images/orchard/orchard7.png"></p>
-
-<p>First off there’s a ton of .hg files like hg tags and so on. This is all just stuff Mercurial uses. (Hg is the periodic table abbreviation for Mercury – get it? har har.) Neat.</p>
-
-<p>There is a lib folder. A bunch of third party libraries live there. Orchard uses them. What libraries? Autofac, Clay, Castle Windsor, Nuget, Lucene, Log4Net, jQuery, nHibernate and stuff like that. Basically a ton of flippin’ awesome open source tools you should probably learn about anyways.  Honestly seeing this lib folder was a huge step in helping me decide to adopt Orchard as a core tool in my toolbelt. The Orchard team- they have taste!</p>
-
-<p>Then, of course there are a few .cmd files. These are scripts we utilize to build. Can you guess what the file ClickToBuild does? You probably guessed correctly. It takes this Orchard source, and generates a built project we can use to deploy. It also runs your tests for you. I should mention that you can <em>technically</em> put the source on your server, and it will work. Its also a massive waste of disk space. Don’t do it.</p>
-
-<p>Then finally there is the orchard src itself. Take a good look at how this entire source is laid out. This is par for the course how a good project should be laid out. The source has its own folder, and the parent folder has a lot of ‘meta’ stuff related to the source.</p>
-
-<p>Now look in the source itself, and then open Orchard.Web.</p>
-
-<p><img src="/images/orchard/orchard8.png"></p>
-
-<p>Look familiar? it’s the same folder structure we saw from the Webmatrix project we got from the Web Platform installer. I’m pointing this out, because this is basically going to be the part that gets deployed, after the build, with some exception. I’ll explain Look in the Modules in this directory.</p>
-
-<p><img src="/images/orchard/orchard9.png"></p>
-
-<p>Each one of these modules is an entirely separate self contained project. Each has its own code, dependencies, models, controllers – everything. During the build, each module’s dependencies are reduced down, otherwise the final build would be really really big.</p>
-
-<p>Now for the fun part, go back to the src folder and find the .sln file. That’s what Visual Studio Uses. First, hit the collapse all button. You’ll thank me later. Orchard is made up of a ton of smaller projects, one for each of those modules we saw, and of course the core and orchard.web itself. check out the solution explorer.</p>
-
-<p><img src="/images/orchard/orchard10.png"></p>
-
-<p>There’s only a few projects in the root. the most important ones are Core and Web. Remember when we explored Orchard.Web earlier in the actual windows File explorer? Modules was inside of Orchard.Web. Here it appears outside, and at the top. That is, in fact the exact same folder. Now if you open in VS2010, it becomes more obvious. The folder looks like its opacity has been lowered, as if it’s a ghost folder. Nonetheless, that’s just an alias to the folder in Orchard.Web. Its listed atop for convenience, I assume.  Same case for Specs,Tests, Themes and Tools. Themes, for example is like Modules. The folder actually resides in the startup project, Orchard.Web.</p>
-
-<p>I’m just pointing this out, because at first it confused me. Then I realized how handy that actually was.</p>
-
-<p>So to rehash, these folders are all really located elsewhere:</p>
-
-<p>Modules – Actually is located in Orchard.Web and is literally every extra module you’ve downloaded or added to Orchard, as well as the ones that were already there. This thing is big.
-Specs + Tests  - These are for unit testing, integrations tests and that sort of thing..
-Themes – All you themes go here. This is the last stop for overriding the appearance of Orchard. The folder really lives in Orchard.Web
-Tools – This has testing helpers, and the orchard command line. More on this later.
-I think more project exploration is in order, and also covering the sparkle magic that is the orchard command line environment. But that is for another day!</p>
+        
+          <p class="article-more-link">
+            <a href="/2013/04/05/using_orchard_cms_2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
