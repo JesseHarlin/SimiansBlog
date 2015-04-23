@@ -3,9 +3,9 @@
   <title><![CDATA[Simian's Blog]]></title>
   <subtitle><![CDATA[Code, Music, Interactive Media, Community]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
+  <link href="http://simiansblog.com/"/>
   <updated>2015-04-20T03:42:38.000Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://simiansblog.com/</id>
   
   <author>
     <name><![CDATA[Jesse Harlin]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[organizing a slush generator]]></title>
-    <link href="http://yoursite.com/2015/04/05/organizing-a-slush-generator/"/>
-    <id>http://yoursite.com/2015/04/05/organizing-a-slush-generator/</id>
+    <link href="http://simiansblog.com/2015/04/05/organizing-a-slush-generator/"/>
+    <id>http://simiansblog.com/2015/04/05/organizing-a-slush-generator/</id>
     <published>2015-04-06T02:56:34.000Z</published>
     <updated>2015-04-20T03:42:38.000Z</updated>
     <content type="html"><![CDATA[<p>If you’re making a scaffold, or even a gulpfile of any degree of size or signifigance, you’ll quickly learn that placing every task you make in a single file can lead to a big mess after a while. One of the most attractive things about slush, is that it uses gulp, and one of the most attractive things about gulp is that it is extremely organizeable, due to its modular task building system.</p>
@@ -52,18 +52,18 @@
     
     </summary>
     
-      <category term="project organization" scheme="http://yoursite.com/tags/project-organization/"/>
+      <category term="project organization" scheme="http://simiansblog.com/tags/project-organization/"/>
     
-      <category term="scaffolding" scheme="http://yoursite.com/tags/scaffolding/"/>
+      <category term="scaffolding" scheme="http://simiansblog.com/tags/scaffolding/"/>
     
-      <category term="slush" scheme="http://yoursite.com/tags/slush/"/>
+      <category term="slush" scheme="http://simiansblog.com/tags/slush/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Testing a Slush Generator]]></title>
-    <link href="http://yoursite.com/2015/04/04/testing-a-slush-generator/"/>
-    <id>http://yoursite.com/2015/04/04/testing-a-slush-generator/</id>
+    <link href="http://simiansblog.com/2015/04/04/testing-a-slush-generator/"/>
+    <id>http://simiansblog.com/2015/04/04/testing-a-slush-generator/</id>
     <published>2015-04-05T03:43:43.000Z</published>
     <updated>2015-04-06T03:26:15.000Z</updated>
     <content type="html"><![CDATA[<img src="/images/slush-howto/slush_test.png">
@@ -96,14 +96,14 @@
     
     </summary>
     
-      <category term="slush, javascript, TDD, testing, scaffolding, generator" scheme="http://yoursite.com/tags/slush-javascript-TDD-testing-scaffolding-generator/"/>
+      <category term="slush, javascript, TDD, testing, scaffolding, generator" scheme="http://simiansblog.com/tags/slush-javascript-TDD-testing-scaffolding-generator/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Lets Make a Basic Slush Generator: Part I]]></title>
-    <link href="http://yoursite.com/2015/03/29/lets-make-a-basic-slush-generator/"/>
-    <id>http://yoursite.com/2015/03/29/lets-make-a-basic-slush-generator/</id>
+    <link href="http://simiansblog.com/2015/03/29/lets-make-a-basic-slush-generator/"/>
+    <id>http://simiansblog.com/2015/03/29/lets-make-a-basic-slush-generator/</id>
     <published>2015-03-30T04:09:52.000Z</published>
     <updated>2015-04-21T05:10:51.000Z</updated>
     <content type="html"><![CDATA[<img src="/images/slush-howto/slushlogo.png">
@@ -171,22 +171,22 @@
     
     </summary>
     
-      <category term="generator" scheme="http://yoursite.com/tags/generator/"/>
+      <category term="generator" scheme="http://simiansblog.com/tags/generator/"/>
     
-      <category term="gulp" scheme="http://yoursite.com/tags/gulp/"/>
+      <category term="gulp" scheme="http://simiansblog.com/tags/gulp/"/>
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+      <category term="javascript" scheme="http://simiansblog.com/tags/javascript/"/>
     
-      <category term="scaffolding" scheme="http://yoursite.com/tags/scaffolding/"/>
+      <category term="scaffolding" scheme="http://simiansblog.com/tags/scaffolding/"/>
     
-      <category term="slush" scheme="http://yoursite.com/tags/slush/"/>
+      <category term="slush" scheme="http://simiansblog.com/tags/slush/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[New Release: Phaser GLGL Loader for Webpack]]></title>
-    <link href="http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/"/>
-    <id>http://yoursite.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/</id>
+    <link href="http://simiansblog.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/"/>
+    <id>http://simiansblog.com/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/</id>
     <published>2015-03-29T04:11:53.000Z</published>
     <updated>2015-04-06T03:01:26.000Z</updated>
     <content type="html"><![CDATA[<p>You know what sucks? The way phaser loads GLSL files. In that, it doesnt by itself. What also sucks is including code for a totally differnt language as a list of strings in your codebase. Whenever you come across this sort of thing, its usually best to try and store the “nonindigenous code” somewhere sles, like a seperate file. This is especially true if you find it can be templated.</p>
@@ -216,22 +216,22 @@
     
     </summary>
     
-      <category term="game development" scheme="http://yoursite.com/tags/game-development/"/>
+      <category term="game development" scheme="http://simiansblog.com/tags/game-development/"/>
     
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+      <category term="javascript" scheme="http://simiansblog.com/tags/javascript/"/>
     
-      <category term="node" scheme="http://yoursite.com/tags/node/"/>
+      <category term="node" scheme="http://simiansblog.com/tags/node/"/>
     
-      <category term="phaser" scheme="http://yoursite.com/tags/phaser/"/>
+      <category term="phaser" scheme="http://simiansblog.com/tags/phaser/"/>
     
-      <category term="webpack" scheme="http://yoursite.com/tags/webpack/"/>
+      <category term="webpack" scheme="http://simiansblog.com/tags/webpack/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Thunder Plains 2014 Videos]]></title>
-    <link href="http://yoursite.com/2015/01/18/ThunderPlains_Video/"/>
-    <id>http://yoursite.com/2015/01/18/ThunderPlains_Video/</id>
+    <link href="http://simiansblog.com/2015/01/18/ThunderPlains_Video/"/>
+    <id>http://simiansblog.com/2015/01/18/ThunderPlains_Video/</id>
     <published>2015-01-18T18:00:00.000Z</published>
     <updated>2015-04-06T03:14:41.000Z</updated>
     <content type="html"><![CDATA[<p>After a lot of time spend, I’ve finally finished editing all of the Thunder Plains videos from 2014. You can find them all <a href="https://www.youtube.com/watch?v=oAgO9sJ7r54&amp;list=PLdW0ayjzW_LCC4wYjQkivRl8QK4EvZ3i_" target="_blank" rel="external">online</a></p>
@@ -268,8 +268,8 @@
   
   <entry>
     <title><![CDATA[Talk: Angular with React.js]]></title>
-    <link href="http://yoursite.com/2014/12/16/angular-and-react-talk/"/>
-    <id>http://yoursite.com/2014/12/16/angular-and-react-talk/</id>
+    <link href="http://simiansblog.com/2014/12/16/angular-and-react-talk/"/>
+    <id>http://simiansblog.com/2014/12/16/angular-and-react-talk/</id>
     <published>2014-12-16T17:30:00.000Z</published>
     <updated>2015-03-19T10:43:29.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Angular_with_React-js">Angular with React.js</h1><h2 id="About">About</h2><p>I recently gave a talk at the local Javascript user group about my experiences with using Angular and React in a similar project. In some ways, this was a technical talk, covering various ways to integrate an external lib (React) properly into the context of a very differnt framework (Angular). However, much of the talk really centered around the role of abstraction in a project, and learning how to assess the tradeoffs of various tools one might adopt.</p>
@@ -285,8 +285,8 @@
   
   <entry>
     <title><![CDATA[Flirting with Gulp: Part 2]]></title>
-    <link href="http://yoursite.com/2014/04/01/flirting_with_gulp_part_2/"/>
-    <id>http://yoursite.com/2014/04/01/flirting_with_gulp_part_2/</id>
+    <link href="http://simiansblog.com/2014/04/01/flirting_with_gulp_part_2/"/>
+    <id>http://simiansblog.com/2014/04/01/flirting_with_gulp_part_2/</id>
     <published>2014-04-01T17:00:00.000Z</published>
     <updated>2015-04-06T03:38:38.000Z</updated>
     <content type="html"><![CDATA[<p>At this point I’ve played with gulp enough to make the decision that I’d like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:</p>
@@ -334,14 +334,14 @@
     
     </summary>
     
-      <category term="Gulp, Task Runners, Javascript" scheme="http://yoursite.com/tags/Gulp-Task-Runners-Javascript/"/>
+      <category term="Gulp, Task Runners, Javascript" scheme="http://simiansblog.com/tags/Gulp-Task-Runners-Javascript/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Using Windows: You Need A Better Console]]></title>
-    <link href="http://yoursite.com/2014/03/07/You-Need-a-Better-Console/"/>
-    <id>http://yoursite.com/2014/03/07/You-Need-a-Better-Console/</id>
+    <link href="http://simiansblog.com/2014/03/07/You-Need-a-Better-Console/"/>
+    <id>http://simiansblog.com/2014/03/07/You-Need-a-Better-Console/</id>
     <published>2014-03-07T17:30:00.000Z</published>
     <updated>2015-04-06T03:01:34.000Z</updated>
     <content type="html"><![CDATA[<p>I use a lot of operating systems. Regularly, I use Windows, OSX and Linux. It seems like at work, unless I’m doing somethig with virtual machines, I’m typically on Windows. Now, I am not a fanboy of any particular OS. I believe they all have strengths and weaknesses, and I find I use them differntly, for differnt tasks. One very admitable shortcoming in Windows, is most certainly its console. It Just Sucks™.</p>
@@ -374,18 +374,18 @@
     
     </summary>
     
-      <category term="Conemu" scheme="http://yoursite.com/tags/Conemu/"/>
+      <category term="Conemu" scheme="http://simiansblog.com/tags/Conemu/"/>
     
-      <category term="Console" scheme="http://yoursite.com/tags/Console/"/>
+      <category term="Console" scheme="http://simiansblog.com/tags/Console/"/>
     
-      <category term="Tools" scheme="http://yoursite.com/tags/Tools/"/>
+      <category term="Tools" scheme="http://simiansblog.com/tags/Tools/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Flirting with Gulp: Part 1]]></title>
-    <link href="http://yoursite.com/2014/03/06/flirting_with_gulp_part_1/"/>
-    <id>http://yoursite.com/2014/03/06/flirting_with_gulp_part_1/</id>
+    <link href="http://simiansblog.com/2014/03/06/flirting_with_gulp_part_1/"/>
+    <id>http://simiansblog.com/2014/03/06/flirting_with_gulp_part_1/</id>
     <published>2014-03-06T18:00:00.000Z</published>
     <updated>2015-04-06T03:30:11.000Z</updated>
     <content type="html"><![CDATA[<p>Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.</p>
@@ -402,14 +402,14 @@
     
     </summary>
     
-      <category term="Gulp, Task Runners, Javascript" scheme="http://yoursite.com/tags/Gulp-Task-Runners-Javascript/"/>
+      <category term="Gulp, Task Runners, Javascript" scheme="http://simiansblog.com/tags/Gulp-Task-Runners-Javascript/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Orchard CMS: Getting Setup, Part 2, Source Setup and Workflow]]></title>
-    <link href="http://yoursite.com/2013/04/05/using_orchard_cms_2/"/>
-    <id>http://yoursite.com/2013/04/05/using_orchard_cms_2/</id>
+    <link href="http://simiansblog.com/2013/04/05/using_orchard_cms_2/"/>
+    <id>http://simiansblog.com/2013/04/05/using_orchard_cms_2/</id>
     <published>2013-04-05T06:00:00.000Z</published>
     <updated>2015-04-06T03:01:58.000Z</updated>
     <content type="html"><![CDATA[<p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. </p>
@@ -440,14 +440,14 @@
     
     </summary>
     
-      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://yoursite.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
+      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://simiansblog.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Orchard CMS: Getting Setup, Part 1, the Non-Source Setup]]></title>
-    <link href="http://yoursite.com/2013/04/05/using_orchard_cms_1/"/>
-    <id>http://yoursite.com/2013/04/05/using_orchard_cms_1/</id>
+    <link href="http://simiansblog.com/2013/04/05/using_orchard_cms_1/"/>
+    <id>http://simiansblog.com/2013/04/05/using_orchard_cms_1/</id>
     <published>2013-04-05T06:00:00.000Z</published>
     <updated>2015-04-06T03:02:13.000Z</updated>
     <content type="html"><![CDATA[<p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.</p>
@@ -482,14 +482,14 @@
     
     </summary>
     
-      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://yoursite.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
+      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://simiansblog.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[I Made an Intro for my Usergroup: The Legend of OKC.js]]></title>
-    <link href="http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/"/>
-    <id>http://yoursite.com/2013/03/04/i_made_an_intro_for_okcjs/</id>
+    <link href="http://simiansblog.com/2013/03/04/i_made_an_intro_for_okcjs/"/>
+    <id>http://simiansblog.com/2013/03/04/i_made_an_intro_for_okcjs/</id>
     <published>2013-03-04T17:30:00.000Z</published>
     <updated>2015-03-23T08:42:56.000Z</updated>
     <content type="html"><![CDATA[<p>Recently, I decided to make a short video intro to put in front of the videos we record at my usergroup. I composed the music myself and did all the animation and compositing.</p>
@@ -499,14 +499,14 @@
     <![CDATA[<p>Recently, I decided to make a short video intro to put in front of the videos we record at my usergroup. I composed the music myself and ]]>
     </summary>
     
-      <category term="OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community" scheme="http://yoursite.com/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/"/>
+      <category term="OKCjs, Usergroup, Video Compositing, Chiptunes, Animation, Javascript, Community" scheme="http://simiansblog.com/tags/OKCjs-Usergroup-Video-Compositing-Chiptunes-Animation-Javascript-Community/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[How to Loop an Animation in After Effects]]></title>
-    <link href="http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/"/>
-    <id>http://yoursite.com/2013/03/03/loop_an_animation_in_aftereffects/</id>
+    <link href="http://simiansblog.com/2013/03/03/loop_an_animation_in_aftereffects/"/>
+    <id>http://simiansblog.com/2013/03/03/loop_an_animation_in_aftereffects/</id>
     <published>2013-03-03T15:00:00.000Z</published>
     <updated>2015-04-06T03:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>Occasionally I fond myself doing work in Adobe After Effects. One of the most common tasks I do, when compositing is have one of my clips loop indefinitely. This seriously beats the alternative: copy and paste hell.</p>
@@ -539,14 +539,14 @@
     
     </summary>
     
-      <category term="Animation, After Effects, Scripting" scheme="http://yoursite.com/tags/Animation-After-Effects-Scripting/"/>
+      <category term="Animation, After Effects, Scripting" scheme="http://simiansblog.com/tags/Animation-After-Effects-Scripting/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Okc.js : The Making of an Html5 Game]]></title>
-    <link href="http://yoursite.com/2013/02/18/OKCjs_making_of_an_html5_game/"/>
-    <id>http://yoursite.com/2013/02/18/OKCjs_making_of_an_html5_game/</id>
+    <link href="http://simiansblog.com/2013/02/18/OKCjs_making_of_an_html5_game/"/>
+    <id>http://simiansblog.com/2013/02/18/OKCjs_making_of_an_html5_game/</id>
     <published>2013-02-18T18:00:00.000Z</published>
     <updated>2015-03-23T08:13:43.000Z</updated>
     <content type="html"><![CDATA[<p>Tomorrow, my usergroup is going to have a talk I’m absolutely certain will be incredibly awesome. The guys at Goldfire Studios, James Simpson and Luke Simpkins,  are going to be running the show and talking about their recent creation “Casino RPG”.  It was featured recently on a kickstarter, that, along with many others,  my wife and I contributed to.</p>
@@ -556,14 +556,14 @@
     <![CDATA[<p>Tomorrow, my usergroup is going to have a talk I’m absolutely certain will be incredibly awesome. The guys at Goldfire Studios, James Sim]]>
     </summary>
     
-      <category term="Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG" scheme="http://yoursite.com/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/"/>
+      <category term="Oklahoma City Javascript, Community, Goldfire Studios, Html5, Javascript, OKCjs, James Simpson, Luke Simpkins, Casino RPG" scheme="http://simiansblog.com/tags/Oklahoma-City-Javascript-Community-Goldfire-Studios-Html5-Javascript-OKCjs-James-Simpson-Luke-Simpkins-Casino-RPG/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Constructing Your Own Drumkit in Battery (From Scratch)]]></title>
-    <link href="http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/"/>
-    <id>http://yoursite.com/2012/10/01/constructing_your_own_drumkit_in_battery/</id>
+    <link href="http://simiansblog.com/2012/10/01/constructing_your_own_drumkit_in_battery/"/>
+    <id>http://simiansblog.com/2012/10/01/constructing_your_own_drumkit_in_battery/</id>
     <published>2012-10-01T16:30:00.000Z</published>
     <updated>2015-04-17T22:20:17.000Z</updated>
     <content type="html"><![CDATA[<p>One of my favorite sound sets is the 8-bit retro sound palette that one gets from the sample channel of an old Nintendo. I have a tool I really enjoy using in my studio, and that is a Nintendo that has modified cartridge that acts as a midi controller in it. We’ve had some good times together. I’ve been using this thing, literally since the 90s and its been a frequent go-to toy in my arsenal. As some point along the way, I swapped out my bulkier TV screen I used with it for a smaller one, I mounted on the front.</p>
@@ -619,24 +619,24 @@
     
     </summary>
     
-      <category term="Audio Editing" scheme="http://yoursite.com/tags/Audio-Editing/"/>
+      <category term="Audio Editing" scheme="http://simiansblog.com/tags/Audio-Editing/"/>
     
-      <category term="Aux" scheme="http://yoursite.com/tags/Aux/"/>
+      <category term="Aux" scheme="http://simiansblog.com/tags/Aux/"/>
     
-      <category term="Bus" scheme="http://yoursite.com/tags/Bus/"/>
+      <category term="Bus" scheme="http://simiansblog.com/tags/Bus/"/>
     
-      <category term="Digital Performer" scheme="http://yoursite.com/tags/Digital-Performer/"/>
+      <category term="Digital Performer" scheme="http://simiansblog.com/tags/Digital-Performer/"/>
     
-      <category term="Insert Effects" scheme="http://yoursite.com/tags/Insert-Effects/"/>
+      <category term="Insert Effects" scheme="http://simiansblog.com/tags/Insert-Effects/"/>
     
-      <category term="Monitor" scheme="http://yoursite.com/tags/Monitor/"/>
+      <category term="Monitor" scheme="http://simiansblog.com/tags/Monitor/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[A Quick Fix: Monitoring in Digital Performer]]></title>
-    <link href="http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/"/>
-    <id>http://yoursite.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/</id>
+    <link href="http://simiansblog.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/"/>
+    <id>http://simiansblog.com/2012/08/01/quick_fix_monitoring_audio_digital_performer/</id>
     <published>2012-08-01T16:30:00.000Z</published>
     <updated>2015-04-06T03:39:58.000Z</updated>
     <content type="html"><![CDATA[<p>Recently I was working on a short project, and I was in need of monitoring my input audio as it was being passed thorough my inserts. As you know the later versions of Digital Performer (in this case 7.24) have a really useful column you may have noticed: the “Mon” column next to the input column in the tacks view of the sequencer.</p>
@@ -661,14 +661,14 @@
     
     </summary>
     
-      <category term="Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects" scheme="http://yoursite.com/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/"/>
+      <category term="Audio Editing, Digital Performer, Monitor, Aux, Bus, Insert Effects" scheme="http://simiansblog.com/tags/Audio-Editing-Digital-Performer-Monitor-Aux-Bus-Insert-Effects/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[How to Split a List in Javascript]]></title>
-    <link href="http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/"/>
-    <id>http://yoursite.com/2012/03/18/simple_Take_split_list_jquery/</id>
+    <link href="http://simiansblog.com/2012/03/18/simple_Take_split_list_jquery/"/>
+    <id>http://simiansblog.com/2012/03/18/simple_Take_split_list_jquery/</id>
     <published>2012-03-18T17:00:00.000Z</published>
     <updated>2015-04-06T03:40:23.000Z</updated>
     <content type="html"><![CDATA[<p>Occasionally someone taps my should to ask a quick javascript question. I figure that if someone is asking, its probably worth writing a quick blog post about. This post is geared to someone that is more or less newer to frontend stuff, and is looking for a few tips to help them out.</p>
@@ -701,14 +701,14 @@
     
     </summary>
     
-      <category term="Javascript, jQuery" scheme="http://yoursite.com/tags/Javascript-jQuery/"/>
+      <category term="Javascript, jQuery" scheme="http://simiansblog.com/tags/Javascript-jQuery/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Orchard and Livewriter]]></title>
-    <link href="http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/"/>
-    <id>http://yoursite.com/2012/02/01/Orchard_and_LiveWriter/</id>
+    <link href="http://simiansblog.com/2012/02/01/Orchard_and_LiveWriter/"/>
+    <id>http://simiansblog.com/2012/02/01/Orchard_and_LiveWriter/</id>
     <published>2012-02-01T14:30:00.000Z</published>
     <updated>2015-04-06T03:40:34.000Z</updated>
     <content type="html"><![CDATA[<p>I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWriter, rather than the HTML editor on the remote blog. For one, you can work offline, which might be handy now and then if you’re in a situation where you don’t have a decent internet connection. A second advantage is the fact that you can keep a local backup of all your posts. I don’t recommend this being your only backup, of course- but hey a little replication doesn’t hurt. Of course my favorite reason is to make use of the superior editor and plugins. Really, the editor is nice. It feels like Word with spell check and such, but you can also go into the source view and make sure everything is clean. It doesn’t inject a bunch of junk into your markup either.</p>
@@ -734,7 +734,7 @@
     
     </summary>
     
-      <category term="Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing" scheme="http://yoursite.com/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/"/>
+      <category term="Orchard, Live Writer, Editor, Posting, Live Writer Plugins, Xml-Rpc, Remote Content Publishing" scheme="http://simiansblog.com/tags/Orchard-Live-Writer-Editor-Posting-Live-Writer-Plugins-Xml-Rpc-Remote-Content-Publishing/"/>
     
   </entry>
   
