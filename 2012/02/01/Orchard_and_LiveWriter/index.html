@@ -91,27 +91,42 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>I decided to make a quick post detailing how to connect Orchard CMS with Live Writer. There are a number of advantages to using LiveWriter, rather than the HTML editor on the remote blog. For one, you can work offline, which might be handy now and then if you’re in a situation where you don’t have a decent internet connection. A second advantage is the fact that you can keep a local backup of all your posts. I don’t recommend this being your only backup, of course- but hey a little replication doesn’t hurt. Of course my favorite reason is to make use of the superior editor and plugins. Really, the editor is nice. It feels like Word with spell check and such, but you can also go into the source view and make sure everything is clean. It doesn’t inject a bunch of junk into your markup either.</p>
-<a id="more"></a>
-<p>Ok, so the first thing to make sure of, is that you actually have Live Writer already installed. In my case I did, because it came with the Windows Live suite, but if you don’t : Here is the link to get it.</p>
-<p>Now lets assume you’ve already deployed Orchard on your server, or into the cloud or however you wish to do it. I started Live Writer and was Immediately prompted with this:</p>
-<img src="/images/orchard_and_livewriter/choose-blog-service-orchard-livewriter_thumb.jpg">
-<p>Make sure you pick the last option: Other Services. Now you’ll be prompted to fill our your blog information:</p>
-<img src="/images/orchard_and_livewriter/orchad-and-livewriter-fill-out-settings_thumb.jpg">
-<p>This part may give you some trouble if you’re not sure what to type, so I’ll be clear here. The address is not for the address of your root Orchard installation(your homepage) , but for the blog itself. Orchard is capable of hosting many blogs per orchard site, you see. If you are using Orchard though, for just one blog – that blog may very well be your homepage in that case. For me, my blog wasn’t my homepage at all – it was somewhere else. As for the Username and password, that is the user that will be posting. The user needs permissions to post of course. Then type that user’s password in. This might be your admin name, it may not- but either way the user needs to exist on the Orchard site and needs to be able to make blog posts.</p>
-<p>So everything is good … you click next and</p>
-<img src="/images/orchard_and_livewriter/orchard-and-livewriter-mess-up_thumb.jpg">
-<p>Whoops. If you saw this, then something went wrong. The most likely culprit is that your Orchard installation did not have remote publishing enabled. No problemo, that’s an easy fix.</p>
-<img src="/images/orchard_and_livewriter/orchard-and-livewriter-enable-remote_thumb.jpg">
-<p>I logged in, and went to the modules section in the Dashboard of my site. You can search for the module, and enable it. In case you’re curious, this all works by Xml-RPC. That’s “eXtended Markup Language Remote Procedure Call”, for what its worth. If you’re really curious, Orchard has some documentation about it. Try connecting again, just hit the back button and then re run it.</p>
-<p>If things go well, you get a different window, after Live Writer Discovers your blog.</p>
-<img src="/images/orchard_and_livewriter/orchard-and-livewriter_thumb.jpg">
-<p>Basically, Live Writer is attempting to discover your blog’s theme in order to make the blog preview. go ahead and select ‘Yes’. In my case, the preview wasn’t perfect – some of the formatting wasn’t quite right, but it was useful enough to help give me an idea.</p>
-<img src="/images/orchard_and_livewriter/livewriter-and-orchard-name-blog_thumb.jpg">
 
+<p>&lt;!-- more --&gt;</p>
+
+<p>Ok, so the first thing to make sure of, is that you actually have Live Writer already installed. In my case I did, because it came with the Windows Live suite, but if you don’t : Here is the link to get it.</p>
+
+<p>Now lets assume you’ve already deployed Orchard on your server, or into the cloud or however you wish to do it. I started Live Writer and was Immediately prompted with this:</p>
+
+<p><img src="/images/orchard_and_livewriter/choose-blog-service-orchard-livewriter_thumb.jpg"></p>
+
+<p>Make sure you pick the last option: Other Services. Now you’ll be prompted to fill our your blog information:</p>
+
+<p><img src="/images/orchard_and_livewriter/orchad-and-livewriter-fill-out-settings_thumb.jpg"></p>
+
+<p>This part may give you some trouble if you’re not sure what to type, so I’ll be clear here. The address is not for the address of your root Orchard installation(your homepage) , but for the blog itself. Orchard is capable of hosting many blogs per orchard site, you see. If you are using Orchard though, for just one blog – that blog may very well be your homepage in that case. For me, my blog wasn’t my homepage at all – it was somewhere else. As for the Username and password, that is the user that will be posting. The user needs permissions to post of course. Then type that user’s password in. This might be your admin name, it may not- but either way the user needs to exist on the Orchard site and needs to be able to make blog posts.</p>
+
+<p>So everything is good … you click next and</p>
+
+<p><img src="/images/orchard_and_livewriter/orchard-and-livewriter-mess-up_thumb.jpg"></p>
+
+<p>Whoops. If you saw this, then something went wrong. The most likely culprit is that your Orchard installation did not have remote publishing enabled. No problemo, that’s an easy fix.</p>
+
+<p><img src="/images/orchard_and_livewriter/orchard-and-livewriter-enable-remote_thumb.jpg"></p>
+
+<p>I logged in, and went to the modules section in the Dashboard of my site. You can search for the module, and enable it. In case you’re curious, this all works by Xml-RPC. That’s “eXtended Markup Language Remote Procedure Call”, for what its worth. If you’re really curious, Orchard has some documentation about it. Try connecting again, just hit the back button and then re run it.</p>
+
+<p>If things go well, you get a different window, after Live Writer Discovers your blog.</p>
+
+<p><img src="/images/orchard_and_livewriter/orchard-and-livewriter_thumb.jpg"></p>
+
+<p>Basically, Live Writer is attempting to discover your blog’s theme in order to make the blog preview. go ahead and select ‘Yes’. In my case, the preview wasn’t perfect – some of the formatting wasn’t quite right, but it was useful enough to help give me an idea.</p>
+
+<p><img src="/images/orchard_and_livewriter/livewriter-and-orchard-name-blog_thumb.jpg"></p>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://simiansblog.com/2012/02/01/Orchard_and_LiveWriter/" data-id="ci8tkiywp001uas4ao6k5cz0i" class="article-share-link">Share</a>
+      <a data-url="http://simiansblog.com/2012/02/01/Orchard_and_LiveWriter/" data-id="ci8v8tuqn001vd44a6cr7r1dd" class="article-share-link">Share</a>
       
         <a href="http://simiansblog.com/2012/02/01/Orchard_and_LiveWriter/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -174,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03/">March 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/04/">April 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/03/">March 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02/">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">October 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/08/">August 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/03/">March 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/02/">February 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -186,7 +201,11 @@
       <ul>
         
           <li>
-            <a href="/2015/04/05/organizing-a-slush-generator/">organizing a slush generator</a>
+            <a href="/2015/04/24/Organizing-A-Slush-Generator-Part-2/">Organizing A Slush Generator Part 2 : Testing</a>
+          </li>
+        
+          <li>
+            <a href="/2015/04/05/Organizing-A-Slush-Generator-Part-1/">Organizing A Slush Generator Part 1 : Structure</a>
           </li>
         
           <li>
@@ -199,10 +218,6 @@
         
           <li>
             <a href="/2015/03/28/New-Release-Phaser-GLGL-Loader-for-Webpack/">New Release: Phaser GLGL Loader for Webpack</a>
-          </li>
-        
-          <li>
-            <a href="/2015/01/18/ThunderPlains_Video/">Thunder Plains 2014 Videos</a>
           </li>
         
       </ul>
