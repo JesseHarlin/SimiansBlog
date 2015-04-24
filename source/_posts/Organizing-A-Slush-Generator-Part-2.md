@@ -1,12 +1,12 @@
 title: "Organizing A Slush Generator Part 2 : Testing"
 date: 2015-04-24 00:10:42
-tags:
+tags: Slush, Mocking, Reqire, Testing
 ---
 
 
 Part of the reason of an improced organization is a better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.
 
-Because We have 3 totally separate files with separate jobs-each test file will also look pretty differnt.
+Because We have 4 totally separate files with separate jobs-each test file will also look pretty different.
 
 <!-- more -->
 
@@ -23,7 +23,7 @@ var rewire = require('rewire');
 var defaultTransforms = rewire('./../../slush/default/answers');
 ```
 
-So we use `reqire`, not `require`.
+So we use `rewire`, not `require`.
 
 
 Here is mocking both the win32 defaults and nonwin32 defaults, with chai's expect for assertion.
