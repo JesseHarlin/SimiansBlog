@@ -1,6 +1,6 @@
 title: "Organizing A Slush Generator Part 2 : Testing"
 date: 2015-04-24 00:10:42
-tags: Slush, Mocking, Reqire, Testing
+tags: [Slush, Mocking, Reqire, Testing]
 ---
 
 
