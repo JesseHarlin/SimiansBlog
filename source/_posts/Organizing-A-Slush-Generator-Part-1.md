@@ -1,4 +1,4 @@
-title: "organizing a slush generator"
+title: "Organizing A Slush Generator Part 1 : Structure"
 date: 2015-04-05 21:56:34
 tags: [slush, scaffolding, project organization]
 ---
@@ -155,15 +155,17 @@ require('./slush/default/task')(options);
 
 It might end up looking something like that.
 
-Now, for every taks you add, you can include it in the one parent slushfile. Any global options, you's want to pass around (such as the location of your templates directory), you can make an options object.
+Now, for every taks you add, you can include it in the one parent slushfile. Any global options, you want to pass around (such as the location of your templates directory), you can make an options object.
 
 Aside from overall organization, this is going to make your entire slush project much, much easier to test. The questions module is largely declarative. There's going to be some complexity there, due to SLOc, but theres no cyclomatic complxity to it, or branching. It basically won't reall yneed test coverage. Its nice to separate that out early.
 
 Then comes the `transforms.js`. This is probably the main point of failure if somethign goes wrong. The idea is that we don't want to make the templating mechanism do too much work. Basically, if you need your app name slugified in some places, but not others, if you need to sanitize input - this is where all that happens. Do it here, and test it easily...do it in your template and it gets murkier. These tests will look like a bunch of input json objects, and expected output json objects. Very straightforward.
 
-There is also the `defaults.js`. Thsi is where you'd put any default answers for questions you might expect. For example, what if for a username, you want to try and guess it from `process.env`, or something like that. You can do that here.
+There is also the `defaults.js`. This is where you'd put any default answers for questions you might expect. For example, what if for a username, you want to try and guess it from `process.env`, or something like that. You can do that here.
 
 The final file is `task.js`. thankfully, since you proke everythign apart, this really has a single,testable, purpose.. template and write your files in a directory. This can be done with the `mock-gulp-dest` module very easily.
+
+Now with a directory structure in place, it actually makes sense to write the tests .. first.
 
 
 
