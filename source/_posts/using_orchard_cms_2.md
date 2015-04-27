@@ -3,7 +3,7 @@ date: 2013-4-5 1:00:00
 tags: Orchard CMS, Orchard CMS Tutorial
 ---
 
-Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this. 
+Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this.
 
 <!-- more -->
 
