@@ -4,7 +4,7 @@ tags: [Slush, Mocking, Reqire, Testing]
 ---
 
 
-Part of the reason of an improced organization is a better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.
+Part of the reason for having an improved project organization is to define better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.
 
 Because We have 4 totally separate files with separate jobs-each test file will also look pretty different.
 
