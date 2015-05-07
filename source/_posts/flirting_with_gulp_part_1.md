@@ -1,11 +1,11 @@
 title: "Flirting with Gulp: Part 1"
 date: 2014-03-6 12:00:00
-tags: Gulp, Task Runners, Javascript
+tags: [Gulp, Task Runners, Javascript]
 ---
 
 Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.
 
-I guess lately I've been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I'm late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. 
+I guess lately I've been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I'm late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple.
 
 <!-- more -->
 

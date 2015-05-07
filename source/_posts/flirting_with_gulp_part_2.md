@@ -1,6 +1,6 @@
 title: "Flirting with Gulp: Part 2"
 date: 2014-04-1 12:00:00
-tags: Gulp, Task Runners, Javascript
+tags: [Gulp, Task Runners, Javascript]
 ---
 
 At this point I've played with gulp enough to make the decision that I'd like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:
@@ -26,10 +26,10 @@ And then:
 ```sh
 npm install --save-dev gulp
 ```
-Now I add a gulpfile.js to my project, and 
+Now I add a gulpfile.js to my project, and
 
 ```js
-var gulp = require('gulp'); 
+var gulp = require('gulp');
 ```
 
 so far, so simple.
@@ -62,13 +62,13 @@ function loadModule(module) {
 require('matchdep')
     .filterDev('gulp-*')
     .forEach(loadModule);
-```    
+```
     
 Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!
 
-Again, this is more practical, if you're going to stick to one file. 
+Again, this is more practical, if you're going to stick to one file.
 
-Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets. 
+Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets.
 
 In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;
 
@@ -136,7 +136,7 @@ gulp.task('stylus:themes', function stylusThemes() {
         }
     }
  
-    makeThemes(themes); 
+    makeThemes(themes);
 });
 ```
 
@@ -148,7 +148,7 @@ Here is the Grunt task ( I am using time-grunt to measure the speed):
 
 {% img /images/gulp/grunt-stylus-speed.png %}
 
-Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css 
+Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css
 
 Now, here is the same thing in Gulp.
 

@@ -1,6 +1,6 @@
 title: "Talk: Angular with React.js"
 date: 2014-12-16 11:30:00
-tags:
+tags: [public spaking, community, okcjs, react, angular, javascript]
 ---
 
 # Angular with React.js
@@ -15,11 +15,11 @@ You can find the repo for the talk [here](https://github.com/the-simian/OKCJS-De
 
 ## Slides
 Here are the slides if you'd like to see them
-  <iframe 
+  <iframe
           src="//slides.com/jesseharlin/deck/embed"
-          width="100%" 
-          height="420" 
-          scrolling="no" 
-          frameborder="0" 
+          width="100%"
+          height="420"
+          scrolling="no"
+          frameborder="0"
           webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
