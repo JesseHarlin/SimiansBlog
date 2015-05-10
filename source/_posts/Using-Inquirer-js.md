@@ -138,6 +138,37 @@ var rxQuestions = Rx.Observable.create(function( obs ) {
 
 ```
 
+So what. Why would you ever, ever leave the compfort of the declarative way of making the questions? I can think of one reason offhand; a major reason, actually. Async situations. Say you wanted to make an ajax call, and then use the response to somehow compose a question? That's a bit harder to do the other way (though not impossible). Just an option if you want it. Honestly I never use it.
+
+However, I do use one feature I haven't mentioned yet, `when`. This is how you can, very very easily introduce branching to your questions. Its just a simple function that when it returns truthy, the question gets included. Its default truthy of course so the question gets asked. Its really, if anythign a way to turn *off* questions you *don't* want.
+
+```js
+var questions = [{
+  name: 'pizzaOrTaco',
+  message: 'You want to eat pizza or taco?',
+  type: 'list',
+  choices: ['Pizza', 'Taco']
+}, {
+  name: 'pizzaIngredients',
+  message: 'OK, so what goes on your pizza?',
+  type: 'checkbox',
+  choices: ['peperonni', 'extra cheese', 'sausage', 'mushroom', 'sugar cubes'],
+  when: function(answers){
+    return answers.pizzaOrTaco === 'Pizza';
+  }
+}, {
+  name: 'tacoIngredients',
+  message: 'Pick out the things that go in your taco.',
+  type: 'checkbox',
+  choices: ['chicken', 'rice', 'beef', 'pico', 'hawt sauce', 'zazzle'],
+  when: function(answers){
+    return answers.pizzaOrTaco === 'Taco';
+  }
+}]
+```
+
+
+
 
 
 
