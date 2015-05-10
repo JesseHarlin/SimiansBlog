@@ -59,7 +59,18 @@ var questions = [{
   name: 'firstName',
   message: 'What is your first name?'
 }]
+```
 
+One of the things you'll want to do is validate user input. That's easy, there's a `validate` property that's optional;
+
+```js
+var questions = [{
+  name: 'firstName',
+  message: 'What is your first name?',
+  validate: function(str){
+    return str !== 'Yoda'; //Yoda had *better not* use this application!!
+  }
+}]
 ```
 
 You can add more properties, though to do a bit more..
@@ -85,7 +96,9 @@ var questions = [{
 
 ```
 
-Here we see that the `questions` list has a few tricks up its sleeve. Firstly, you can always provide a default answer. That's handy. Secondly you can provide a filter function that will run the response through some sort of function, to get the answer in a format you'd prefer. For the favorite rainbow color question, "Green" will return as "green", and so on.
+Here we see that the `questions` list has a few tricks up its sleeve. Firstly, you can always provide a default answer. That's handy.
+
+Secondly you can provide a filter function that will run the response through some sort of function, to get the answer in a format you'd prefer. For the favorite rainbow color question, "Green" will return as "green", and so on. This is especially handy. This combined with `validate` means you can really get exactly the answer you want.
 
 The next part is of special signifigance... the `type property`. This determines the type of prompt the user will see. There are
 
@@ -140,6 +153,8 @@ var rxQuestions = Rx.Observable.create(function( obs ) {
 
 So what. Why would you ever, ever leave the compfort of the declarative way of making the questions? I can think of one reason offhand; a major reason, actually. Async situations. Say you wanted to make an ajax call, and then use the response to somehow compose a question? That's a bit harder to do the other way (though not impossible). Just an option if you want it. Honestly I never use it.
 
+# Branching Out a Little
+
 However, I do use one feature I haven't mentioned yet, `when`. This is how you can, very very easily introduce branching to your questions. Its just a simple function that when it returns truthy, the question gets included. Its default truthy of course so the question gets asked. Its really, if anythign a way to turn *off* questions you *don't* want.
 
 ```js
@@ -165,6 +180,36 @@ var questions = [{
     return answers.pizzaOrTaco === 'Taco';
   }
 }]
+```
+
+Depending on whether or not you are eating a pizza or a taco, you'll pick differnt ingredients.
+
+#Get a Handle On It
+
+One of the most practical features of inquirer is the ability to hook into the lifecycle of the questions. This is handy if you want to persom actions in between quetions.
+
+```js
+
+inquirer
+  .prompt(questions)
+  .process
+  .subscribe(onAnswer, onError, onComplete);
+
+```
+
+These functions fire exactly when you think they do. After each question, the question handler fires and takes the ever-increasing object that is the answers. The complete one works the same way. Actually, its really just the same as if you had supplied a callback to the main function.
+
+I use this if I want to do something after each question, mainly. Otherwise, its not really necessary in my opinion.
+
+#Lets Get Fancy
+
+So what good is this post if we don't do something a little interesting? So far, everything I've mentioned is basically also covered, fairly well in the documentation. Lets say you want to ask the user an endless series of questions? How would you even do this? The answer is a simple recursive function!
+
+A quick referesher - qhen you make a function that is recursive, you need to have a base case. This is how you will ultimately break out of a function. Without this, you go ferver and ever. Here's what I mean:
+
+```js
+
+
 ```
 
 
