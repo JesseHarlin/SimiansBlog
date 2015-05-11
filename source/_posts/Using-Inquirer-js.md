@@ -205,7 +205,7 @@ I use this if I want to do something after each question, mainly. Otherwise, its
 
 So what good is this post if we don't do something a little interesting? So far, everything I've mentioned is basically also covered, fairly well in the documentation. Lets say you want to ask the user an endless series of questions? How would you even do this? The answer is a simple recursive function!
 
-A quick referesher - qhen you make a function that is recursive, you need to have a base case. This is how you will ultimately break out of a function. Without this, you go ferver and ever. Here's what I mean:
+A quick referesher - when you make a function that is recursive, you need to have a base case. This is how you will ultimately break out of a function. Without this, you go ferver and ever. Here's what I mean:
 
 ```js
 
