@@ -9,7 +9,7 @@ Orchard is generally easy to setup. I think there is a larger question about wor
 
 ##Prebuilt Setup
 
-I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup. 
+I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup.
 
 First get [Webmatrix](http://www.microsoft.com/web/webmatrix/). Its already on version 3! This is really amazing to me. It was just released in 2011, and its made so much progress. Version 2 was out just last September. This particular tool is moving at breakneck speed, and its free.
 
