@@ -2,8 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://simiansblog.com/2013/04/05/using_orchard_cms_1/</loc>
+    <lastmod>2015-05-11T05:02:32.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://simiansblog.com/2015/05/06/Using-Inquirer-js/</loc>
+    <lastmod>2015-05-11T05:00:43.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://simiansblog.com/2014/12/16/angular-and-react-talk/</loc>
+    <lastmod>2015-05-07T01:39:42.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://simiansblog.com/2014/03/06/flirting_with_gulp_part_1/</loc>
+    <lastmod>2015-05-07T01:39:16.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://simiansblog.com/2014/04/01/flirting_with_gulp_part_2/</loc>
+    <lastmod>2015-05-07T01:39:09.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://simiansblog.com/2015/04/24/Organizing-A-Slush-Generator-Part-2/</loc>
-    <lastmod>2015-05-03T07:48:41.000Z</lastmod>
+    <lastmod>2015-05-07T01:36:14.000Z</lastmod>
   </url>
   
   <url>
@@ -47,16 +72,6 @@
   </url>
   
   <url>
-    <loc>http://simiansblog.com/2014/04/01/flirting_with_gulp_part_2/</loc>
-    <lastmod>2015-04-06T03:38:38.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://simiansblog.com/2014/03/06/flirting_with_gulp_part_1/</loc>
-    <lastmod>2015-04-06T03:30:11.000Z</lastmod>
-  </url>
-  
-  <url>
     <loc>http://simiansblog.com/2015/04/04/testing-a-slush-generator/</loc>
     <lastmod>2015-04-06T03:26:15.000Z</lastmod>
   </url>
@@ -64,11 +79,6 @@
   <url>
     <loc>http://simiansblog.com/2015/01/18/ThunderPlains_Video/</loc>
     <lastmod>2015-04-06T03:14:41.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://simiansblog.com/2013/04/05/using_orchard_cms_1/</loc>
-    <lastmod>2015-04-06T03:02:13.000Z</lastmod>
   </url>
   
   <url>
@@ -104,11 +114,6 @@
   <url>
     <loc>http://simiansblog.com/2013/02/18/OKCjs_making_of_an_html5_game/</loc>
     <lastmod>2015-03-23T08:13:43.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://simiansblog.com/2014/12/16/angular-and-react-talk/</loc>
-    <lastmod>2015-03-19T10:43:29.000Z</lastmod>
   </url>
   
 </urlset>

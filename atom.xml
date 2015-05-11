@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Code, Music, Interactive Media, Community]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://simiansblog.com/"/>
-  <updated>2015-05-03T07:48:41.000Z</updated>
+  <updated>2015-05-11T05:00:43.000Z</updated>
   <id>http://simiansblog.com/</id>
   
   <author>
@@ -15,12 +15,93 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Using Inquirer.js]]></title>
+    <link href="http://simiansblog.com/2015/05/06/Using-Inquirer-js/"/>
+    <id>http://simiansblog.com/2015/05/06/Using-Inquirer-js/</id>
+    <published>2015-05-07T01:38:08.000Z</published>
+    <updated>2015-05-11T05:00:43.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="Inquirer-js">Inquirer.js</h1><p>If you’ve used Yeoman, or Slush.js you probably noticed that they both make use of a really nice tool for getting user input from the command line.</p>
+<img src="/images/inquirer/inquirer_small.png" title="inquirer.js">
+<p>What is Inquirer.js?</p>
+<a id="more"></a>
+<p>This is what they say:</p>
+<blockquote><p>We strive at providing easily embeddable and beautiful command line interface for Node.js</p>
+</blockquote>
+<p>I’d say they achieve their goal quite nicely. Its probably  the simplest, but most powerful way I’ve seen thusfar to gather user input from the command line.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">inquirer(questions, callback);</span><br></pre></td></tr></table></figure>
+<p>That’s really it! You ask questions..then do something! The callback takes an argument, and that arment is a lost of all the answers the user provided.</p>
+<h3 id="Answers">Answers</h3><p>Because this works the same way, no matter how you make questions, it makes sense to discuss the answers first. Consider this..</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">inquirer(questions, <span class="function"><span class="keyword">function</span><span class="params">(answers)</span></span>&#123;</span><br><span class="line"></span><br><span class="line"> <span class="built_in">console</span>.log(answers); <span class="comment">//an object containing the user response.</span></span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>What would the answer look like? Each is a property on a simple object. The keys are entirely determined by the names assigned to the question, and the values are what the user input.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  nameOfQuestion1: <span class="string">"userAnswer1"</span></span><br><span class="line">  nameofQuestion2: <span class="string">"userAnswer2"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now, how do we ask questions?</p>
+<h3 id="Questions">Questions</h3><p>There’s two primary ways you can make questions , declaratively or imperatively. You can provide a static list of json objects that represent questions, or you can build the questions functionally useing the underlying reactive interface.</p>
+<p>The absoultely most common and simple use will be just making the questions declaratively, as a simple JSON array. Depending on the type of question, you might need to add more properties, but you’ll always want  at minimum the <code>name</code> of the question, and the <code>message</code> the user will see.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> questions = [&#123;</span><br><span class="line">  name: <span class="string">'firstName'</span>,</span><br><span class="line">  message: <span class="string">'What is your first name?'</span></span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>One of the things you’ll want to do is validate user input. That’s easy, there’s a <code>validate</code> property that’s optional;</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> questions = [&#123;</span><br><span class="line">  name: <span class="string">'firstName'</span>,</span><br><span class="line">  message: <span class="string">'What is your first name?'</span>,</span><br><span class="line">  validate: <span class="function"><span class="keyword">function</span><span class="params">(str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str !== <span class="string">'Yoda'</span>; <span class="comment">//Yoda had *better not* use this application!!</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>You can add more properties, though to do a bit more..</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> questions = [&#123;</span><br><span class="line">  name: <span class="string">'firstName'</span>,</span><br><span class="line">  message: <span class="string">'What is your first name?'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">  name: <span class="string">'operatingSystem'</span>,</span><br><span class="line">  message: <span class="string">'What is your operating System?'</span>,</span><br><span class="line">  <span class="keyword">default</span>: <span class="string">'Windows'</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">  name: <span class="string">'favoriteColor'</span>,</span><br><span class="line">  message: <span class="string">'What is your favorite rainbow Color?'</span>,</span><br><span class="line">  type: <span class="string">'list'</span></span><br><span class="line">  choices: [<span class="string">'Red'</span>, <span class="string">'Orange'</span>, <span class="string">'Yellow'</span>, <span class="string">'Green'</span>, <span class="string">'Blue'</span>, <span class="string">'Indigo'</span>, <span class="string">'Violet'</span>],</span><br><span class="line">  filter: <span class="function"><span class="keyword">function</span> <span class="params">(str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.toLowerCase();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>Here we see that the <code>questions</code> list has a few tricks up its sleeve. Firstly, you can always provide a default answer. That’s handy.</p>
+<p>Secondly you can provide a filter function that will run the response through some sort of function, to get the answer in a format you’d prefer. For the favorite rainbow color question, “Green” will return as “green”, and so on. This is especially handy. This combined with <code>validate</code> means you can really get exactly the answer you want.</p>
+<p>The next part is of special signifigance… the <code>type property</code>. This determines the type of prompt the user will see. There are</p>
+<ul>
+<li><em>list</em> - A simple list, where the user can use the cursor to pick a selection</li>
+<li><em>rawlist</em> - like list, but they type in the number for the answer</li>
+<li><em>expand</em> - This takes a limited set of answers that map an answer to a character</li>
+<li><em>checkbox</em> - like list, but you can have more than one answer</li>
+<li><em>confirm</em> - Its a confirmation, as in Y/n style.</li>
+<li><em>input</em> - Literally the default questions. Asks a question, gives you the user’s exact response. Nothing fancy.</li>
+<li><em>password</em> - like input but the answer looks all like <code>*******</code>.</li>
+</ul>
+<p>Really, when it gets down to it, you either present a list for the user to pick from, or take a free response. All of these types achieve one of these goals, and if its a list, you’ll need to give them coices on the <code>choices</code> property.</p>
+<p>Of course you can also do some fancy stuff, like put a divider bar in the coices, too. It looks like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  name: <span class="string">'favoriteColor'</span>,</span><br><span class="line">  message: <span class="string">'What is your favorite rainbow Color?'</span>,</span><br><span class="line">  type: <span class="string">'list'</span></span><br><span class="line">  choices: [</span><br><span class="line">    <span class="string">'Red'</span>, <span class="string">'Orange'</span>, <span class="string">'Yellow'</span>,</span><br><span class="line">    <span class="keyword">new</span> inquirer.Separator(),   <span class="comment">//separating the orangy things from the bluish things</span></span><br><span class="line">    <span class="string">'Green'</span>, <span class="string">'Blue'</span>, <span class="string">'Indigo'</span>, <span class="string">'Violet'</span></span><br><span class="line">  ],</span><br><span class="line">  filter: <span class="function"><span class="keyword">function</span> <span class="params">(str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.toLowerCase();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>That’s the easiest way to ask questions, certainly. You can do it also, “functionally” by using the underlaying ractive library. Heres a simple 1:1 example…</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//rx is in inquirer.. so you'll need that.</span></span><br><span class="line"><span class="keyword">var</span> Rx = <span class="built_in">require</span>(<span class="string">'inquirer/node_modules/rx'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> declarativeQuestions = [&#123;</span><br><span class="line">  name: <span class="string">'firstName'</span>,</span><br><span class="line">  message: <span class="string">'What is your first name?'</span></span><br><span class="line">&#125;];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rxQuestions = Rx.Observable.create(<span class="function"><span class="keyword">function</span><span class="params">( obs )</span> </span>&#123;</span><br><span class="line">  obs.onNext(&#123;</span><br><span class="line">    name: <span class="string">'firstName'</span>,</span><br><span class="line">    message: <span class="string">'What is your first name?'</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>So what. Why would you ever, ever leave the compfort of the declarative way of making the questions? I can think of one reason offhand; a major reason, actually. Async situations. Say you wanted to make an ajax call, and then use the response to somehow compose a question? That’s a bit harder to do the other way (though not impossible). Just an option if you want it. Honestly I never use it.</p>
+<h1 id="Branching_Out_a_Little">Branching Out a Little</h1><p>However, I do use one feature I haven’t mentioned yet, <code>when</code>. This is how you can, very very easily introduce branching to your questions. Its just a simple function that when it returns truthy, the question gets included. Its default truthy of course so the question gets asked. Its really, if anythign a way to turn <em>off</em> questions you <em>don’t</em> want.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> questions = [&#123;</span><br><span class="line">  name: <span class="string">'pizzaOrTaco'</span>,</span><br><span class="line">  message: <span class="string">'You want to eat pizza or taco?'</span>,</span><br><span class="line">  type: <span class="string">'list'</span>,</span><br><span class="line">  choices: [<span class="string">'Pizza'</span>, <span class="string">'Taco'</span>]</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  name: <span class="string">'pizzaIngredients'</span>,</span><br><span class="line">  message: <span class="string">'OK, so what goes on your pizza?'</span>,</span><br><span class="line">  type: <span class="string">'checkbox'</span>,</span><br><span class="line">  choices: [<span class="string">'peperonni'</span>, <span class="string">'extra cheese'</span>, <span class="string">'sausage'</span>, <span class="string">'mushroom'</span>, <span class="string">'sugar cubes'</span>],</span><br><span class="line">  when: <span class="function"><span class="keyword">function</span><span class="params">(answers)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> answers.pizzaOrTaco === <span class="string">'Pizza'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">  name: <span class="string">'tacoIngredients'</span>,</span><br><span class="line">  message: <span class="string">'Pick out the things that go in your taco.'</span>,</span><br><span class="line">  type: <span class="string">'checkbox'</span>,</span><br><span class="line">  choices: [<span class="string">'chicken'</span>, <span class="string">'rice'</span>, <span class="string">'beef'</span>, <span class="string">'pico'</span>, <span class="string">'hawt sauce'</span>, <span class="string">'zazzle'</span>],</span><br><span class="line">  when: <span class="function"><span class="keyword">function</span><span class="params">(answers)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> answers.pizzaOrTaco === <span class="string">'Taco'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;]</span><br></pre></td></tr></table></figure>
+<p>Depending on whether or not you are eating a pizza or a taco, you’ll pick differnt ingredients.</p>
+<h1 id="Get_a_Handle_On_It">Get a Handle On It</h1><p>One of the most practical features of inquirer is the ability to hook into the lifecycle of the questions. This is handy if you want to persom actions in between quetions.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">inquirer</span><br><span class="line">  .prompt(questions)</span><br><span class="line">  .process</span><br><span class="line">  .subscribe(onAnswer, onError, onComplete);</span><br></pre></td></tr></table></figure>
+<p>These functions fire exactly when you think they do. After each question, the question handler fires and takes the ever-increasing object that is the answers. The complete one works the same way. Actually, its really just the same as if you had supplied a callback to the main function.</p>
+<p>I use this if I want to do something after each question, mainly. Otherwise, its not really necessary in my opinion.</p>
+<h1 id="Lets_Get_Fancy">Lets Get Fancy</h1><p>So what good is this post if we don’t do something a little interesting? So far, everything I’ve mentioned is basically also covered, fairly well in the documentation. Lets say you want to ask the user an endless series of questions? How would you even do this? The answer is a simple recursive function!</p>
+<p>A quick referesher - when you make a function that is recursive, you need to have a base case. This is how you will ultimately break out of a function. Without this, you go ferver and ever. Here’s what I mean:</p>
+<iframe width="100%" height="300" src="http://jsfiddle.net/uojs9yt5/embedded/js,resources,html,css,result/light" frameborder="0" allowfullscreen></iframe>
+<p>Look at this very simple recursive function. The base case is how we will eventually break out. Be careful with recursion, its easy to accidentally go forever.</p>
+<p>So in an inquirer prompt, what will <em>our</em> base case be? Easy! It is simply when the user no longer provides input.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> question = [&#123;</span><br><span class="line">  name: <span class="string">'tacoIngredient'</span>,</span><br><span class="line">  message: <span class="string">'Whats another tasty thing to add to your taco?'</span>,</span><br><span class="line">  <span class="keyword">default</span> : <span class="string">''</span></span><br><span class="line">&#125;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tacoIngredients = [];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">finalAction</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'Make a taco with: =&gt;'</span> + tacoIngredients)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">askOrPerformFinalAction</span><span class="params">(answer)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  ingredientsList.push(answers.tacoIngredient);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (!answers.tacoIngredient) &#123;</span><br><span class="line">    finalAction(tacoIngredients);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> inquirer.prompt(question, askOrPerformFinalAction);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">inquirer.prompt(question, askOrPerformFinalAction);</span><br></pre></td></tr></table></figure>
+<p>So this here is a situation where we will ask over and over, until the enduser hits enter on a blank line. Each anser is fed into an array, which could ostensibly be used by the programmer to ‘do something’ later on.</p>
+<p>Combined with a little functional programming , the ability to branch via the <code>when</code> property and the various prompt types, you can use this technique to ask the enduser nearly anything, in any way! Since the answers are just simple objects, the possibilities are limitless.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="Inquirer-js">Inquirer.js</h1><p>If you’ve used Yeoman, or Slush.js you probably noticed that they both make use of a really nice tool for getting user input from the command line.</p>
+<img src="/images/inquirer/inquirer_small.png" title="inquirer.js">
+<p>What is Inquirer.js?</p>]]>
+    
+    </summary>
+    
+      <category term="Slush.js" scheme="http://simiansblog.com/tags/Slush-js/"/>
+    
+      <category term="Yeoman" scheme="http://simiansblog.com/tags/Yeoman/"/>
+    
+      <category term="commnad line" scheme="http://simiansblog.com/tags/commnad-line/"/>
+    
+      <category term="inquirer.js" scheme="http://simiansblog.com/tags/inquirer-js/"/>
+    
+      <category term="javascript" scheme="http://simiansblog.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Organizing A Slush Generator Part 2 : Testing And creating Default Answers]]></title>
     <link href="http://simiansblog.com/2015/04/24/Organizing-A-Slush-Generator-Part-2/"/>
     <id>http://simiansblog.com/2015/04/24/Organizing-A-Slush-Generator-Part-2/</id>
     <published>2015-04-24T05:10:42.000Z</published>
-    <updated>2015-05-03T07:48:41.000Z</updated>
-    <content type="html"><![CDATA[<p>Part of the reason of an improced organization is a better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.</p>
+    <updated>2015-05-07T01:36:14.000Z</updated>
+    <content type="html"><![CDATA[<p>Part of the reason for having an improved project organization is to define better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.</p>
 <p>Because We have 4 totally separate files with separate jobs-each test file will also look pretty different.</p>
 <a id="more"></a>
 <h2 id="Default_answers">Default answers</h2><p>Probably the most challenging file to test is the default answers file. This is a necessary file, but it involves using a lot of node globals and private variables. This seems to make it untestable at a glance, but its actually possible with a module called <code>rewire</code>. Rewire is a drop in replacement for require, that for all practical purposes acts fully identical - except you have a way to override private variables in the module. Normally, this is a no-no, but not in this case. We need to mock process, and this is how it can be done.</p>
@@ -49,7 +130,7 @@
 <p>If we find, for our default tasks, as we need more properties, we can add them, and make sure the right default answers object is being asserted against in our tests.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>Part of the reason of an improced organization is a better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.</p>
+    <![CDATA[<p>Part of the reason for having an improved project organization is to define better units of work for testing. In the last section, we arranged our files in such a way that we wanted to make it easier to have each file do a singluar task each.</p>
 <p>Because We have 4 totally separate files with separate jobs-each test file will also look pretty different.</p>]]>
     
     </summary>
@@ -322,7 +403,7 @@
     <link href="http://simiansblog.com/2014/12/16/angular-and-react-talk/"/>
     <id>http://simiansblog.com/2014/12/16/angular-and-react-talk/</id>
     <published>2014-12-16T17:30:00.000Z</published>
-    <updated>2015-03-19T10:43:29.000Z</updated>
+    <updated>2015-05-07T01:39:42.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Angular_with_React-js">Angular with React.js</h1><h2 id="About">About</h2><p>I recently gave a talk at the local Javascript user group about my experiences with using Angular and React in a similar project. In some ways, this was a technical talk, covering various ways to integrate an external lib (React) properly into the context of a very differnt framework (Angular). However, much of the talk really centered around the role of abstraction in a project, and learning how to assess the tradeoffs of various tools one might adopt.</p>
 <img src="/images/posters/2014-dec-angular-with-reactjs.png" width="700" title="Angular w/ React.js Angular with React.js">
 <h2 id="The_code">The code</h2><p>You can find the repo for the talk <a href="https://github.com/the-simian/OKCJS-December-2014-Angular-and-React" target="_blank" rel="external">here</a></p>
@@ -332,6 +413,18 @@
     <![CDATA[<h1 id="Angular_with_React-js">Angular with React.js</h1><h2 id="About">About</h2><p>I recently gave a talk at the local Javascript user gro]]>
     </summary>
     
+      <category term="angular" scheme="http://simiansblog.com/tags/angular/"/>
+    
+      <category term="community" scheme="http://simiansblog.com/tags/community/"/>
+    
+      <category term="javascript" scheme="http://simiansblog.com/tags/javascript/"/>
+    
+      <category term="okcjs" scheme="http://simiansblog.com/tags/okcjs/"/>
+    
+      <category term="public spaking" scheme="http://simiansblog.com/tags/public-spaking/"/>
+    
+      <category term="react" scheme="http://simiansblog.com/tags/react/"/>
+    
   </entry>
   
   <entry>
@@ -339,7 +432,7 @@
     <link href="http://simiansblog.com/2014/04/01/flirting_with_gulp_part_2/"/>
     <id>http://simiansblog.com/2014/04/01/flirting_with_gulp_part_2/</id>
     <published>2014-04-01T17:00:00.000Z</published>
-    <updated>2015-04-06T03:38:38.000Z</updated>
+    <updated>2015-05-07T01:39:09.000Z</updated>
     <content type="html"><![CDATA[<p>At this point I’ve played with gulp enough to make the decision that I’d like to consider moving from grunt to gulp. I respect there is a lot of trepidation about this in the community. I can hear their objection. I sounds like an old saying we all heard around here as youngsters:</p>
 <blockquote><p>If it ain’t broke, don’t fix it.</p>
 </blockquote>
@@ -350,7 +443,7 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g gulp</span><br></pre></td></tr></table></figure>
 <p>And then:</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev gulp</span><br></pre></td></tr></table></figure>
-<p>Now I add a gulpfile.js to my project, and </p>
+<p>Now I add a gulpfile.js to my project, and</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</span><br></pre></td></tr></table></figure>
 <p>so far, so simple.</p>
 <p>now I actually need STUFF. Gulp plugins. Thankfully here is many. I just follwoed the same procedure for each</p>
@@ -358,19 +451,25 @@
 <p>If you used it in Grunt, most likely it is also in gulp. Notice I didnt add watch? That’s already included in gulp. Awesome!</p>
 <p>Now one little thing you can do is explicitly include each plugin. That is well and good. Actually, if you start breaking your files up for organizational reasons (protip: we will) that’s the way to go. If you have a shorter gulpfile.js, or just want to include everythign easily, heres a little trick</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev matchdep</span><br></pre></td></tr></table></figure>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function loadModule(module) &#123;</span><br><span class="line">    global[module.replace(/^gulp-/, '')] = require(module);</span><br><span class="line">&#125;</span><br><span class="line">require('matchdep')</span><br><span class="line">    .filterDev('gulp-*')</span><br><span class="line">    .forEach(loadModule);</span><br><span class="line">```    </span><br><span class="line">    </span><br><span class="line">Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!</span><br><span class="line"></span><br><span class="line">Again, this is more practical, if you're going to stick to one file. </span><br><span class="line"></span><br><span class="line">Now here is what is interesting. I'm immediately seeing pros to Gulp. I'll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets. </span><br><span class="line"></span><br><span class="line">In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;</span><br><span class="line"></span><br><span class="line">Its someting like this:</span><br><span class="line"></span><br><span class="line">```js</span><br><span class="line">options.themeList = function themeList(themes) &#123;</span><br><span class="line">            var obj = &#123;&#125;;</span><br><span class="line">            for (var i = 0, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">                var root = 'src/public/styles/themes/' + themes[i];</span><br><span class="line">                obj[root + '/theme.css'] = root + '/theme.styl';</span><br><span class="line">            &#125;</span><br><span class="line">            return obj;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadModule</span><span class="params">(module)</span> </span>&#123;</span><br><span class="line">    global[<span class="built_in">module</span>.replace(<span class="regexp">/^gulp-/</span>, <span class="string">''</span>)] = <span class="built_in">require</span>(<span class="built_in">module</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">require</span>(<span class="string">'matchdep'</span>)</span><br><span class="line">    .filterDev(<span class="string">'gulp-*'</span>)</span><br><span class="line">    .forEach(loadModule);</span><br></pre></td></tr></table></figure>
+<p>Neat, huh? Autoloads every gulp plugin, since they are conventionally named. Globbing is neato!</p>
+<p>Again, this is more practical, if you’re going to stick to one file.</p>
+<p>Now here is what is interesting. I’m immediately seeing pros to Gulp. I’ll set up a simple script that goes into a series of theme folders, and makes basically a series of theme stylesheets.</p>
+<p>In grunt I have a function declared somewhere in my options object that I use throughout the file. I had to do it like this because Grunt is massively configuration-heavy.;</p>
+<p>Its someting like this:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">options.themeList = <span class="function"><span class="keyword">function</span> <span class="title">themeList</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">                <span class="keyword">var</span> root = <span class="string">'src/public/styles/themes/'</span> + themes[i];</span><br><span class="line">                obj[root + <span class="string">'/theme.css'</span>] = root + <span class="string">'/theme.styl'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> obj;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
 <p>and somewhere I have a list of themes corresponding to folders, in my case I have 9 total. Lets pretend these are also attached to my session grunt options object. Basically:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">options.themes = [</span><br><span class="line">        <span class="string">'ThemeOne'</span>,</span><br><span class="line">        <span class="string">'ThemeTwo'</span>,</span><br><span class="line">        <span class="string">'ThemeThree'</span>,</span><br><span class="line">        <span class="string">'ThemeFour'</span>,</span><br><span class="line">        <span class="string">'ThemeFive'</span>,</span><br><span class="line">        <span class="string">'ThemeSix'</span>,</span><br><span class="line">        <span class="string">'ThemeSeven'</span>,</span><br><span class="line">        <span class="string">'ThemeEight'</span>,</span><br><span class="line">        <span class="string">'ThemeNine'</span></span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
 <p>And then, this is used in the stylus plugin for Grunt, in the Gruntfile.js</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//...</span></span><br><span class="line">stylus: &#123;</span><br><span class="line">         themes: &#123;</span><br><span class="line">             options: &#123;use: [<span class="built_in">require</span>(<span class="string">'nib'</span>)]&#125; <span class="comment">//some stylus options</span></span><br><span class="line">             files: options.themeList (options.themes)</span><br><span class="line">         &#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">//...</span></span><br></pre></td></tr></table></figure>
 <p>There are probably simpler, and more elegant ways to do this. Actually, in my actual code there are some minor varitions from this, taht are related to implementation, but this should get the point across, easily. Grunt’s initConfig Method is a big, honkin pile of JSON. Actually, in practice mine had gotton so large that I was looking at strategies to organize it when I stumbled upon Gulp.</p>
 <p>I wrote a similar setup in Gulp. I was able to encapsulate the method much more nicely, because Gulp is code-first! Its something like this:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'stylus:themes'</span>, <span class="function"><span class="keyword">function</span> <span class="title">stylusThemes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> themes = options.themes;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">makeThemes</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> theme = themes[i],</span><br><span class="line">                themeFolder = <span class="string">'src/public/styles/themes/'</span> + theme,</span><br><span class="line">                stylusConfig = &#123;</span><br><span class="line">                    use: [<span class="string">'nib'</span>]</span><br><span class="line">                &#125;;</span><br><span class="line"> </span><br><span class="line">            gulp</span><br><span class="line">                .src(themeFolder + <span class="string">'/theme.styl'</span>)</span><br><span class="line">                .pipe(stylus(stylusConfig))</span><br><span class="line">                .pipe(gulp.dest(themeFolder));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    makeThemes(themes); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">gulp.task(<span class="string">'stylus:themes'</span>, <span class="function"><span class="keyword">function</span> <span class="title">stylusThemes</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> themes = options.themes;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">makeThemes</span><span class="params">(themes)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, ii = themes.length; i &lt; ii; i++) &#123;</span><br><span class="line">            <span class="keyword">var</span> theme = themes[i],</span><br><span class="line">                themeFolder = <span class="string">'src/public/styles/themes/'</span> + theme,</span><br><span class="line">                stylusConfig = &#123;</span><br><span class="line">                    use: [<span class="string">'nib'</span>]</span><br><span class="line">                &#125;;</span><br><span class="line"> </span><br><span class="line">            gulp</span><br><span class="line">                .src(themeFolder + <span class="string">'/theme.styl'</span>)</span><br><span class="line">                .pipe(stylus(stylusConfig))</span><br><span class="line">                .pipe(gulp.dest(themeFolder));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    makeThemes(themes);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 <p>As a side note, I can’t help but reflect upon some of the same organizational issues I encountered whilst working in say, Ext.js. There you have another, really big, configur-ish way to implement a module pattern. Its nice, but when you need to go outside the box, it can be challenging at a glance to figure out where stuff should live. I think theres a very reasonably attraction to tools like node and browserfy, and other very code-first approaches to code organization. I mentioned this in the last post, but in C# land, using more convention over configuration has proven time and time again to be a better way of doing things. I pity the dev using XML instead of FLuent nHibernate to configure nHibernate. It really is much better.</p>
 <p>So, there you have it. a Very very slightly not run-of-the mill task cross written on both platforms. To my eyes, the Gulp version is way more maintainable in the long run. However, the story doesn’t end there. I ran the two side by side, just out of curiosity, to see which one is faster. Now, recall, these are pretty big tasks here. These aren’t fired at request time from a client, but are preprocessed to make static resources. The only thing that truly benefits is like a file watch while working in the .stylus files. But, omigosh Gulp is faster.</p>
 <p>Here is the Grunt task ( I am using time-grunt to measure the speed):</p>
 <img src="/images/gulp/grunt-stylus-speed.png">
-<p>Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css </p>
+<p>Theme names have been hidden to protect the innocent. Just pretend they are named after American Presidents. eg. FranklinPierce\theme.css</p>
 <p>Now, here is the same thing in Gulp.</p>
 <img src="/images/gulp/gulp-stylus.png">
 <p>I had to run it twice to be sure. Did it actually make the files? I looked. Yes, they’re there. That’s literally over 1000 times faster. 1064.891 times faster, to be more accurate.</p>
@@ -385,7 +484,11 @@
     
     </summary>
     
-      <category term="Gulp, Task Runners, Javascript" scheme="http://simiansblog.com/tags/Gulp-Task-Runners-Javascript/"/>
+      <category term="Gulp" scheme="http://simiansblog.com/tags/Gulp/"/>
+    
+      <category term="Javascript" scheme="http://simiansblog.com/tags/Javascript/"/>
+    
+      <category term="Task Runners" scheme="http://simiansblog.com/tags/Task-Runners/"/>
     
   </entry>
   
@@ -438,9 +541,9 @@
     <link href="http://simiansblog.com/2014/03/06/flirting_with_gulp_part_1/"/>
     <id>http://simiansblog.com/2014/03/06/flirting_with_gulp_part_1/</id>
     <published>2014-03-06T18:00:00.000Z</published>
-    <updated>2015-04-06T03:30:11.000Z</updated>
+    <updated>2015-05-07T01:39:16.000Z</updated>
     <content type="html"><![CDATA[<p>Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.</p>
-<p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. </p>
+<p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple.</p>
 <a id="more"></a>
 <p>The big thing with grunt, I’ve noticed whilst working with it, is that the declarative JSON…mammoth.. gets pretty big after a while. I’m aware there are strategies for refactoring and organizing your Gruntfiles, i just feel like I often can’t bring myself to find time to just sit and simply refactor my Grunt tasks. So lately, at the shop, we’ve been working on a scaffolding project to help us get up and running on future applications more rapidly. Now is my golden chance to refactor Grunt.. or?</p>
 <p>Gulp? Should I explore this as a viable option? Why not?</p>
@@ -449,53 +552,15 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Observation: Quality Javascript taskrunners tend to be named after gutteral noises. Fascinating.</p>
-<p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple. </p>]]>
+<p>I guess lately I’ve been having a sort of love afair with Gulp. Its interesting, considering I actually adopted Grunt fairly recently, just last year. ( I know, I’m late to the party). I picked it up when Grunt 0.4 Came along. I remember it was much nicer than the previous version. Everything was a plugin (rather than builtin), and it made sense to me. Grunt rocked, and still rocks my world. Its so very easy. Theres really only three things you need to know: To pull in the plugins, to configure them declaratively, and to make tasks. Then, you run them. Simple.</p>]]>
     
     </summary>
     
-      <category term="Gulp, Task Runners, Javascript" scheme="http://simiansblog.com/tags/Gulp-Task-Runners-Javascript/"/>
+      <category term="Gulp" scheme="http://simiansblog.com/tags/Gulp/"/>
     
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Orchard CMS: Getting Setup, Part 1, the Non-Source Setup]]></title>
-    <link href="http://simiansblog.com/2013/04/05/using_orchard_cms_1/"/>
-    <id>http://simiansblog.com/2013/04/05/using_orchard_cms_1/</id>
-    <published>2013-04-05T06:00:00.000Z</published>
-    <updated>2015-04-06T03:02:13.000Z</updated>
-    <content type="html"><![CDATA[<p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.</p>
-<a id="more"></a>
-<h2 id="Prebuilt_Setup">Prebuilt Setup</h2><p>I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup. </p>
-<p>First get <a href="http://www.microsoft.com/web/webmatrix/" target="_blank" rel="external">Webmatrix</a>. Its already on version 3! This is really amazing to me. It was just released in 2011, and its made so much progress. Version 2 was out just last September. This particular tool is moving at breakneck speed, and its free.</p>
-<p>So once you have Webmatrix, and you’re ready to make a site you go to the App Gallery (formerly Web Gallery).</p>
-<img src="/images/orchard/orchard1.png">
-<p>Then, you click on the Orchard CMS Button.</p>
-<img src="/images/orchard/orchard2.png">
-<p>Easy. Click Next a few times, and the installer literally does all the rest.</p>
-<img src="/images/orchard/orchard3.png">
-<p>Couldn’t be easier, right?</p>
-<p>Within seconds of the bar completing, you click OK, and you’ll be prompted in Webmatrix with a folder structure sort of like this:</p>
-<img src="/images/orchard/orchard4.png">
-<p>More on that later…</p>
-<p>And a big giant prompt like this:</p>
-<img src="/images/orchard/orchard5.png">
-<p>Go ahead and fill this out, you site name and what you want the superuser account to be. Just select Default for the Orchard Recipe. Select SQL Server Compact for data storage.</p>
-<p>Now you have a site. Cool! At this point, you’d start configuring it like you need to, possibly install a module or two form the gallery. Probably install a different theme, and so on. Even though this is the non-source setup, you do have some latitude in configuring the project, you can alter the html on the views, namely and possibly fiddle around with some CSS. Don’t expect to do heavy development here though, that’s not what this workflow is really for.</p>
-<p>Look at the folder structure for a moment. You are looking at what in the source will be the Orchard.Web project – one of 67 or so projects. You’ll notice that in this built project, you have every module listed in your module folder. It will be like this in the source too, though in Visual Studio you’ll see an aliased folder. Every image you add, and every piece of media you upload ends up, some way in the Media Folder.  Every theme you make or download ends up in the theme folder.  Its generally quite organized.</p>
-<p>I want to draw attention to one very important folder: App_Data. Open that. Now drill down Sites –&gt; Default. Look in there. see the Orchard.sdf file? That’s your site. Basically.</p>
-<img src="/images/orchard/orchard6.png">
-<p>If your site gets completely blown away, you can reinstall it all, and drop that in and all your blog posts, and content will be back. I hope this makes it clear how easy it is to back up an Orchard site, you just really need to account for the Media folder, because it has all your pictures and stuff, and this folder in your Sites.</p>
-<p>So at this point, you can put this Orchard install on your server, or push it to Azure or whatever you like. Boom, you installed Orchard. Beyond that its up to you. You might like simply editing posts in the online editor, or you might set up Live Writer to edit them. I’ve written about how to set up Live Writer in the past. Its not hard, and it works well. The bottom line is that I can’t stress the importance of your Media Sites –&gt; Default folders.  Back these up.</p>
-<p>Recently, my wife’s blog was spammed to the max. Eventually the attackers were able to bring down the blog. A similar situation in Wordpress or some other system would have really bothered me, but with her we simply backed up the imporant folders, then pulled our personal Orchard build from github, replacing everything. Then? We replaced the Media and Sites—&gt; Default folders.  It was a complete recovery.</p>
-<p>Next though, we need to get setup from the source. I’m gearing these tutorials to be used in Visual Studio. Honestly, if you’re a c# developer that’s the way to go. you get all the advantages of your favorite IDE, such as Resharper – and also you can build the project.</p>
-<p>We’ll cover that next.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.</p>]]>
+      <category term="Javascript" scheme="http://simiansblog.com/tags/Javascript/"/>
     
-    </summary>
-    
-      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://simiansblog.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
+      <category term="Task Runners" scheme="http://simiansblog.com/tags/Task-Runners/"/>
     
   </entry>
   
@@ -530,6 +595,48 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>Now that you understand how you can start straight away from an already built project (what Webmatrix provides), I think its best at this point to work henceforth directly from the source. There are a number of reasons for this.</p>]]>
+    
+    </summary>
+    
+      <category term="Orchard CMS, Orchard CMS Tutorial" scheme="http://simiansblog.com/tags/Orchard-CMS-Orchard-CMS-Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Orchard CMS: Getting Setup, Part 1, the Non-Source Setup]]></title>
+    <link href="http://simiansblog.com/2013/04/05/using_orchard_cms_1/"/>
+    <id>http://simiansblog.com/2013/04/05/using_orchard_cms_1/</id>
+    <published>2013-04-05T06:00:00.000Z</published>
+    <updated>2015-05-11T05:02:32.000Z</updated>
+    <content type="html"><![CDATA[<p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.</p>
+<a id="more"></a>
+<h2 id="Prebuilt_Setup">Prebuilt Setup</h2><p>I’m mentioning this here, because this is what you’ll find most often out there on the web. Want to get started in Orchard? Just go get Webmatrix and click install for orchard! Its important to understand what you’re installing here! You’re installing a build of Orchard. This is the small ready-to-deploy version. This is not what you want if you are interested in building modules yourself. This is for absolutely minimal resistance in setup.</p>
+<p>First get <a href="http://www.microsoft.com/web/webmatrix/" target="_blank" rel="external">Webmatrix</a>. Its already on version 3! This is really amazing to me. It was just released in 2011, and its made so much progress. Version 2 was out just last September. This particular tool is moving at breakneck speed, and its free.</p>
+<p>So once you have Webmatrix, and you’re ready to make a site you go to the App Gallery (formerly Web Gallery).</p>
+<img src="/images/orchard/orchard1.png">
+<p>Then, you click on the Orchard CMS Button.</p>
+<img src="/images/orchard/orchard2.png">
+<p>Easy. Click Next a few times, and the installer literally does all the rest.</p>
+<img src="/images/orchard/orchard3.png">
+<p>Couldn’t be easier, right?</p>
+<p>Within seconds of the bar completing, you click OK, and you’ll be prompted in Webmatrix with a folder structure sort of like this:</p>
+<img src="/images/orchard/orchard4.png">
+<p>More on that later…</p>
+<p>And a big giant prompt like this:</p>
+<img src="/images/orchard/orchard5.png">
+<p>Go ahead and fill this out, you site name and what you want the superuser account to be. Just select Default for the Orchard Recipe. Select SQL Server Compact for data storage.</p>
+<p>Now you have a site. Cool! At this point, you’d start configuring it like you need to, possibly install a module or two form the gallery. Probably install a different theme, and so on. Even though this is the non-source setup, you do have some latitude in configuring the project, you can alter the html on the views, namely and possibly fiddle around with some CSS. Don’t expect to do heavy development here though, that’s not what this workflow is really for.</p>
+<p>Look at the folder structure for a moment. You are looking at what in the source will be the Orchard.Web project – one of 67 or so projects. You’ll notice that in this built project, you have every module listed in your module folder. It will be like this in the source too, though in Visual Studio you’ll see an aliased folder. Every image you add, and every piece of media you upload ends up, some way in the Media Folder.  Every theme you make or download ends up in the theme folder.  Its generally quite organized.</p>
+<p>I want to draw attention to one very important folder: App_Data. Open that. Now drill down Sites –&gt; Default. Look in there. see the Orchard.sdf file? That’s your site. Basically.</p>
+<img src="/images/orchard/orchard6.png">
+<p>If your site gets completely blown away, you can reinstall it all, and drop that in and all your blog posts, and content will be back. I hope this makes it clear how easy it is to back up an Orchard site, you just really need to account for the Media folder, because it has all your pictures and stuff, and this folder in your Sites.</p>
+<p>So at this point, you can put this Orchard install on your server, or push it to Azure or whatever you like. Boom, you installed Orchard. Beyond that its up to you. You might like simply editing posts in the online editor, or you might set up Live Writer to edit them. I’ve written about how to set up Live Writer in the past. Its not hard, and it works well. The bottom line is that I can’t stress the importance of your Media Sites –&gt; Default folders.  Back these up.</p>
+<p>Recently, my wife’s blog was spammed to the max. Eventually the attackers were able to bring down the blog. A similar situation in Wordpress or some other system would have really bothered me, but with her we simply backed up the imporant folders, then pulled our personal Orchard build from github, replacing everything. Then? We replaced the Media and Sites—&gt; Default folders.  It was a complete recovery.</p>
+<p>Next though, we need to get setup from the source. I’m gearing these tutorials to be used in Visual Studio. Honestly, if you’re a c# developer that’s the way to go. you get all the advantages of your favorite IDE, such as Resharper – and also you can build the project.</p>
+<p>We’ll cover that next.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Orchard is generally easy to setup. I think there is a larger question about workflow and deployment one has when they’re asking about setup. Really there’s two kinds of people interested in setting up Orchard. For lack of better terminology, I’ll say its either an end-user or a developer. We will be working , as a developer, off of the Orchard Source, but for the sake of completeness I’ll mention how to set up the built version also,as if you were an end-user.</p>]]>
     
     </summary>
     
