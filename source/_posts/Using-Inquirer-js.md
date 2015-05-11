@@ -8,10 +8,14 @@ tags: [inquirer.js, javascript, commnad line, Slush.js, Yeoman]
 If you've used Yeoman, or Slush.js you probably noticed that they both make use of a really nice tool for getting user input from the command line.
 
 
+{% img /images/inquirer/inquirer_js_logo.png "inquirer.js" %}
+
+
+What is Inquirer.js?
+
 <!-- more -->
 
-
-What is Inquirer? This is what they say:
+This is what they say:
 
 {% blockquote %}
 We strive at providing easily embeddable and beautiful command line interface for Node.js
@@ -213,8 +217,45 @@ A quick referesher - when you make a function that is recursive, you need to hav
 
 {% jsfiddle uojs9yt5 %}
 
-Look at this very simple recursive function.
+Look at this very simple recursive function. The base case is how we will eventually break out. Be careful with recursion, its easy to accidentally go forever.
 
+So in an inquirer prompt, what will *our* base case be? Easy! It is simply when the user no longer provides input.
+
+
+```js
+
+var question = [{
+  name: 'tacoIngredient',
+  message: 'Whats another tasty thing to add to your taco?',
+  default : ''
+}]
+
+var tacoIngredients = [];
+
+function finalAction(){
+
+  console.log('Make a taco with: =>' + tacoIngredients)
+}
+
+function askOrPerformFinalAction(answer) {
+
+  ingredientsList.push(answers.tacoIngredient);
+
+  if (!answers.tacoIngredient) {
+    finalAction(tacoIngredients);
+    return;
+  }
+
+  return inquirer.prompt(question, askOrPerformFinalAction);
+}
+
+inquirer.prompt(question, askOrPerformFinalAction);
+
+```
+
+So this here is a situation where we will ask over and over, until the enduser hits enter on a blank line. Each anser is fed into an array, which could ostensibly be used by the programmer to 'do something' later on.
+
+Combined with a little functional programming , the ability to branch via the `when` property and the various prompt types, you can use this technique to ask the enduser nearly anything, in any way! Since the answers are just simple objects, the possibilities are limitless.
 
 
 
