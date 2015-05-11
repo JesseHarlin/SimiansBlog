@@ -7,6 +7,10 @@ tags: [inquirer.js, javascript, commnad line, Slush.js, Yeoman]
 
 If you've used Yeoman, or Slush.js you probably noticed that they both make use of a really nice tool for getting user input from the command line.
 
+
+<!-- more -->
+
+
 What is Inquirer? This is what they say:
 
 {% blockquote %}
@@ -207,10 +211,9 @@ So what good is this post if we don't do something a little interesting? So far,
 
 A quick referesher - when you make a function that is recursive, you need to have a base case. This is how you will ultimately break out of a function. Without this, you go ferver and ever. Here's what I mean:
 
-```js
+{% jsfiddle uojs9yt5 %}
 
-
-```
+Look at this very simple recursive function.
 
 
 
