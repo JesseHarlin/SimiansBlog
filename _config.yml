@@ -67,6 +67,9 @@ pagination_dir: page
 ## Themes: http://hexo.io/themes/
 theme: simian
 
+#analytics
+google_analytics: UA-62874421-1
+
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
