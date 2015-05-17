@@ -9,7 +9,7 @@ The question was: I have a list of 12 items, in a ul. I'd like to split it in ha
 
 Actually, this seemingly straightforward question is a good chance to talk about a few things.
 
-Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way: 
+Foremost:  the code is pretty straightforward if you do this in jQuery. First, here is the jQuery way:
 
 
 {% jsfiddle the_Simian/ySL4U %}
@@ -24,11 +24,11 @@ Then we make a 'ul' tag in memory, pop our list items in that, and push it back 
 
 And all is right in the world.
 
-Only... we can do just a tiny bit more. 
+Only... we can do just a tiny bit more.
 
-first of all, while the lt and gt selectors are certainly great, the `.splice()` function is technically faster, and in my opinion more clear. Recall that jQuery selectors, are really lists of jQuery objects. Actually, if you can internalize that with jQuery its 'always' a list - that makes life easier. 
+first of all, while the lt and gt selectors are certainly great, the `.splice()` function is technically faster, and in my opinion more clear. Recall that jQuery selectors, are really lists of jQuery objects. Actually, if you can internalize that with jQuery its 'always' a list - that makes life easier.
 
-So lets try a quick experiment: first lets ditch the :gt selector and replace it with `splice()`. That means we need indexes 6-11, so we'd write something like: 
+So lets try a quick experiment: first lets ditch the :gt selector and replace it with `splice()`. That means we need indexes 6-11, so we'd write something like:
 
 `$ul.find('li').splice(6,11)` instead of `$ul.find('li:gt(5)')`
 
